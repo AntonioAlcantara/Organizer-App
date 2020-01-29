@@ -34,6 +34,7 @@ public class Event implements Serializable {
     private LocalDate endDate;
     private boolean completed;
     private boolean active;
+    private String creator;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_type", nullable = false, referencedColumnName = "type")
