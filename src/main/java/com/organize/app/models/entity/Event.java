@@ -34,6 +34,7 @@ public class Event implements Serializable {
     private LocalDate endDate;
     private boolean completed;
     private boolean active;
+    private String creator;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_type", nullable = false, referencedColumnName = "type")
@@ -43,7 +44,7 @@ public class Event implements Serializable {
     private Set<User> users;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "event_flat", nullable = false, referencedColumnName = "flat_id")
+    @JoinColumn(name = "event_flat", nullable = false, referencedColumnName = "id")
     private Flat flat;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
