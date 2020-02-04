@@ -14,7 +14,7 @@ public class EventController {
     @Autowired
     private IEventService eventService;
 
-    @GetMapping("/find")
+    @GetMapping("/find/all")
     public List<Event> getAllEvents() {
         return eventService.findAll();
     }

@@ -1,11 +1,6 @@
 version: '3.7'
 services:
   organizer-app:
-    image: organizer-app:v1
+    image: organizer-app
     ports:
       - "8090:8090"
-    restart: always
-    networks:
-      - organizercloud
-networks:
-  organizercloud:
