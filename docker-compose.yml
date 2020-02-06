@@ -3,4 +3,7 @@ services:
   organizer-app:
     image: organizer-app
     ports:
-      - "8090:8090"
+      - "8097:8080"
+      - "8010:8000"
+    environment:
+      JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n"
