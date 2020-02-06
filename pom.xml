@@ -11,7 +11,7 @@
 	<groupId>com.organize.app</groupId>
 	<artifactId>Organizer-App</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Organizer</name>
+	<name>organizer-app</name>
 	<description>Organizer app</description>
 
 	<properties>
@@ -49,11 +49,11 @@
 			<artifactId>springfox-swagger2</artifactId>
 			<version>2.9.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
+		<!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
-			<groupId>postgresql</groupId>
+			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>9.1-901-1.jdbc4</version>
+			<version>42.2.9</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -78,6 +78,34 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<configuration>
+					<from>
+						<image>openjdk:13.0.2-slim-buster</image>
+					</from>
+					<to>
+						<image>docker.io/paygin/organizer-app</image>
+					</to>
+				</configuration>
+				<executions>
+					<execution>
+						<id>build</id>
+						<phase>package</phase>
+						<goals>
+							<goal>dockerBuild</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>push</id>
+						<phase>install</phase>
+						<goals>
+							<goal>build</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
