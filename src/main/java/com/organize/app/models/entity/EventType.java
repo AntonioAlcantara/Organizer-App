@@ -9,10 +9,11 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(schema = "organizer")
+@Table(name = "event_type", schema = "organizer")
 public class EventType implements Serializable {
 
     @Id
+    @Column(nullable = false, length = 50, unique = true)
     private String type;
 
     @Transient

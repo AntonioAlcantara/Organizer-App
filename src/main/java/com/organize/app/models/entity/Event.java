@@ -18,8 +18,9 @@ public class Event implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String title;
+    @Column(length = 200)
     private String description;
     private Double amount;
     @CreationTimestamp
@@ -34,6 +35,7 @@ public class Event implements Serializable {
     private LocalDate endDate;
     private boolean completed;
     private boolean active;
+    @Column(nullable = false, length = 50)
     private String creator;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
