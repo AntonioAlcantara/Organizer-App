@@ -1,6 +1,7 @@
 package com.organize.app.models.entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,10 +16,12 @@ public class Flat implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String name;
+    @Column(nullable = false, length = 100)
     private String address;
 
+    @ToString.Exclude
     @ManyToMany(mappedBy = "flats", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<User> users;
 

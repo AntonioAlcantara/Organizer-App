@@ -14,19 +14,28 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 20)
     private String name;
+    @Column(nullable = false, length = 50)
     private String surname;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 20)
     private String nickname;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
-    @Column(nullable = false)
+    @Column(nullable = false, length = 60)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "user_type", nullable = false, referencedColumnName = "type")
-    private UserType userType;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"),
+            schema = "organizer"
+    )
+    private Set<Role> roleUser;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,
