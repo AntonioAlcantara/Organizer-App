@@ -2,7 +2,7 @@ package com.organize.app.controllers;
 
 import com.organize.app.models.dto.EventDto;
 import com.organize.app.models.mapper.IEventMapper;
-import com.organize.app.models.service.IEventService;
+import com.organize.app.models.service.events.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

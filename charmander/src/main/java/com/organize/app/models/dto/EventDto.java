@@ -13,7 +13,7 @@ public class EventDto {
     private Double amount;
     private LocalDate startDate;
     private LocalDate endDate;
-    private Long eventType;
+    private String eventType;
     private Set<RoomDto> rooms;
     private Set<UserDto> users;
     private String creator;

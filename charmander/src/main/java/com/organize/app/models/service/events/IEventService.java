@@ -1,4 +1,4 @@
-package com.organize.app.models.service;
+package com.organize.app.models.service.events;
 
 import com.organize.app.models.entity.Event;
 
