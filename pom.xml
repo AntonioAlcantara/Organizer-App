@@ -23,7 +23,7 @@
 	<description>Project for Spring Boot</description>
 	<packaging>pom</packaging>
 	<modules>
-		<module>evee</module>
+		<module>eevee</module>
 		<module>charmander</module>
 	</modules>
 

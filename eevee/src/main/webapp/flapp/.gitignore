@@ -1,48 +1,14 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
-.idea/
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-build/
-
-### VS Code ###
-.vscode/
-# Created by .ignore support plugin (hsz.mobi)
-/.idea/
-
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-./dist
-./tmp
-./out-tsc
+/dist
+/tmp
+/out-tsc
 # Only exists if Bazel was run
-./bazel-out
+/bazel-out
 
 # dependencies
-./node_modules
+/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -50,6 +16,8 @@ speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
+.project
+.classpath
 .c9/
 *.launch
 .settings/
@@ -64,10 +32,10 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
-./.sass-cache
-./connect.lock
-./coverage
-./libpeerconnection.log
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log

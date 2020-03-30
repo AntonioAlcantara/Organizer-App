@@ -1,13 +1,13 @@
-package com.evee.app;
+package com.eevee.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class EveeApplication {
+public class EeveeApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EveeApplication.class, args);
+		SpringApplication.run(EeveeApplication.class, args);
 	}
 
 }
