@@ -33,7 +33,7 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.9.1</version>
                 <configuration>
-                    <workingDirectory>${project.basedir}/src/main/webapp/flapp/</workingDirectory>
+                    <workingDirectory>${project.basedir}/src/main/web/</workingDirectory>
                     <nodeVersion>v12.15.0</nodeVersion>
                     <npmVersion>6.13.4</npmVersion>
                     <installDirectory>.</installDirectory>
@@ -76,7 +76,7 @@
                             <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/eevee/src/main/webapp/flapp/dist/flapp/</directory>
+                                    <directory>${project.parent.basedir}/eevee/src/main/web/dist/flapp/</directory>
                                 </resource>
                             </resources>
                         </configuration>
