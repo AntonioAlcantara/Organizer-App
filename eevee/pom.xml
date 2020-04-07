@@ -76,7 +76,7 @@
                             <outputDirectory>${project.build.directory}/classes/resources/</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${project.parent.basedir}/eevee/src/main/web/dist/flapp/</directory>
+                                    <directory>${project.parent.basedir}/eevee/src/main/web/dist/flapp-webapp/</directory>
                                 </resource>
                             </resources>
                         </configuration>
