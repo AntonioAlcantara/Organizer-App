@@ -8,7 +8,7 @@ import org.mapstruct.Mapper;
 import java.util.Collection;
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = {IEventMapper.class, IFlatMapper.class})
 public interface IUserMapper {
 
     User toUser (SignUpDto signUpDto);

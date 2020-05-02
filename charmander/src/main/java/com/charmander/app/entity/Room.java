@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Locale;
 import java.util.Set;
 
 @Data
@@ -16,6 +17,8 @@ public class Room implements Serializable {
     private Long id;
     @Column(nullable = false, length = 60)
     private String name;
+    @Column(nullable = false, length = 60)
+    private String locale;
 
     @ManyToMany(mappedBy = "rooms", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<Event> events;

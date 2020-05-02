@@ -1,20 +1,24 @@
 package com.charmander.app.service.user;
 
 import com.charmander.app.entity.User;
+import com.charmander.app.mapper.IEventMapper;
+import com.charmander.app.mapper.IFlatMapper;
 import com.charmander.app.mapper.IUserMapper;
-import com.charmander.app.model.LoginInfoDto;
-import com.charmander.app.model.SignUpDto;
-import com.charmander.app.model.UserDto;
+import com.charmander.app.model.*;
 import com.charmander.app.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+import java.util.HashSet;
 
 @Service
 public class UserServiceImpl implements  IUserService {
 
     private UserRepository userRepo;
     private IUserMapper iUserMapper;
+    private IFlatMapper iFlatMapper;
+    private IEventMapper iEventMapper;
 
     @Override
     public ResponseEntity<LoginInfoDto> login(String email, String password) {
@@ -31,7 +35,7 @@ public class UserServiceImpl implements  IUserService {
             userRepo.save(user);
             return new ResponseEntity<>(true, HttpStatus.CREATED);
         } else {
-            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(false, HttpStatus.NOT_ACCEPTABLE);
         }
     }
 
@@ -41,8 +45,23 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public ResponseEntity<UserDto> getUserInfo(Long id) {
-        var user = userRepo.findById(id);
-        return (user.isPresent()) ? new ResponseEntity<>(null, HttpStatus.OK) : new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<UserDto> getUserInfo(Long userId) {
+        var user = userRepo.findById(userId);
+        return user.map(value -> new ResponseEntity<>(iUserMapper.toDto(value), HttpStatus.OK))
+                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
+    }
+
+    @Override
+    public ResponseEntity<HashSet<FlatDto>> getFlats(Long userId) {
+        var user = userRepo.findById(userId);
+        return user.map(value -> new ResponseEntity<>(new HashSet<>(iFlatMapper.toDtos(value.getFlats())), HttpStatus.OK))
+                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
+    }
+
+    @Override
+    public ResponseEntity<HashSet<EventDto>> getEvents(Long userId) {
+        var user = userRepo.findById(userId);
+        return user.map(value -> new ResponseEntity<>(new HashSet<>(iEventMapper.toDtos(value.getEvents())), HttpStatus.OK))
+                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
     }
 }

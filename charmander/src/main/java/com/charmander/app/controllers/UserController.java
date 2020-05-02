@@ -1,5 +1,7 @@
 package com.charmander.app.controllers;
 
+import com.charmander.app.model.EventDto;
+import com.charmander.app.model.FlatDto;
 import com.charmander.app.model.LoginInfoDto;
 import com.charmander.app.model.SignUpDto;
 import com.charmander.app.service.user.IUserService;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.Set;
 
 @RestController("/v1/user")
 public class UserController {
@@ -15,9 +18,9 @@ public class UserController {
     private IUserService iUserService;
 
     @CrossOrigin(maxAge = 3600)
-    @PostMapping("/create")
-    public ResponseEntity<Boolean> createUser(@RequestBody SignUpDto signUpDto) {
-        return null;
+    @PostMapping("/register")
+    public ResponseEntity<Boolean> registerUser(@RequestBody SignUpDto signUpDto) {
+        return iUserService.createUser(signUpDto);
     }
 
     @CrossOrigin(maxAge = 3600)
@@ -29,5 +32,17 @@ public class UserController {
         // credentials = username:password
         final String[] values = credentials.split(":", 2);
         return iUserService.login(values[1], values[2]);
+    }
+
+    @CrossOrigin(maxAge = 3600)
+    @GetMapping("/find/flat")
+    public ResponseEntity<Set<FlatDto>> getFlatsFromUser(@RequestHeader("USER") Long id) {
+        return null;
+    }
+
+    @CrossOrigin(maxAge = 3600)
+    @GetMapping("/find/event")
+    public ResponseEntity<Set<EventDto>> getEventsFromUser(@RequestHeader("USER") Long id) {
+        return null;
     }
 }
