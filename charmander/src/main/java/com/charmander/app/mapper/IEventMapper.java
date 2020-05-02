@@ -1,7 +1,7 @@
 package com.charmander.app.mapper;
 
-import com.charmander.app.dto.EventDto;
-import com.charmander.app.model.Event;
+import com.charmander.app.model.EventDto;
+import com.charmander.app.entity.Event;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

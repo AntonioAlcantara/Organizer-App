@@ -1,4 +1,4 @@
-package com.charmander.app.dto;
+package com.charmander.app.model;
 
 import lombok.Data;
 

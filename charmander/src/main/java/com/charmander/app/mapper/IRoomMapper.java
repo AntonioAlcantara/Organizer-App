@@ -1,7 +1,7 @@
 package com.charmander.app.mapper;
 
-import com.charmander.app.dto.RoomDto;
-import com.charmander.app.model.Room;
+import com.charmander.app.model.RoomDto;
+import com.charmander.app.entity.Room;
 import org.mapstruct.Mapper;
 
 import java.util.Collection;

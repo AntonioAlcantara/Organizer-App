@@ -1,7 +1,12 @@
 package com.charmander.app.repository;
 
-import com.charmander.app.model.User;
+import com.charmander.app.entity.User;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.Optional;
+
 public interface UserRepository extends CrudRepository<User, Long> {
+
+    Optional<User> findByEmail(String email);
+    Optional<User> findByEmailAndPassword(String email, String password);
 }

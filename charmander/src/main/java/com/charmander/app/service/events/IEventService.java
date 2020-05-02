@@ -1,6 +1,6 @@
 package com.charmander.app.service.events;
 
-import com.charmander.app.model.Event;
+import com.charmander.app.entity.Event;
 
 import java.util.List;
 

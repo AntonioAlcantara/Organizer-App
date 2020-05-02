@@ -1,4 +1,4 @@
-package com.charmander.app.model;
+package com.charmander.app.entity;
 
 import lombok.Data;
 import lombok.ToString;
