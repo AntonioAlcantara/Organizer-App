@@ -1,8 +1,8 @@
 package com.charmander.app.controllers;
 
-import com.charmander.app.models.dto.EventDto;
-import com.charmander.app.models.mapper.IEventMapper;
-import com.charmander.app.models.service.events.IEventService;
+import com.charmander.app.dto.EventDto;
+import com.charmander.app.mapper.IEventMapper;
+import com.charmander.app.service.events.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,4 +1,4 @@
-package com.charmander.app.models.entity;
+package com.charmander.app.model;
 
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

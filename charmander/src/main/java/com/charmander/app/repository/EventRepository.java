@@ -1,6 +1,6 @@
-package com.charmander.app.models.repository;
+package com.charmander.app.repository;
 
-import com.charmander.app.models.entity.Event;
+import com.charmander.app.model.Event;
 import org.springframework.data.repository.CrudRepository;
 
 public interface EventRepository extends CrudRepository<Event, Long> {

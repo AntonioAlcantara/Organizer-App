@@ -1,7 +1,7 @@
-package com.charmander.app.models.mapper;
+package com.charmander.app.mapper;
 
-import com.charmander.app.models.dto.UserDto;
-import com.charmander.app.models.entity.User;
+import com.charmander.app.dto.UserDto;
+import com.charmander.app.model.User;
 import org.mapstruct.Mapper;
 
 import java.util.Collection;

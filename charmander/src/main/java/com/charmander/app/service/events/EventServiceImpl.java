@@ -1,7 +1,7 @@
-package com.charmander.app.models.service.events;
+package com.charmander.app.service.events;
 
-import com.charmander.app.models.entity.Event;
-import com.charmander.app.models.repository.EventRepository;
+import com.charmander.app.model.Event;
+import com.charmander.app.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
