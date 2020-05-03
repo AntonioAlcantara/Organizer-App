@@ -5,6 +5,7 @@ import com.charmander.app.model.FlatDto;
 import com.charmander.app.model.LoginInfoDto;
 import com.charmander.app.model.SignUpDto;
 import com.charmander.app.service.user.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +16,7 @@ import java.util.Set;
 @RestController("/v1/user")
 public class UserController {
 
+    @Autowired
     private IUserService iUserService;
 
     @CrossOrigin(maxAge = 3600)

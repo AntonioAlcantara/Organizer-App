@@ -1,24 +1,29 @@
 package com.charmander.app.service.user;
 
+import com.charmander.app.entity.Role;
 import com.charmander.app.entity.User;
 import com.charmander.app.mapper.IEventMapper;
 import com.charmander.app.mapper.IFlatMapper;
 import com.charmander.app.mapper.IUserMapper;
 import com.charmander.app.model.*;
+import com.charmander.app.repository.RoleRepository;
 import com.charmander.app.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements  IUserService {
 
-    private UserRepository userRepo;
-    private IUserMapper iUserMapper;
-    private IFlatMapper iFlatMapper;
-    private IEventMapper iEventMapper;
+    @Autowired private UserRepository userRepo;
+    @Autowired private IUserMapper iUserMapper;
+    @Autowired private IFlatMapper iFlatMapper;
+    @Autowired private IEventMapper iEventMapper;
+    @Autowired private RoleRepository roleRepo;
 
     @Override
     public ResponseEntity<LoginInfoDto> login(String email, String password) {
@@ -32,6 +37,9 @@ public class UserServiceImpl implements  IUserService {
     public ResponseEntity<Boolean> createUser(SignUpDto signUpDto) {
         if (userRepo.findByEmail(signUpDto.getEmail()).isEmpty()) {
             User user = iUserMapper.toUser(signUpDto);
+            Set<Role> roles = new HashSet<>();
+            roleRepo.findById(1L).map(roles::add).orElseThrow();
+            user.setRoleUser(roles);
             userRepo.save(user);
             return new ResponseEntity<>(true, HttpStatus.CREATED);
         } else {

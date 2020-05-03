@@ -5,6 +5,7 @@ import com.charmander.app.entity.User;
 import com.charmander.app.model.CreateFlatDto;
 import com.charmander.app.repository.FlatRepository;
 import com.charmander.app.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ import java.util.Set;
 @Service
 public class FlatServiceImpl implements IFlatService {
 
-    private UserRepository userRepo;
-    private FlatRepository flatRepo;
+    @Autowired private UserRepository userRepo;
+    @Autowired private FlatRepository flatRepo;
 
     @Override
     public ResponseEntity<Boolean> createFlat(CreateFlatDto flatDto) {
