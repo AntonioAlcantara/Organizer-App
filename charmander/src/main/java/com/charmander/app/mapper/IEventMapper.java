@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper
 (
     componentModel = "spring",
-    uses = {IRoomMapper.class, IUserMapper.class}
+    uses = {IRoomMapper.class, IUserMapper.class, IFlatMapper.class}
 )
 public interface IEventMapper {
 

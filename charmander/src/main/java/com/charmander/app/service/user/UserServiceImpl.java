@@ -48,28 +48,37 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public boolean existsUser(String email) {
-        return userRepo.findByEmail(email).isPresent();
+    public ResponseEntity<Boolean> existsUser(String email) {
+        return (userRepo.findByEmail(email).isPresent()) ? new ResponseEntity<>(true, HttpStatus.OK) :
+                                                           new ResponseEntity<>(false, HttpStatus.NO_CONTENT);
     }
 
     @Override
     public ResponseEntity<UserDto> getUserInfo(Long userId) {
         var user = userRepo.findById(userId);
         return user.map(value -> new ResponseEntity<>(iUserMapper.toDto(value), HttpStatus.OK))
-                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
+                   .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @Override
     public ResponseEntity<HashSet<FlatDto>> getFlats(Long userId) {
         var user = userRepo.findById(userId);
         return user.map(value -> new ResponseEntity<>(new HashSet<>(iFlatMapper.toDtos(value.getFlats())), HttpStatus.OK))
-                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
+                   .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
     }
 
     @Override
     public ResponseEntity<HashSet<EventDto>> getEvents(Long userId) {
         var user = userRepo.findById(userId);
         return user.map(value -> new ResponseEntity<>(new HashSet<>(iEventMapper.toDtos(value.getEvents())), HttpStatus.OK))
-                   .orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NO_CONTENT));
+                   .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+    }
+
+    @Override
+    public ResponseEntity<Set<UserDto>> searchUsers(String nickname) {
+//        var users = userRepo.findAllLikeNickname("%" + nickname + "%");
+//        Set<UserDto> userDtoList = new HashSet<>(iUserMapper.toDtos(users));
+//        return (userDtoList.isEmpty()) ? new ResponseEntity<>(userDtoList, HttpStatus.OK) :
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

@@ -1,9 +1,6 @@
 package com.charmander.app.controllers;
 
-import com.charmander.app.model.EventDto;
-import com.charmander.app.model.FlatDto;
-import com.charmander.app.model.LoginInfoDto;
-import com.charmander.app.model.SignUpDto;
+import com.charmander.app.model.*;
 import com.charmander.app.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.HashSet;
 import java.util.Set;
 
 @RestController("/v1/user")
@@ -38,13 +36,19 @@ public class UserController {
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/flat")
-    public ResponseEntity<Set<FlatDto>> getFlatsFromUser(@RequestHeader("USER") Long id) {
-        return null;
+    public ResponseEntity<HashSet<FlatDto>> getFlatsFromUser(@RequestHeader("USER") Long id) {
+        return iUserService.getFlats(id);
     }
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/event")
     public ResponseEntity<Set<EventDto>> getEventsFromUser(@RequestHeader("USER") Long id) {
         return null;
+    }
+
+    @CrossOrigin(maxAge = 3600)
+    @GetMapping("/find/{nickname}")
+    public ResponseEntity<Set<UserDto>> searchUser(@PathVariable String nickname) {
+        return iUserService.searchUsers(nickname);
     }
 }
