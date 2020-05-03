@@ -1,6 +1,8 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -40,13 +42,19 @@ public class Event implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_type", nullable = false, referencedColumnName = "type")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private EventType eventType;
 
     @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<User> users;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_flat", nullable = false, referencedColumnName = "id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Flat flat;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -59,6 +67,8 @@ public class Event implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "room_id"),
             schema = "organizer"
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Room> rooms;
 
 }

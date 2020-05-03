@@ -1,6 +1,7 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -22,10 +23,13 @@ public class Flat implements Serializable {
     private String address;
 
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "flats", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<User> users;
 
     @OneToMany(mappedBy = "flat", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private List<Event> events;
 
 

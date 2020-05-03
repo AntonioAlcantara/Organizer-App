@@ -1,10 +1,11 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Locale;
 import java.util.Set;
 
 @Data
@@ -21,5 +22,7 @@ public class Room implements Serializable {
     private String locale;
 
     @ManyToMany(mappedBy = "rooms", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Event> events;
 }

@@ -1,6 +1,7 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class EventType implements Serializable {
 
     @Transient
     @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "eventType", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Event> events;
 }

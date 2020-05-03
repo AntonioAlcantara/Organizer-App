@@ -1,6 +1,8 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -35,6 +37,8 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"),
             schema = "organizer"
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Role> roleUser;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -47,6 +51,8 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "flat_id"),
             schema = "organizer"
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Flat> flats;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
@@ -59,6 +65,8 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "event_id"),
             schema = "organizer"
     )
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<Event> events;
 
 }

@@ -1,6 +1,8 @@
 package com.charmander.app.entity;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,5 +21,7 @@ public class Role implements Serializable {
     private String role;
 
     @ManyToMany(mappedBy = "roleUser", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Set<User> users;
 }
