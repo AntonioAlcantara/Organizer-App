@@ -4,12 +4,14 @@ import com.charmander.app.model.RoomDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Locale;
 import java.util.Set;
 
-@RestController("/v1/room")
+@RestController
+@RequestMapping("/v1/room")
 public class RoomController {
 
     @CrossOrigin(maxAge = 3600)
