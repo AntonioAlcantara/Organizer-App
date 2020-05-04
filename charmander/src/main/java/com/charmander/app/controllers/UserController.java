@@ -2,7 +2,6 @@ package com.charmander.app.controllers;
 
 import com.charmander.app.model.*;
 import com.charmander.app.service.user.IUserService;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/v1/user")
-@ApiModel()
 public class UserController {
 
     @Autowired
@@ -24,7 +22,10 @@ public class UserController {
 
     @CrossOrigin(maxAge = 3600)
     @PostMapping("/register")
-    public ResponseEntity<Boolean> registerUser(@RequestBody SignUpDto signUpDto) {
+    @ApiOperation(value = "Register a new user")
+    public ResponseEntity<Boolean> registerUser(
+            @ApiParam(value = "Sign up form", required = true) @RequestBody SignUpDto signUpDto
+    ) {
         return iUserService.createUser(signUpDto);
     }
 
@@ -44,7 +45,7 @@ public class UserController {
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/flat")
-    @ApiOperation(value = "Get the flats from the user")
+    @ApiOperation(value = "Get the basic information of the flats from the user")
     public ResponseEntity<HashSet<FlatDto>> getFlatsFromUser(
             @ApiParam(value = "User id", required = true) @RequestHeader("USER") Long id
     ) {
@@ -53,7 +54,7 @@ public class UserController {
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/event")
-    @ApiOperation(value = "Get the events from the user")
+    @ApiOperation(value = "Get information of the events from the user")
     public ResponseEntity<Set<EventDto>> getEventsFromUser(
             @ApiParam(value = "User id", required = true) @RequestHeader("USER") Long id
     ) {
