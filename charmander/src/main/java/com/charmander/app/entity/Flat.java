@@ -22,9 +22,18 @@ public class Flat implements Serializable {
     @Column(nullable = false, length = 100)
     private String address;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "user_flat",
+            joinColumns = @JoinColumn(name = "flat_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            schema = "organizer"
+    )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "flats", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Set<User> users;
 
     @OneToMany(mappedBy = "flat", cascade = CascadeType.ALL, orphanRemoval = true)

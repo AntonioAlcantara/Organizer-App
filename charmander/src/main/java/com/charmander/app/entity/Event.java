@@ -46,7 +46,16 @@ public class Event implements Serializable {
     @EqualsAndHashCode.Exclude
     private EventType eventType;
 
-    @ManyToMany(mappedBy = "events", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    @JoinTable(
+            name = "user_event",
+            joinColumns = @JoinColumn(name = "event_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"),
+            schema = "organizer"
+    )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     private Set<User> users;

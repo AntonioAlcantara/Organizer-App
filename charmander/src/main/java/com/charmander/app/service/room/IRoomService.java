@@ -8,5 +8,6 @@ import java.util.Set;
 
 public interface IRoomService {
 
+    ResponseEntity<Void> createRoom(String name, Locale locale);
     ResponseEntity<Set<RoomDto>> findAllByLocale(Locale locale);
 }

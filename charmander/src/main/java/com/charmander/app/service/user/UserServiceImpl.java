@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -38,7 +39,8 @@ public class UserServiceImpl implements  IUserService {
         if (userRepo.findByEmail(signUpDto.getEmail()).isEmpty()) {
             User user = iUserMapper.toUser(signUpDto);
             Set<Role> roles = new HashSet<>();
-            roleRepo.findById(1L).map(roles::add).orElseThrow();
+            var role = roleRepo.findById(1L).orElseThrow();
+            roles.add(role);
             user.setRoleUser(roles);
             userRepo.save(user);
             return new ResponseEntity<>(true, HttpStatus.CREATED);
@@ -48,9 +50,15 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public ResponseEntity<Boolean> existsUser(String email) {
+    public ResponseEntity<Boolean> existsUserByEmail(String email) {
         return (userRepo.findByEmail(email).isPresent()) ? new ResponseEntity<>(true, HttpStatus.OK) :
                                                            new ResponseEntity<>(false, HttpStatus.NO_CONTENT);
+    }
+
+    @Override
+    public ResponseEntity<Boolean> existsUserByNickname(String nickname) {
+        return (userRepo.findByNickname(nickname).isPresent()) ? new ResponseEntity<>(true, HttpStatus.OK) :
+                new ResponseEntity<>(false, HttpStatus.NO_CONTENT);
     }
 
     @Override
@@ -61,17 +69,25 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public ResponseEntity<HashSet<FlatDto>> getFlats(Long userId) {
+    public ResponseEntity<List<FlatDto>> getFlats(Long userId) {
         var user = userRepo.findById(userId);
-        return user.map(value -> new ResponseEntity<>(new HashSet<>(iFlatMapper.toDtos(value.getFlats())), HttpStatus.OK))
-                   .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+        return user.map(value -> new ResponseEntity<>
+                (
+                    iFlatMapper.toDtos(value.getFlats()),
+                    (value.getFlats().isEmpty()) ? HttpStatus.NO_CONTENT : HttpStatus.OK
+                )
+        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
-    public ResponseEntity<HashSet<EventDto>> getEvents(Long userId) {
+    public ResponseEntity<List<EventDto>> getEvents(Long userId) {
         var user = userRepo.findById(userId);
-        return user.map(value -> new ResponseEntity<>(new HashSet<>(iEventMapper.toDtos(value.getEvents())), HttpStatus.OK))
-                   .orElseGet(() -> new ResponseEntity<>(HttpStatus.NO_CONTENT));
+        return user.map(value -> new ResponseEntity<>
+                (
+                    iEventMapper.toDtos(value.getEvents()),
+                    (value.getEvents().isEmpty()) ? HttpStatus.NO_CONTENT : HttpStatus.OK
+                )
+        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
