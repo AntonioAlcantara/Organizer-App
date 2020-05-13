@@ -23,7 +23,7 @@ public class RoomController {
     }
 
     @CrossOrigin(maxAge = 3600)
-    @PostMapping("/findAll/{locale}")
+    @GetMapping("/findAll/{locale}")
     public ResponseEntity<Set<RoomDto>> getRooms(@NotEmpty @PathVariable Locale locale) {
         return iRoomService.findAllByLocale(locale);
     }
