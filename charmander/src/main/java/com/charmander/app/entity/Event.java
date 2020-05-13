@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -38,7 +38,7 @@ public class Event implements Serializable {
     private boolean completed;
     private boolean active;
     @Column(nullable = false, length = 50)
-    private String creator;
+    private long creator;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_type", nullable = false, referencedColumnName = "type")
@@ -58,7 +58,7 @@ public class Event implements Serializable {
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<User> users;
+    private List<User> users;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "event_flat", nullable = false, referencedColumnName = "id")
@@ -78,6 +78,6 @@ public class Event implements Serializable {
     )
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<Room> rooms;
+    private List<Room> rooms;
 
 }

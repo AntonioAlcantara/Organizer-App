@@ -1,15 +1,13 @@
 package com.charmander.app.controllers;
 
-import com.charmander.app.model.EventDto;
 import com.charmander.app.mapper.IEventMapper;
+import com.charmander.app.model.CreateEventDto;
 import com.charmander.app.service.events.IEventService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping("/v1/event")
@@ -19,8 +17,11 @@ public class EventController {
     @Autowired private IEventService eventService;
 
     @CrossOrigin(maxAge = 3600)
-    @GetMapping("/find/all")
-    public List<EventDto> getAllEvents() {
-        return eventMapper.toDtos(eventService.findAll());
+    @PostMapping("/create")
+    public ResponseEntity<Void> createEvent(@RequestBody CreateEventDto createEventDto, @RequestHeader("USER") Long userId) {
+        if (createEventDto.getStartDate() == null) {
+            createEventDto.setStartDate(LocalDate.now());
+        }
+        return eventService.createEvent(createEventDto, userId);
     }
 }

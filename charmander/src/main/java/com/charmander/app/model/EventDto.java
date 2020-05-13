@@ -4,7 +4,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Data
 public class EventDto {
@@ -18,9 +18,9 @@ public class EventDto {
     @NotEmpty
     private String eventType;
     @NotEmpty
-    private Set<RoomDto> rooms;
+    private List<RoomDto> rooms;
     @NotEmpty
-    private Set<UserDto> users;
+    private List<UserLowInfoDto> users;
     @NotEmpty
     private String creator;
 }
