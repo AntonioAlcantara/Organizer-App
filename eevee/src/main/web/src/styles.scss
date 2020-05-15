@@ -2,25 +2,54 @@
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif; 
-    color: #484848;
-    // sbackground-image: url('assets/images/login-bg.png');
+    color: #424242;
     background-repeat: no-repeat, repeat;
     background-size: cover;
 }
+
 html, body { height: 100%; }
-button, a {width: 100%;}
-.mat-icon {color: #3e50b6;}
-::ng-deep .mat-focused .mat-form-field-label {
+span {color: #424242;}
+
+/* MATERIAL BUTTONS */
+
+a { width: auto;}
+button {
+    width: 100%;
+    span {color: #ffffff}
+}
+
+.primary-button { background-color: #ff5757;}
+.primary-button:focus { outline: 5px auto #f78888 !important; }
+.accent-button { background-color: #52a2d5;}
+.accent-button:focus { outline: 5px auto #a8d0e6 !important; }
+.yellow-button {background-color: #f3e7b8 !important;}
+.yellow-button:focus {outline: #f3e7b8; }
+
+/* MATERIAL ICONS */
+
+.primary-icon {
+    color: #ff5757;
+}
+.accent-icon {
+    color: #52a2d5;
+}
+.yellow-icon {
+    color: #f3D250;
+}
+
+/* MATERIAL FORMS */
+
+.mat-focused .mat-form-field-label {
     /*change color of label*/
-    color: green !important;
-   }
+    color: #ff5757 !important;
+}
   
-   ::ng-deep.mat-form-field-underline {
+.mat-form-field-underline {
     /*change color of underline*/
-    background-color: green !important;
-  } 
+    background-color: #ff5757 !important;
+} 
   
-  ::ng-deep.mat-form-field-ripple {
-   /*change color of underline when focused*/
-   background-color: green !important;;
-  }
+.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: #ff5757 !important;
+}
