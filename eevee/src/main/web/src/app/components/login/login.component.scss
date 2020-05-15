@@ -1,6 +1,5 @@
 
-  
-.form {
+  .form {
   min-width: 250px;
   padding: 28px;
 }
@@ -15,4 +14,10 @@ a:hover {
   -webkit-transform: scale(1.1); /* Safari 3-8 */
   transform: scale(1.1);
   transition: all 0.3s ease-in-out 0.1s;
+}
+@media screen and (max-width: 768px) {
+  .icon {height: 170px; margin-bottom: -30px;}
+}
+@media screen and (min-width: 769px) {
+  .icon {height: 200px; }
 }

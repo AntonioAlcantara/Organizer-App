@@ -10,6 +10,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
 import { MatIconModule} from '@angular/material/icon';
 import { RegisterComponent } from './components/register/register.component';
+import { RouterModule, ROUTES } from '@angular/router';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { RegisterComponent } from './components/register/register.component';
     MatInputModule,
     MatButtonModule,
     MatIconModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

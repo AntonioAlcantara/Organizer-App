@@ -17,12 +17,19 @@ button {
     width: 100%;
     span {color: #ffffff}
 }
+.mat-fab, .mat-mini-fab { box-shadow: none !important;}
+.button-rounded {border-radius: 50px !important;}
 
 .primary-button { background-color: #ff5757;}
 .primary-button:focus { outline: 5px auto #f78888 !important; }
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
-.yellow-button {background-color: #f3e7b8 !important;}
+.yellow-button {
+    background-color: #f8f4e4 !important;
+    span {
+        color: #f3D250;
+    }
+}
 .yellow-button:focus {outline: #f3e7b8; }
 
 /* MATERIAL ICONS */
