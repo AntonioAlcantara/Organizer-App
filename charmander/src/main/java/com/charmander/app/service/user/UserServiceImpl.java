@@ -82,12 +82,15 @@ public class UserServiceImpl implements  IUserService {
     @Override
     public ResponseEntity<List<EventDto>> getEvents(Long userId) {
         var user = userRepo.findById(userId);
-        return user.map(value -> new ResponseEntity<>
-                (
-                    iEventMapper.toDtos(value.getEvents()),
-                    (value.getEvents().isEmpty()) ? HttpStatus.NO_CONTENT : HttpStatus.OK
-                )
-        ).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
+        return user.map(value -> {
+            if (value.getEvents().isEmpty()) {
+                return new ResponseEntity<> (iEventMapper.toDtos(value.getEvents()) , HttpStatus.NO_CONTENT);
+            } else {
+                var events = iEventMapper.toDtos(value.getEvents());
+                events.forEach(eventDto -> eventDto.setCreator(value.getNickname()));
+                return new ResponseEntity<> (events , HttpStatus.OK);
+            }
+        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override

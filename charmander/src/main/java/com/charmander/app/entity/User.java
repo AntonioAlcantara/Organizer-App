@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -44,11 +45,11 @@ public class User implements Serializable {
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private Set<Flat> flats;
+    private List<Flat> flats;
 
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private Set<Event> events;
+    private List<Event> events;
 
 }

@@ -3,11 +3,12 @@ package com.charmander.app.model;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @Data
-public class EventDto {
+public class CreateEventDto {
 
     @NotEmpty
     private String title;
@@ -18,9 +19,9 @@ public class EventDto {
     @NotEmpty
     private String eventType;
     @NotEmpty
-    private List<RoomDto> rooms;
+    private Set<Long> roomIds;
     @NotEmpty
-    private List<UserLowInfoDto> users;
-    @NotEmpty
-    private String creator;
+    private Set<Long> userIds;
+    @NotNull
+    private long flatId;
 }
