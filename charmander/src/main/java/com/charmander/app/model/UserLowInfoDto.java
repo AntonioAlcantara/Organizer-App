@@ -16,4 +16,5 @@ public class UserLowInfoDto {
     private String surname;
     @NotEmpty
     private String nickname;
+    private String city;
 }

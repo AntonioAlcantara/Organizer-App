@@ -20,4 +20,5 @@ public class SignUpDto {
     private String name;
     @NotEmpty @Size(min = 1, max = 25)
     private String surname;
+    private String city;
 }

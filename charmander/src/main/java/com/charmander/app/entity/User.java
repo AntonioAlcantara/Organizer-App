@@ -27,6 +27,8 @@ public class User implements Serializable {
     private String email;
     @Column(nullable = false, length = 60)
     private String password;
+    @Column(length = 50)
+    private String city;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST,

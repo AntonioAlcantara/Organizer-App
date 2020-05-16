@@ -35,7 +35,7 @@ public class UserController {
     @GetMapping("/login")
     @ApiOperation(value = "Login", notes = "This method do the login")
     public ResponseEntity<LoginInfoDto> login(
-            @ApiParam(value = "User credentials", required = true) @NotEmpty @RequestHeader("AUTHORIZATION") String authorization
+            @ApiParam(value = "User credentials", required = true) @Valid @NotEmpty @RequestHeader("AUTHORIZATION") String authorization
     ) {
         String base64Credentials = authorization.substring("Basic".length()).trim();
         byte[] credDecoded = Base64.getDecoder().decode(base64Credentials);
@@ -49,7 +49,7 @@ public class UserController {
     @GetMapping("/find/flat")
     @ApiOperation(value = "Get the basic information of the flats from the user")
     public ResponseEntity<List<FlatDto>> getFlatsFromUser(
-            @ApiParam(value = "User id", required = true) @NotEmpty @RequestHeader("USER") Long id
+            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id
     ) {
         return iUserService.getFlats(id);
     }
@@ -58,7 +58,7 @@ public class UserController {
     @GetMapping("/check/email")
     @ApiOperation(value = "Check if user exists by email")
     public ResponseEntity<Boolean> checkIfUserExistsByEmail(
-            @ApiParam(value = "Email to check", required = true) @NotEmpty @RequestParam String email
+            @ApiParam(value = "Email to check", required = true) @Valid @NotEmpty @RequestParam String email
     ) {
         return iUserService.existsUserByEmail(email);
     }
@@ -67,7 +67,7 @@ public class UserController {
     @GetMapping("/check/nickname")
     @ApiOperation(value = "Check if user exists by nickname")
     public ResponseEntity<Boolean> checkIfUserExistsByNickname(
-            @ApiParam(value = "Nickname to check", required = true) @NotEmpty @RequestParam String nickname
+            @ApiParam(value = "Nickname to check", required = true) @Valid @NotEmpty @RequestParam String nickname
     ) {
         return iUserService.existsUserByNickname(nickname);
     }
@@ -76,7 +76,7 @@ public class UserController {
     @GetMapping("/find/event")
     @ApiOperation(value = "Get information of the events from the user")
     public ResponseEntity<List<EventDto>> getEventsFromUser(
-            @ApiParam(value = "User id", required = true) @NotEmpty @RequestHeader("USER") Long id
+            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id
     ) {
         return iUserService.getEvents(id);
     }
@@ -85,7 +85,7 @@ public class UserController {
     @GetMapping("/find/{nickname}")
     @ApiOperation(value = "Find users by nickname")
     public ResponseEntity<Set<UserLowInfoDto>> searchUser(
-            @ApiParam(value = "Name for the search", required = true) @NotEmpty @PathVariable String nickname
+            @ApiParam(value = "Name for the search", required = true) @Valid @NotEmpty @PathVariable String nickname
     ) {
         return iUserService.searchUsers(nickname);
     }

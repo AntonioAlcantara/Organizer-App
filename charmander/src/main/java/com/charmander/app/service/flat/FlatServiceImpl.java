@@ -44,4 +44,18 @@ public class FlatServiceImpl implements IFlatService {
         var events = flatRepo.findById(flatId).map( flat -> iEventMapper.toDtos(flat.getEvents())).orElseThrow();
         return new ResponseEntity<>(events, (events.isEmpty()) ? HttpStatus.NO_CONTENT : HttpStatus.OK);
     }
+
+    @Override
+    public ResponseEntity<Void> addUserToFlat(Set<Long> userIds, Long flatId) {
+        Set<User> userList = new HashSet<>();
+        userRepo.findAllById(userIds).forEach(userList::add);
+        var flat = flatRepo.findById(flatId).orElseThrow();
+        if (!userList.isEmpty()) {
+            flat.setUsers(userList);
+            flatRepo.save(flat);
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        }
+    }
 }
