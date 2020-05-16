@@ -84,7 +84,7 @@ public class UserController {
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/{nickname}")
     @ApiOperation(value = "Find users by nickname")
-    public ResponseEntity<Set<UserDto>> searchUser(
+    public ResponseEntity<Set<UserLowInfoDto>> searchUser(
             @ApiParam(value = "Name for the search", required = true) @NotEmpty @PathVariable String nickname
     ) {
         return iUserService.searchUsers(nickname);

@@ -94,10 +94,10 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public ResponseEntity<Set<UserDto>> searchUsers(String nickname) {
-//        var users = userRepo.findAllLikeNickname("%" + nickname + "%");
-//        Set<UserDto> userDtoList = new HashSet<>(iUserMapper.toDtos(users));
-//        return (userDtoList.isEmpty()) ? new ResponseEntity<>(userDtoList, HttpStatus.OK) :
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    public ResponseEntity<Set<UserLowInfoDto>> searchUsers(String nickname) {
+        var inputSearch = "%" + nickname + "%";
+        var users = userRepo.findAllByNickname(inputSearch);
+        Set<UserLowInfoDto> userDtoList = new HashSet<>(iUserMapper.toLowInfoDtos(users));
+        return (!userDtoList.isEmpty()) ? new ResponseEntity<>(userDtoList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
