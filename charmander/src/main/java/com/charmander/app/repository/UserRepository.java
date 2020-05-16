@@ -13,6 +13,6 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findByEmail(String email);
     Optional<User> findByNickname(String nickname);
     Optional<User> findByEmailAndPassword(String email, String password);
-//    @Query("SELECT User FROM User WHERE nickname LIKE :nickname")
-//    List<User> findAllLikeNickname(@Param("nickname") String nickname);
+    @Query(value = "SELECT * FROM organizer.user WHERE nickname LIKE :nickname", nativeQuery = true)
+    List<User> findAllByNickname(@Param("nickname") String nickname);
 }

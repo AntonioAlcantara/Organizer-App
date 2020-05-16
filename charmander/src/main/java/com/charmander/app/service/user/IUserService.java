@@ -15,5 +15,5 @@ public interface IUserService {
     ResponseEntity<UserDto> getUserInfo(Long userId);
     ResponseEntity<List<FlatDto>> getFlats(Long userId);
     ResponseEntity<List<EventDto>> getEvents(Long userId);
-    ResponseEntity<Set<UserDto>> searchUsers(String nickname);
+    ResponseEntity<Set<UserLowInfoDto>> searchUsers(String nickname);
 }
