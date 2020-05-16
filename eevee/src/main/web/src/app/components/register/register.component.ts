@@ -7,8 +7,7 @@ import { UserModel } from 'src/app/models/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -17,14 +16,14 @@ export class RegisterComponent implements OnInit {
      private router: Router,
      private registerService: UserService
       ) {
-    this.registerForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      surname: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      validatePassword: new FormControl('', [Validators.required]),
-      nickname: new FormControl('', [Validators.required])
-    });
+         this.registerForm = new FormGroup({
+            name: new FormControl('', [Validators.required]),
+            surname: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required]),
+            password: new FormControl('', [Validators.required]),
+            validatePassword: new FormControl('', [Validators.required]),
+            nickname: new FormControl('', [Validators.required])
+         });
 
   }
 

@@ -9,10 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 const ROUTES: Routes = [
   // routes
   { path: '', component: LoginComponent},
+  { path: 'home', component: HomeComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
-  { path: 'home', component: HomeComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'login' }
+  { path: '**', pathMatch: 'full', redirectTo: 'home' }
 ];
 export const APP_ROUTING = RouterModule.forRoot(ROUTES, {useHash: true});
 

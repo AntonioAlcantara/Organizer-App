@@ -1,24 +1,26 @@
 
 body { 
     margin: 0; 
-    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    font-family: 'Montserrat', sans-serif;
     color: #424242;
     background-repeat: no-repeat, repeat;
     background-size: cover;
 }
 
 html, body { height: 100%; }
-span {color: #424242;}
-
+span { color: #424242;}
+.mat-card { color: #424242;}
+/* HEADINGS*/
+h2 { font-family: 'Pacifico', cursive;}
 /* MATERIAL BUTTONS */
 
 a { width: auto;}
 button {
     width: 100%;
-    span {color: #ffffff}
+    span { color: #ffffff}
 }
 .mat-fab, .mat-mini-fab { box-shadow: none !important;}
-.button-rounded {border-radius: 50px !important;}
+.button-rounded { border-radius: 50px !important;}
 
 .primary-button { background-color: #ff5757;}
 .primary-button:focus { outline: 5px auto #f78888 !important; }
@@ -51,6 +53,10 @@ button {
     color: red !important;
 }
 
+.mat-form-field-label {
+    color: #424242 !important;
+}
+
 .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: #ff5757 !important;
@@ -64,4 +70,14 @@ button {
 .mat-form-field-ripple {
     /*change color of underline when focused*/
     background-color: #ff5757 !important;
+}
+
+/* DESKTOP */
+@media screen and (max-width: 768px) {
+    .background-wrap {
+        background-image: linear-gradient(rgba(255,255,255,.78), 
+        rgba(255,255,255,.78)), url("/assets/images/roommate.jpg") !important;
+        background-repeat: no-repeat !important;
+        background-size: 100% !important;
+    }
 }

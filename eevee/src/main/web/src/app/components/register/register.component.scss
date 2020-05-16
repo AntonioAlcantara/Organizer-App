@@ -1,9 +1,4 @@
-.register-form {
-     border: 2px solid #F3D250;
-     border-radius: 15px;
-     margin: 5%;
-     padding: 5%
-}
+
 a { font-weight: bold;}
 a:hover {
   transform: scale(1);
@@ -14,6 +9,9 @@ a:hover {
   transition: all 0.3s ease-in-out 0.1s;
 }
 
+.border-right { border-color: #ff5757 !important}
+.border-bottom { border-color: #f3D250 !important}
+
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
      .icon {height: 170px; margin-bottom: -30px;}
@@ -21,8 +19,13 @@ a:hover {
           width: 100%;
           margin: 0px !important;
      }
+     #roommates-img {
+          height: 100px;
+          margin-top: 20px;
+     }
      
 }
+
 /* DESKTOP */
 @media screen and (min-width: 769px) {
      .mat-form-field { min-width: 45%;}
@@ -31,20 +34,9 @@ a:hover {
           margin: 5%;
           padding: 5%
      }
+     #roommates-img {
+          height: 150px;
+          margin-top: 20px;
+          margin-bottom: 20px;
+     }
 }
-/* MATERIAL FORMS */
-
-:host ::ng-deep .mat-focused .mat-form-field-label {
-     /*change color of label*/
-     color: #F3D250 !important;
- }
-   
- :host ::ng-deep .mat-form-field-underline {
-     /*change color of underline*/
-     background-color: #F3D250 !important;
- } 
-   
- :host ::ng-deep .mat-form-field-ripple {
-     /*change color of underline when focused*/
-     background-color: #F3D250 !important;
- }
