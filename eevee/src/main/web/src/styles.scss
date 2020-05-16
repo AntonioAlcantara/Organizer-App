@@ -46,6 +46,11 @@ button {
 
 /* MATERIAL FORMS */
 
+::ng-deep .mat-input-element:invalid {
+    caret-color: red !important ;
+    color: red !important;
+}
+
 .mat-focused .mat-form-field-label {
     /*change color of label*/
     color: #ff5757 !important;
