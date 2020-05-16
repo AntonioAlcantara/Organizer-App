@@ -48,7 +48,7 @@ public class EventServiceImpl implements IEventService {
         List<Room> roomList = new ArrayList<>();
         roomRepo.findAllById(createEventDto.getRoomIds()).forEach(roomList::add);
         var eventType = eventTypeRepo.findById(createEventDto.getEventType()).orElseThrow();
-        if (userList.isEmpty() && roomList.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (userList.isEmpty() || roomList.isEmpty()) return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         Event event = iEventMapper.toEntity(createEventDto, userId, eventType, userList, roomList, flat);
         event.setActive(true);
         eventRepo.save(event);
