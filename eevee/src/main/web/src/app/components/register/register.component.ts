@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormControlName } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/models/user';
@@ -28,7 +28,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
+ }
+ 
   register() {
      if (this.registerForm.valid) {
         const user = new UserModel();

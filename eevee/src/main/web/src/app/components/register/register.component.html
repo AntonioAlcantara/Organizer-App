@@ -31,15 +31,17 @@
                         <div class="row d-flex justify-content-between">
                             <mat-form-field>
                                 <mat-label>Name</mat-label>
-                                <input matInput type="text" formControlName="name" placeholder="Insert your name"
+                                <input matInput type="text" #name formControlName="name" placeholder="Insert your name"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.name.invalid">Name is required</mat-error>
                             </mat-form-field>
                             <mat-form-field class="ml-4">
                                 <mat-label>Surname</mat-label>
-                                <input matInput type="text" formControlName="surname" placeholder="Insert your surname"
+                                <input matInput type="text" #surname formControlName="surname" placeholder="Insert your surname"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.surname.invalid">Surname is required</mat-error>
                             </mat-form-field>
                         </div>
                         <!-- NICKAME & EMAIL ROW-->
@@ -49,12 +51,14 @@
                                 <input matInput type="text" formControlName="nickname" placeholder="Insert a user name"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.nickname.invalid">Surname is required</mat-error>
                             </mat-form-field>
                             <mat-form-field class="ml-4">
                                 <mat-label>E-mail</mat-label>
                                 <input type="email" matInput formControlName="email" placeholder="Insert your email"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>mail</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.email.invalid">You must enter an e-mail account</mat-error>
                             </mat-form-field>
                         </div>
                         <!-- PASSWORD & PASSWORD CONFIRMATION ROW-->
@@ -64,12 +68,14 @@
                                 <input matInput type="password" formControlName="password" placeholder="Insert your password"
                                     required>
                                 <mat-icon matSuffix class="primary-icon">lock</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.password.invalid">Password is required</mat-error>
                             </mat-form-field>
                             <mat-form-field class="ml-4">
                                 <mat-label>Repeat password</mat-label>
                                 <input matInput type="password" formControlName="validatePassword" placeholder="Insert your password"
                                     required>
                                 <mat-icon matSuffix class="primary-icon">lock</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.validatePassword.invalid">Please, repeat your password</mat-error>
                             </mat-form-field>
                         </div>
                         <div class="row ml-0 mr-0 mt-3 mb-3 justify-content-center">
