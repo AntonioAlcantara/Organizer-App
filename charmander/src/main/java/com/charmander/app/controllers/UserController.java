@@ -64,10 +64,10 @@ public class UserController {
     }
 
     @CrossOrigin(maxAge = 3600)
-    @GetMapping("/check/nickname")
+    @GetMapping("/check/nickname/{nickname}")
     @ApiOperation(value = "Check if user exists by nickname")
     public ResponseEntity<Boolean> checkIfUserExistsByNickname(
-            @ApiParam(value = "Nickname to check", required = true) @Valid @NotEmpty @RequestParam String nickname
+            @ApiParam(value = "Nickname to check", required = true) @PathVariable String nickname
     ) {
         return iUserService.existsUserByNickname(nickname);
     }
@@ -82,10 +82,19 @@ public class UserController {
     }
 
     @CrossOrigin(maxAge = 3600)
+    @GetMapping("/info")
+    @ApiOperation(value = "Get information of the events from the user")
+    public ResponseEntity<UserDto> getUserInfo(
+            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id
+    ) {
+        return iUserService.getUserInfo(id);
+    }
+
+    @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/{nickname}")
     @ApiOperation(value = "Find users by nickname")
     public ResponseEntity<Set<UserLowInfoDto>> searchUser(
-            @ApiParam(value = "Name for the search", required = true) @Valid @NotEmpty @PathVariable String nickname
+            @ApiParam(value = "Name for the search", required = true) @PathVariable String nickname
     ) {
         return iUserService.searchUsers(nickname);
     }

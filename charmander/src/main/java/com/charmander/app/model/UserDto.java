@@ -17,7 +17,7 @@ public class UserDto {
     @NotEmpty
     private String nickname;
     @NotEmpty
-    private String role;
+    private Set<String> roles;
     private String city;
     private Set<FlatDto> flats;
     private Set<EventDto> events;
