@@ -74,11 +74,12 @@ public class UserController {
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/event")
-    @ApiOperation(value = "Get information of the events from the user")
-    public ResponseEntity<List<EventDto>> getEventsFromUser(
-            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id
+    @ApiOperation(value = "Get information of the active events from the user")
+    public ResponseEntity<List<EventDto>> getActiveEventsFromUser(
+            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id,
+            @ApiParam(value = "If gets the completed headers or not", required = true) @RequestParam(defaultValue = "false") boolean completed
     ) {
-        return iUserService.getEvents(id);
+        return iUserService.getEvents(id, completed);
     }
 
     @CrossOrigin(maxAge = 3600)
