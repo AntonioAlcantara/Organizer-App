@@ -27,8 +27,11 @@ public class FlatController {
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/event/{flatId}")
-    public ResponseEntity<List<EventDto>> findEventsByFlat(@PathVariable Long flatId) {
-        return iFlatService.findEventsByFlat(flatId);
+    public ResponseEntity<List<EventDto>> findEventsByFlat(
+            @PathVariable Long flatId,
+            @RequestParam(defaultValue = "false") boolean completed
+    ) {
+        return iFlatService.findEventsByFlat(flatId, completed);
     }
 
     @CrossOrigin(maxAge = 3600)

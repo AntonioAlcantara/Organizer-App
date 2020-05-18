@@ -26,20 +26,6 @@ public class EventServiceImpl implements IEventService {
     @Autowired private EventTypeRepository eventTypeRepo;
 
     @Override
-    @Transactional(readOnly = true)
-    public List<Event> findAll() {
-        List<Event> list = new ArrayList<>();
-        eventRepo.findAll().forEach(list::add);
-        return list;
-    }
-
-    @Override
-    @Transactional(readOnly = true)
-    public Event findById(Long id) {
-        return eventRepo.findById(id).orElse(null);
-    }
-
-    @Override
     @Transactional
     public ResponseEntity<Void> createEvent(CreateEventDto createEventDto, long userId) {
         List<User> userList = new ArrayList<>();
@@ -53,5 +39,19 @@ public class EventServiceImpl implements IEventService {
         event.setActive(true);
         eventRepo.save(event);
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @Override
+    public ResponseEntity<Void> deleteEvent(long eventId) {
+        eventRepo.deleteById(eventId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<Void> completeEvent(long eventId) {
+        var event = eventRepo.findById(eventId).orElseThrow();
+        event.setCompleted(true);
+        eventRepo.save(event);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
