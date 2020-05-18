@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormControlName } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { UserModel } from 'src/app/models/user';
@@ -7,8 +7,7 @@ import { UserModel } from 'src/app/models/user';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
@@ -17,19 +16,20 @@ export class RegisterComponent implements OnInit {
      private router: Router,
      private registerService: UserService
       ) {
-    this.registerForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      surname: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
-      validatePassword: new FormControl('', [Validators.required]),
-      nickname: new FormControl('', [Validators.required])
-    });
+         this.registerForm = new FormGroup({
+            name: new FormControl('', [Validators.required]),
+            surname: new FormControl('', [Validators.required]),
+            email: new FormControl('', [Validators.required]),
+            password: new FormControl('', [Validators.required]),
+            validatePassword: new FormControl('', [Validators.required]),
+            nickname: new FormControl('', [Validators.required])
+         });
 
   }
 
   ngOnInit(): void {
-  }
+ }
+ 
   register() {
      if (this.registerForm.valid) {
         const user = new UserModel();

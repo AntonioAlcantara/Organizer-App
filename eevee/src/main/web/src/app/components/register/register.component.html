@@ -1,66 +1,97 @@
-<div class="container">
-    <div class="row header justify-content-center">
-        <img class="icon w-20" src="/assets/images/flapp-icon.png">
+<div class="background-wrap">
+    <div class="container">
+        <div class="row header justify-content-center">
+            <img class="icon w-20" src="/assets/images/flapp-icon.png">
+        </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-sm-12 form justify-content-center text-center">
-            <h2><b>Create a New Account</b></h2>
-            <h4>Start sharing with your roommates. Let's set up your account.</h4>
-            <span>Already registered? </span>
-            <a [routerLink]="['../login']">Sign in here</a>
-            <form [formGroup]="registerForm">
-                <div class="register-form">
-                    <!-- NAME & SURNAME ROW -->
-                    <div class="row d-flex justify-content-between m-0">
-                        <mat-form-field>
-                            <mat-label>Name</mat-label>
-                            <input matInput type="text" formControlName="name" placeholder="Insert your name" required>
-                            <mat-icon class="yellow-icon" matSuffix>account_circle</mat-icon>
-                        </mat-form-field>
-                        <mat-form-field class="ml-4">
-                            <mat-label>Surname</mat-label>
-                            <input matInput type="text" formControlName="surname" placeholder="Insert your surname"
-                                required>
-                            <mat-icon class="yellow-icon" matSuffix>account_circle</mat-icon>
-                        </mat-form-field>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-sm-12 form justify-content-center text-center 
+            border-right d-none d-lg-block">
+                <h2 style="color:#f3d250">Join the Flapp community and start sharing with your roommates.</h2>
+                <img src="/assets/images/roommate.jpg" aria-label="Roommates" id="roommates-img">
+                <span>Already registered?
+                    <button mat-button mat-flat-button [routerLink]="['../login']" class="yellow-button 
+                    button-rounded ml-3 w-50">Sign
+                        in here</button>
+                </span>
+            </div>
+            <div class="col-lg-5 col-sm-12 m-2 form justify-content-center text-center d-lg-none d-sm-block">
+                <h3 style="color:#ff5757"><b>Join the Flapp community and start sharing with your roommates.</b></h3>
+            </div>
+            <div class="col-lg-7 col-sm-12 form justify-content-center text-start">
+
+                <form [formGroup]="registerForm">
+                    <div class="register-form ml-3 mr-3 mb-3 mt-0">
+                        <div class="mb-3 text-center">
+                            <h2>Create a new account </h2>
+                        </div>
+                        <!-- NAME & SURNAME ROW -->
+                        <div class="row d-flex justify-content-between">
+                            <mat-form-field>
+                                <mat-label>Name</mat-label>
+                                <input matInput type="text" #name formControlName="name" placeholder="Insert your name"
+                                    required>
+                                <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.name.invalid">Name is required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="ml-4">
+                                <mat-label>Surname</mat-label>
+                                <input matInput type="text" #surname formControlName="surname" placeholder="Insert your surname"
+                                    required>
+                                <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.surname.invalid">Surname is required</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- NICKAME & EMAIL ROW-->
+                        <div class="row d-flex justify-content-between">
+                            <mat-form-field>
+                                <mat-label>Username</mat-label>
+                                <input matInput type="text" formControlName="nickname" placeholder="Insert a user name"
+                                    required>
+                                <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.nickname.invalid">Surname is required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="ml-4">
+                                <mat-label>E-mail</mat-label>
+                                <input type="email" matInput formControlName="email" placeholder="Insert your email"
+                                    required>
+                                <mat-icon class="primary-icon" matSuffix>mail</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.email.invalid">You must enter an e-mail account</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <!-- PASSWORD & PASSWORD CONFIRMATION ROW-->
+                        <div class="row d-flex justify-content-between">
+                            <mat-form-field>
+                                <mat-label>Password</mat-label>
+                                <input matInput type="password" formControlName="password" placeholder="Insert your password"
+                                    required>
+                                <mat-icon matSuffix class="primary-icon">lock</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.password.invalid">Password is required</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="ml-4">
+                                <mat-label>Repeat password</mat-label>
+                                <input matInput type="password" formControlName="validatePassword" placeholder="Insert your password"
+                                    required>
+                                <mat-icon matSuffix class="primary-icon">lock</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.validatePassword.invalid">Please, repeat your password</mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="row ml-0 mr-0 mt-3 mb-3 justify-content-center">
+                            <button mat-button mat-flat-button class="primary-button" (click)="register()">REGISTER</button>
+                        </div>
                     </div>
-                    <!-- NICKAME & EMAIL ROW-->
-                    <div class="row d-flex justify-content-between m-0">
-                        <mat-form-field>
-                            <mat-label>Username</mat-label>
-                            <input matInput type="text" formControlName="nickname" placeholder="Insert a user name"
-                                required>
-                            <mat-icon class="yellow-icon" matSuffix>account_circle</mat-icon>
-                        </mat-form-field>
-                        <mat-form-field class="ml-4">
-                            <mat-label>E-mail</mat-label>
-                            <input type="email" matInput formControlName="email" placeholder="Insert your email"
-                                required>
-                            <mat-icon class="yellow-icon" matSuffix>mail</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    <!-- PASSWORD & PASSWORD CONFIRMATION ROW-->
-                    <div class="row d-flex justify-content-between  m-0">
-                        <mat-form-field>
-                            <mat-label>Password</mat-label>
-                            <input matInput type="password" formControlName="password" placeholder="Insert your password"
-                                required>
-                            <mat-icon matSuffix class="yellow-icon">lock</mat-icon>
-                        </mat-form-field>
-                        <mat-form-field class="ml-4">
-                            <mat-label>Repeat password</mat-label>
-                            <input matInput type="password" formControlName="validatePassword" placeholder="Insert your password" required>
-                            <mat-icon matSuffix class="yellow-icon">lock</mat-icon>
-                        </mat-form-field>
-                    </div>
-                    <div class="row ml-0 mr-0 mt-3 mb-3 justify-content-center">
-                            <button mat-button mat-flat-button class="yellow-button" (click)="register()">REGISTER</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            </div>
+            <div class="col-lg-5 col-sm-12 m-3 form justify-content-center 
+            text-center d-lg-none d-sm-block">
+                <span>Already registered?
+                    <button mat-button mat-flat-button [routerLink]="['../login']" class="yellow-button 
+                    button-rounded ml-3 w-50">Sign
+                        in here</button>
+                </span>
+            </div>
         </div>
     </div>
 </div>

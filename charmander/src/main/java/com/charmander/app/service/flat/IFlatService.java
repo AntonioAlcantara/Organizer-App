@@ -10,6 +10,6 @@ import java.util.Set;
 public interface IFlatService {
 
     ResponseEntity<Boolean> createFlat(CreateFlatDto flatDto);
-    ResponseEntity<List<EventDto>> findEventsByFlat(Long flatId);
+    ResponseEntity<List<EventDto>> findEventsByFlat(Long flatId, boolean completed);
     ResponseEntity<Void> addUserToFlat(Set<Long> userIds, Long flatId);
 }

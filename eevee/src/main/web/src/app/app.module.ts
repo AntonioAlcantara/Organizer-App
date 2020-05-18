@@ -8,6 +8,7 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule} from '@angular/material/button';
 import { MatIconModule} from '@angular/material/icon';
+import { MatCardModule} from '@angular/material/card';
 import { RouterModule, ROUTES } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
@@ -22,6 +23,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MatCardModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
