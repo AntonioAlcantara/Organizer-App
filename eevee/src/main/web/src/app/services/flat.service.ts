@@ -24,8 +24,12 @@ export class FlatService {
     return this.http.post<void>(url, flatModel, {observe: 'response'});
   }
 
-  findEventsByFlat(flatId: number): Observable<HttpResponse<EventModel[]>> {
-    const url = `${this.host}/find/event/${flatId}`;
+  findEventsByFlat(flatId: number, complete?: boolean): Observable<HttpResponse<EventModel[]>> {
+    // we can use complete by request param for obtain the completed events
+    let url = `${this.host}/find/event/${flatId}`;
+    if (!!complete) {
+      url = url.concat(`?completed=${complete}`);
+    }
     return this.http.get<EventModel[]>(url, {observe: 'response'});
   }
 }
