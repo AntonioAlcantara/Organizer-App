@@ -19,7 +19,7 @@ export class RoomService {
   }
 
   findAllRooms(locale: string): Observable<HttpResponse<RoomModel[]>> {
-    const url = `${this.host}/findALL/${locale}`;
+    const url = `${this.host}/findAll/${locale}`;
     return this.http.get<RoomModel[]>(url, {observe: 'response'});
   }
 }
