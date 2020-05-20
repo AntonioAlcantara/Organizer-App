@@ -27,4 +27,20 @@ public class EventController {
         }
         return eventService.createEvent(createEventDto, userId);
     }
+
+    @CrossOrigin(maxAge = 3600)
+    @PutMapping("/complete/{eventId}")
+    public ResponseEntity<Void> completeEvent(
+            @PathVariable Long eventId
+    ) {
+        return null;
+    }
+
+    @CrossOrigin(maxAge = 3600)
+    @DeleteMapping("/delete/{$eventId}")
+    public ResponseEntity<Void> deleteEvent(
+            @PathVariable Long eventId
+    ) {
+        return null;
+    }
 }

@@ -42,7 +42,7 @@ public class UserController {
         String credentials = new String(credDecoded, StandardCharsets.UTF_8);
         // credentials = username:password
         final String[] values = credentials.split(":", 2);
-        return iUserService.login(values[1], values[2]);
+        return iUserService.login(values[0], values[1]);
     }
 
     @CrossOrigin(maxAge = 3600)
@@ -64,28 +64,38 @@ public class UserController {
     }
 
     @CrossOrigin(maxAge = 3600)
-    @GetMapping("/check/nickname")
+    @GetMapping("/check/nickname/{nickname}")
     @ApiOperation(value = "Check if user exists by nickname")
     public ResponseEntity<Boolean> checkIfUserExistsByNickname(
-            @ApiParam(value = "Nickname to check", required = true) @Valid @NotEmpty @RequestParam String nickname
+            @ApiParam(value = "Nickname to check", required = true) @PathVariable String nickname
     ) {
         return iUserService.existsUserByNickname(nickname);
     }
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/event")
+    @ApiOperation(value = "Get information of the active events from the user")
+    public ResponseEntity<List<EventDto>> getActiveEventsFromUser(
+            @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id,
+            @ApiParam(value = "If gets the completed headers or not", required = true) @RequestParam(defaultValue = "false") boolean completed
+    ) {
+        return iUserService.getEvents(id, completed);
+    }
+
+    @CrossOrigin(maxAge = 3600)
+    @GetMapping("/info")
     @ApiOperation(value = "Get information of the events from the user")
-    public ResponseEntity<List<EventDto>> getEventsFromUser(
+    public ResponseEntity<UserDto> getUserInfo(
             @ApiParam(value = "User id", required = true) @Valid @NotEmpty @RequestHeader("USER") Long id
     ) {
-        return iUserService.getEvents(id);
+        return iUserService.getUserInfo(id);
     }
 
     @CrossOrigin(maxAge = 3600)
     @GetMapping("/find/{nickname}")
     @ApiOperation(value = "Find users by nickname")
     public ResponseEntity<Set<UserLowInfoDto>> searchUser(
-            @ApiParam(value = "Name for the search", required = true) @Valid @NotEmpty @PathVariable String nickname
+            @ApiParam(value = "Name for the search", required = true) @PathVariable String nickname
     ) {
         return iUserService.searchUsers(nickname);
     }

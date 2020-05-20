@@ -10,7 +10,7 @@ services:
   evee:
     image: eevee
     ports:
-      - "8085:8080"
+      - "80:8080"
       - "8011:8000"
     environment:
       JAVA_TOOL_OPTIONS: "-agentlib:jdwp=transport=dt_socket,address=0.0.0.0:8000,server=y,suspend=n"

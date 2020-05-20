@@ -13,9 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements  IUserService {
@@ -28,7 +27,7 @@ public class UserServiceImpl implements  IUserService {
 
     @Override
     public ResponseEntity<LoginInfoDto> login(String email, String password) {
-        var user = userRepo.findByEmailAndPassword(email, password).orElse(null);
+        var user = userRepo.findByNicknameAndPassword(email, password).orElse(null);
         return (user != null) ? new ResponseEntity<>(
                 new LoginInfoDto(user.getId(), "isLogged"), HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
@@ -80,15 +79,23 @@ public class UserServiceImpl implements  IUserService {
     }
 
     @Override
-    public ResponseEntity<List<EventDto>> getEvents(Long userId) {
+    public ResponseEntity<List<EventDto>> getEvents(Long userId, boolean completed) {
         var user = userRepo.findById(userId);
         return user.map(value -> {
             if (value.getEvents().isEmpty()) {
                 return new ResponseEntity<> (iEventMapper.toDtos(value.getEvents()) , HttpStatus.NO_CONTENT);
             } else {
-                var events = iEventMapper.toDtos(value.getEvents());
-                events.forEach(eventDto -> eventDto.setCreator(value.getNickname()));
-                return new ResponseEntity<> (events , HttpStatus.OK);
+                Map<Long, Long> creatorMap = new HashMap<>();
+                var events = value.getEvents().parallelStream()
+                                              .filter(event -> event.isCompleted() == completed)
+                                              .peek(event -> creatorMap.put(event.getId(), event.getCreator()))
+                                              .collect(Collectors.toList());
+                var eventDtos = iEventMapper.toDtos(events);
+                eventDtos.forEach(eventDto -> {
+                    var creator = userRepo.findById(creatorMap.get(eventDto.getId())).orElse(new User());
+                    eventDto.setCreator(creator.getNickname());
+                });
+                return new ResponseEntity<> (eventDtos , HttpStatus.OK);
             }
         }).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }

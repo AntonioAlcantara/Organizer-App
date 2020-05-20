@@ -12,9 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class FlatServiceImpl implements IFlatService {
@@ -40,9 +39,25 @@ public class FlatServiceImpl implements IFlatService {
     }
 
     @Override
-    public ResponseEntity<List<EventDto>> findEventsByFlat(Long flatId) {
-        var events = flatRepo.findById(flatId).map( flat -> iEventMapper.toDtos(flat.getEvents())).orElseThrow();
-        return new ResponseEntity<>(events, (events.isEmpty()) ? HttpStatus.NO_CONTENT : HttpStatus.OK);
+    public ResponseEntity<List<EventDto>> findEventsByFlat(Long flatId, boolean completed) {
+        var flat = flatRepo.findById(flatId);
+        return flat.map(value -> {
+            if (value.getEvents().isEmpty()) {
+                return new ResponseEntity<> (iEventMapper.toDtos(value.getEvents()) , HttpStatus.NO_CONTENT);
+            } else {
+                Map<Long, Long> creatorMap = new HashMap<>();
+                var events = value.getEvents().parallelStream()
+                        .filter(event -> event.isCompleted() == completed)
+                        .peek(event -> creatorMap.put(event.getId(), event.getCreator()))
+                        .collect(Collectors.toList());
+                var eventDtos = iEventMapper.toDtos(events);
+                eventDtos.forEach(eventDto -> {
+                    var creator = userRepo.findById(creatorMap.get(eventDto.getId())).orElse(new User());
+                    eventDto.setCreator(creator.getNickname());
+                });
+                return new ResponseEntity<> (eventDtos , HttpStatus.OK);
+            }
+        }).orElseGet(() -> new ResponseEntity<>(HttpStatus.BAD_REQUEST));
     }
 
     @Override
