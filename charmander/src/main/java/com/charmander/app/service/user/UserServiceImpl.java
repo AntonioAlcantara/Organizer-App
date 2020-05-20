@@ -27,7 +27,7 @@ public class UserServiceImpl implements  IUserService {
 
     @Override
     public ResponseEntity<LoginInfoDto> login(String email, String password) {
-        var user = userRepo.findByEmailAndPassword(email, password).orElse(null);
+        var user = userRepo.findByNicknameAndPassword(email, password).orElse(null);
         return (user != null) ? new ResponseEntity<>(
                 new LoginInfoDto(user.getId(), "isLogged"), HttpStatus.OK) :
                 new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
