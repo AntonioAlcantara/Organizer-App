@@ -42,7 +42,7 @@ public class UserController {
         String credentials = new String(credDecoded, StandardCharsets.UTF_8);
         // credentials = username:password
         final String[] values = credentials.split(":", 2);
-        return iUserService.login(values[1], values[2]);
+        return iUserService.login(values[0], values[1]);
     }
 
     @CrossOrigin(maxAge = 3600)
