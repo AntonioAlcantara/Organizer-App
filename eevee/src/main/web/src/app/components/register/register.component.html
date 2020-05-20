@@ -49,7 +49,7 @@
                             <mat-form-field>
                                 <mat-label>Username</mat-label>
                                 <input matInput type="text" formControlName="nickname" placeholder="Insert a user name"
-                                    required>
+                                    required onkeyup="checheckNickname()">
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
                                 <mat-error *ngIf="registerForm.controls.nickname.invalid">Surname is required</mat-error>
                             </mat-form-field>
