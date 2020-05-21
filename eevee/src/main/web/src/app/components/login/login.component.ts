@@ -32,11 +32,11 @@ export class LoginComponent implements OnInit {
     user.email = this.loginForm.controls.email.value;
     user.password = this.loginForm.controls.password.value;
     this.userService.login(user).subscribe(response => {
-      if (response.status === 200) {
-        localStorage.setItem('token', response.body.token);
-        localStorage.setItem('userId', response.body.id.toString());
+
+        localStorage.setItem('token', response);
+        localStorage.setItem('userId', response);
         this.router.navigate(['home']);
-      }
+      
     }, error => this.notificationsService.getErrorNotification(error.status));
   }
 

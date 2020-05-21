@@ -17,12 +17,14 @@ h2 { font-family: 'Pacifico', cursive;}
 a { width: auto;}
 button {
     width: 100%;
+    height: 75px;
     span { color: #ffffff}
 }
+.mat-icon-button { height: 60px !important;}
 .mat-fab, .mat-mini-fab { box-shadow: none !important;}
 .button-rounded { border-radius: 50px !important;}
 
-.primary-button { background-color: #ff5757;}
+.primary-button { background-color: #ff5757; }
 .primary-button:focus { outline: 5px auto #f78888 !important; }
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
@@ -35,7 +37,9 @@ button {
 .yellow-button:focus {outline: #f3e7b8; }
 
 /* MATERIAL ICONS */
-
+.mat-icon { 
+    font-size: 45px !important;
+}
 .primary-icon {
     color: #ff5757;
 }
@@ -72,7 +76,7 @@ button {
     background-color: #ff5757 !important;
 }
 
-/* DESKTOP */
+/* RESPONSIVE */
 @media screen and (max-width: 768px) {
     .background-wrap {
         background-image: linear-gradient(rgba(255,255,255,.78), 

@@ -21,11 +21,14 @@ import { TitleCasePipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
 // import { MatDialogContent, MatDialogModule} from '@angular/material/dialog';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { MatMenuModule} from '@angular/material/menu';
+import { MenuComponent } from './components/menu/menu.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
-    SnackBarComponent
+    SnackBarComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     MatButtonModule,
     MatIconModule,
     RouterModule,
+    MatMenuModule,
     MatDatepickerModule,
     MatSnackBarModule,
     // MatDialogContent,

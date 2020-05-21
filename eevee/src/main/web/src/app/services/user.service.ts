@@ -3,7 +3,6 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { UserModel } from '../models/user';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { UserFullInfoModel } from '../models/user-full-info.model';
 import { FlatModel } from '../models/flat.model';
 import { EventModel } from '../models/event.model';
 import { UserLowInfoModel } from '../models/user-low-info.model';
@@ -24,14 +23,14 @@ export class UserService {
         return this.http.post<boolean>(url, body, { observe: 'response' });
     }
 
-    login(user: UserModel): Observable<HttpResponse<UserModel>> {
+    login(user: UserModel): Observable<string> {
         const url = this.host + 'v1/user/login';
-        const credentials = btoa(user.name + ':' + user.password);
+        const credentials = btoa(user.email + ':' + user.password);
         let httpHeaders = new HttpHeaders();
         httpHeaders = httpHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
         httpHeaders = httpHeaders.append('Authorization', 'Basic ' + credentials);
         httpHeaders = httpHeaders.append('skip', 'true');
-        return this.http.get<UserModel>(url, { headers: httpHeaders, observe: 'response' });
+        return this.http.get(url, { headers: httpHeaders, responseType: 'text' });
     }
 
     checkNicknameExists(nickname: string): Observable<HttpResponse<boolean>> {
@@ -45,10 +44,10 @@ export class UserService {
     }
 
 
-  getUserInfo(): Observable<HttpResponse<UserFullInfoModel>> {
+  getUserInfo(): Observable<HttpResponse<UserModel>> {
     // require USERID by header, pending to add HttpInterceptor
     const url = `${this.host}/info`;
-    return this.http.get<UserFullInfoModel>(url, {observe: 'response'});
+    return this.http.get<UserModel>(url, {observe: 'response'});
   }
 
   getUserFlats(): Observable<HttpResponse<FlatModel>> {
