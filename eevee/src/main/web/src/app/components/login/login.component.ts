@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     private notificationsService: NotificationsService,
     private router: Router) {
       this.loginForm = new FormGroup({
-          email: new FormControl('', [Validators.required]),
+          nickname: new FormControl('', [Validators.required]),
           password: new FormControl('', [Validators.required])
       });
 
@@ -29,14 +29,13 @@ export class LoginComponent implements OnInit {
   }
   login() {
     const user = new UserModel();
-    user.email = this.loginForm.controls.email.value;
+    user.nickname = this.loginForm.controls.nickname.value;
     user.password = this.loginForm.controls.password.value;
     this.userService.login(user).subscribe(response => {
 
         localStorage.setItem('token', response);
         localStorage.setItem('userId', response);
         this.router.navigate(['home']);
-      
     }, error => this.notificationsService.getErrorNotification(error.status));
   }
 

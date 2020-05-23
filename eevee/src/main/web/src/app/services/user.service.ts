@@ -25,7 +25,7 @@ export class UserService {
 
     login(user: UserModel): Observable<string> {
         const url = this.host + 'v1/user/login';
-        const credentials = btoa(user.email + ':' + user.password);
+        const credentials = btoa(user.nickname + ':' + user.password);
         let httpHeaders = new HttpHeaders();
         httpHeaders = httpHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
         httpHeaders = httpHeaders.append('Authorization', 'Basic ' + credentials);
