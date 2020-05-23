@@ -23,12 +23,16 @@ import { DatePipe } from '@angular/common';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatMenuModule} from '@angular/material/menu';
 import { MenuComponent } from './components/menu/menu.component';
+import { AddFlatComponent } from './components/add-flat/add-flat.component';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 @NgModule({
   declarations: [
     AppComponent,
     routingComponents,
     SnackBarComponent,
-    MenuComponent
+    MenuComponent,
+    AddFlatComponent,
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
