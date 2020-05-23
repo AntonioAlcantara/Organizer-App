@@ -44,31 +44,37 @@ export class UserService {
         return this.http.get<boolean>(url, { observe: 'response' });
     }
 
-
-  getUserInfo(): Observable<HttpResponse<UserModel>> {
-    // require USERID by header, pending to add HttpInterceptor
-    const url = `${this.host}/info`;
-    return this.http.get<UserModel>(url, {observe: 'response'});
-  }
-
-  getUserFlats(): Observable<HttpResponse<FlatModel>> {
-    // require USERID by header, pending to add HttpInterceptor
-    const url = `${this.host}/find/flat`;
-    return this.http.get<FlatModel>(url, {observe: 'response'});
-  }
-
-  getUserEvents(complete?: boolean): Observable<HttpResponse<EventModel>> {
-    // require USERID by header, pending to add HttpInterceptor
-    // we can use complete by request param for obtain the completed events
-    let url = `${this.host}/find/event`;
-    if (!!complete) {
-      url = url.concat(`?completed=${complete}`);
+    /**
+     * require USERID by header, pending to add HttpInterceptor
+     */
+    getUserInfo(): Observable<HttpResponse<UserModel>> {
+        const url = `${this.host}/info`;
+        return this.http.get<UserModel>(url, { observe: 'response' });
     }
-    return this.http.get<EventModel>(url, {observe: 'response'});
-  }
 
-  findUsersByNickname(nickname: string): Observable<HttpResponse<UserLowInfoModel>> {
-    const url = `${this.host}/find/${nickname}`;
-    return this.http.get<UserLowInfoModel>(url, {observe: 'response'});
-  }
+    /**
+     * require USERID by header, pending to add HttpInterceptor
+     */
+    getUserFlats(userId: string): Observable<HttpResponse<FlatModel>> {
+        const url = `${this.host}find/flat/${userId}`;
+        return this.http.get<FlatModel>(url, { observe: 'response' });
+    }
+
+    /**
+     * @param complete whether event has ended or not.
+     * We can use complete as request param to obtain the completed events.
+     * Require USERID by header, pending to add HttpInterceptor.
+     */
+    getUserEvents(complete?: boolean): Observable<HttpResponse<EventModel>> {
+        let url = `${this.host}/find/event`;
+        if (!!complete) {
+            url = url.concat(`?completed=${complete}`);
+        }
+        return this.http.get<EventModel>(url, { observe: 'response' });
+    }
+
+    findUsersByNickname(nickname: string): Observable<HttpResponse<UserLowInfoModel>> {
+        const url = `${this.host}/find/${nickname}`;
+        return this.http.get<UserLowInfoModel>(url, { observe: 'response' });
+    }
 }

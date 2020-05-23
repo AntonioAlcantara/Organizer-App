@@ -40,7 +40,7 @@ export class AddFlatComponent implements OnInit {
       console.log(flat);
       this.flatService.createFlat(flat).subscribe(response => {
         this.dialogRef.close(true);
-        this.notificationsService.getSuccessMessage(flat.name + 'created successfully.');
+        this.notificationsService.getSuccessMessage(flat.name + ' created successfully.');
       }, error => this.notificationsService.getErrorNotification(error.status)
       );
     }
