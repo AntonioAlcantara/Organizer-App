@@ -15,8 +15,7 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUserFlats(JSON.parse(localStorage.getItem('userId')))
-    .subscribe(response => {
+    this.userService.getUserFlats().subscribe(response => {
         console.log(response);
     });
   }

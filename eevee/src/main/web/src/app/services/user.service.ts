@@ -55,8 +55,8 @@ export class UserService {
     /**
      * require USERID by header, pending to add HttpInterceptor
      */
-    getUserFlats(userId: string): Observable<HttpResponse<FlatModel>> {
-        const url = `${this.host}find/flat/${userId}`;
+    getUserFlats(): Observable<HttpResponse<FlatModel>> {
+        const url = `${this.host}/find/flat`;
         return this.http.get<FlatModel>(url, { observe: 'response' });
     }
 
