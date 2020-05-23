@@ -13,6 +13,7 @@ span {
     color: #424242;
 }
 
+*:focus { outline: none !important;} // Remove outline highlight from all elements on focus; 
 /* HEADINGS*/
 
 h2 { font-family: 'Pacifico', cursive;}
@@ -24,7 +25,7 @@ button {
     width: 100%;
     span { color: #ffffff}
 }
-*:focus { outline: none !important;}
+
 .large-button { height: 75px;}
 .mat-fab, .mat-mini-fab { box-shadow: none !important;}
 .button-rounded { border-radius: 50px !important;}
@@ -44,6 +45,7 @@ button {
 /* MATERIAL ICONS */
 
 .mat-icon { width: auto !important;}
+
 .primary-icon {
     color: #ff5757;
 }

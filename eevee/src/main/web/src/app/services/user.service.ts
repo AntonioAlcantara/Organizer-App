@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { FlatModel } from '../models/flat.model';
 import { EventModel } from '../models/event.model';
 import { UserLowInfoModel } from '../models/user-low-info.model';
+import { LoginInfoModel } from '../models/login-info.model';
 
 @Injectable({
     providedIn: 'root'
@@ -23,14 +24,14 @@ export class UserService {
         return this.http.post<boolean>(url, body, { observe: 'response' });
     }
 
-    login(user: UserModel): Observable<string> {
+    login(user: UserModel): Observable<HttpResponse<LoginInfoModel>> {
         const url = this.host + 'v1/user/login';
         const credentials = btoa(user.nickname + ':' + user.password);
         let httpHeaders = new HttpHeaders();
         httpHeaders = httpHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
         httpHeaders = httpHeaders.append('Authorization', 'Basic ' + credentials);
         httpHeaders = httpHeaders.append('skip', 'true');
-        return this.http.get(url, { headers: httpHeaders, responseType: 'text' });
+        return this.http.get<LoginInfoModel>(url, { headers: httpHeaders, observe: 'response' });
     }
 
     checkNicknameExists(nickname: string): Observable<HttpResponse<boolean>> {

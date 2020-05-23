@@ -1,1 +1,57 @@
-<p>add-flat works!</p>
+<div class="container">
+     <form [formGroup]="addFlatForm">
+          <div class="container">
+               <div class="row m-0 justify-content-center">
+                    <div class="col-12 form justify-content-center text-center">
+                         <h2><b>ADD FLAT</b></h2>
+                         <div class="row m-0">
+                              <mat-form-field class="modal-form w-100">
+                                   <mat-label>Name</mat-label>
+                                   <input matInput formControlName="name" placeholder="Insert a name for the flat">
+                                   <mat-icon class="accent-icon" matSuffix>apartment</mat-icon>
+                                   <mat-error *ngIf="addFlatForm.controls.name.invalid">Name required. 25 chars max</mat-error>
+                              </mat-form-field>
+                         </div>
+                         <div class="row m-0">
+                              <mat-form-field class="modal-form w-100">
+                                   <mat-label>Street</mat-label>
+                                   <input matInput formControlName="street" placeholder="Insert street address">
+                                   <mat-icon matSuffix class="accent-icon">place</mat-icon>
+                                   <mat-error *ngIf="addFlatForm.controls.street.invalid">Street address is required.
+                                        50 chars max</mat-error>
+                              </mat-form-field>
+                         </div>
+                         <div class="row m-0">
+                              <div class="col-lg-6 col-sm-12 pl-0">
+                                   <mat-form-field class="modal-form w-100">
+                                        <mat-label>Number</mat-label>
+                                        <input matInput formControlName="number" placeholder="Insert number">
+                                        <mat-icon matSuffix class="accent-icon">place</mat-icon>
+                                        <mat-error *ngIf="addFlatForm.controls.number.invalid">Street address is
+                                             required. 3 chars max</mat-error>
+                                   </mat-form-field>
+                              </div>
+                              <div class="col-lg-6 col-sm-12 pr-0">
+                                   <mat-form-field class="modal-form w-100">
+                                        <mat-label>Zip Code</mat-label>
+                                        <input matInput formControlName="postalCode" placeholder="Insert ZIP code. E.g.: 07007 ">
+                                        <mat-icon matSuffix class="accent-icon">place</mat-icon>
+                                        <mat-error *ngIf="addFlatForm.controls.postalCode.invalid">ZIP code is
+                                             required.</mat-error>
+                                   </mat-form-field>
+                              </div>
+                         </div>
+                         <div class="row ml-0 mr-0 mt-3 justify-content-center">
+                              <div class="col-lg-6">
+                                   <button mat-button mat-stroked-button (click)="cancel()">CANCEL</button>
+                              </div>
+                              <div class="col-lg-6">
+                                   <button mat-button mat-flat-button class="accent-button" (click)="addFlat()">ADD
+                                        FLAT</button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </form>
+</div>

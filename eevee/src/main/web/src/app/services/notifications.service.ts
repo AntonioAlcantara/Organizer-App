@@ -56,4 +56,14 @@ export class NotificationsService {
             horizontalPosition: 'end'
         });
     }
+    getSuccessMessage(message: string) {
+        this.communication.type = CommunicationType.action;
+        this.communication.message = message;
+        this.snackbar.openFromComponent(SnackBarComponent, {
+            data: this.communication,
+            duration: 3000,
+            verticalPosition: 'top',
+            horizontalPosition: 'end'
+        });
+    }
 }

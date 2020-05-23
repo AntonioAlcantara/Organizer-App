@@ -33,9 +33,10 @@ export class LoginComponent implements OnInit {
     user.password = this.loginForm.controls.password.value;
     this.userService.login(user).subscribe(response => {
 
-        localStorage.setItem('token', response);
-        localStorage.setItem('userId', response);
+        localStorage.setItem('token', response.body.token);
+        localStorage.setItem('userId', response.body.id.toString());
         this.router.navigate(['home']);
+        this.notificationsService.getSuccessMessage('Welcome to Flapp!');
     }, error => this.notificationsService.getErrorNotification(error.status));
   }
 

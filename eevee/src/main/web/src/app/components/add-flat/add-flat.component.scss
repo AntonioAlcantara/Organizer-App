@@ -1,0 +1,22 @@
+h2 {color: #52a2d5;}
+
+.mat-stroked-button {
+    border: 2px solid #52a2d5 !important;
+    span{ color: #52a2d5;}
+}
+/* MATERIAL FORMS */
+
+.mat-focused .mat-form-field-label {
+     /*change color of label*/
+     color: #52a2d5 !important;
+ }
+   
+.modal-form .mat-form-field-underline {
+     /*change color of underline*/
+     background-color: #52a2d5 !important;
+ } 
+   
+.modal-form .mat-form-field-ripple {
+     /*change color of underline when focused*/
+     background-color: #52a2d5 !important;
+ }
