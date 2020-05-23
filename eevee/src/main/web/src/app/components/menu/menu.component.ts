@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFlatComponent } from '../add-flat/add-flat.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -11,7 +12,9 @@ export class MenuComponent implements OnInit {
 
   private dialogRef;
   innerWidth: number;
-  constructor(private dialog: MatDialog) {
+  constructor(
+    private router: Router,
+    private dialog: MatDialog) {
 
   }
 
@@ -22,6 +25,10 @@ export class MenuComponent implements OnInit {
       disableClose: true,
       width: 'auto',
       minHeight: '300px'
- });
+    });
+  }
+  logOut() {
+    localStorage.clear();
+    this.router.navigateByUrl('/');
   }
 }

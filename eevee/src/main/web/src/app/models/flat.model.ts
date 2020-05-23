@@ -11,5 +11,5 @@ export class FlatModel {
   name: string;
   address: string;
   users: UserLowInfoModel[];
- 
+
 }
