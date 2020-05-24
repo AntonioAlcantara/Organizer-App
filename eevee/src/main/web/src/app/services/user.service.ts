@@ -48,7 +48,7 @@ export class UserService {
      * require USERID by header, pending to add HttpInterceptor
      */
     getUserInfo(): Observable<HttpResponse<UserModel>> {
-        const url = `${this.host}/info`;
+        const url = `${this.host}v1/user/info`;
         return this.http.get<UserModel>(url, { observe: 'response' });
     }
 
@@ -56,7 +56,7 @@ export class UserService {
      * require USERID by header, pending to add HttpInterceptor
      */
     getUserFlats(): Observable<HttpResponse<FlatModel>> {
-        const url = `${this.host}/find/flat`;
+        const url = `${this.host}v1/user/find/flat`;
         return this.http.get<FlatModel>(url, { observe: 'response' });
     }
 
@@ -66,7 +66,7 @@ export class UserService {
      * Require USERID by header, pending to add HttpInterceptor.
      */
     getUserEvents(complete?: boolean): Observable<HttpResponse<EventModel>> {
-        let url = `${this.host}/find/event`;
+        let url = `${this.host}v1/user/find/event`;
         if (!!complete) {
             url = url.concat(`?completed=${complete}`);
         }
@@ -74,7 +74,7 @@ export class UserService {
     }
 
     findUsersByNickname(nickname: string): Observable<HttpResponse<UserLowInfoModel>> {
-        const url = `${this.host}/find/${nickname}`;
+        const url = `${this.host}v1/user/find/${nickname}`;
         return this.http.get<UserLowInfoModel>(url, { observe: 'response' });
     }
 }
