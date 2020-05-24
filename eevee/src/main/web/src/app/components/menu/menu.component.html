@@ -1,0 +1,22 @@
+<!-- MAIN MENU -->
+<div>
+     <button mat-icon-button color="accent" [matMenuTriggerFor]="menu" aria-label="Menu icon">
+          <mat-icon class="primary-icon" matSuffix>menu</mat-icon>
+     </button>
+
+     <mat-menu class="w-100" #menu class="matMenu">
+          <button mat-menu-item class="menu-item" (click)="openModal('addFlat')">
+               <mat-icon class="primary-icon" matSuffix>home_work</mat-icon>
+               <span class="pl-3"><b>ADD FLATS</b></span>
+          </button>
+          <button mat-menu-item class="menu-item">
+               <mat-icon class="primary-icon" matSuffix>event_note</mat-icon>
+               <span class="pl-3"><b>CREATE EVENTS</b></span>
+          </button>
+          <hr>
+          <button mat-menu-item class="menu-item" (click)="logOut()">
+               <mat-icon class="accent-icon" matSuffix>account_circle</mat-icon>
+               <span class="pl-3"><b>LOG OUT</b></span>
+          </button>
+     </mat-menu>
+</div>

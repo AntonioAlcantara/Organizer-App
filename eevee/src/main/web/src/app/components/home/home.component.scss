@@ -1,0 +1,17 @@
+.icon { height: 120px; margin-bottom: -30px;}
+.mat-icon-button {
+     height: 60px !important;
+     background-color: none !important;
+     width: 70px !important; // Otherwise outline focus it's irregular
+     :focus { outline: none !important;}
+}
+.mat-icon-no-color { color: #ff5757 !important;}
+.mat-icon { font-size: 45px !important;}
+.mat-icon-button.mat-accent { color: transparent !important;} // Hide background on focus
+.nav-item { align-self: flex-end;}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+     .background-wrap {min-height: 100px;}
+     .icon {height: 70px; margin-bottom: -30px;}
+}

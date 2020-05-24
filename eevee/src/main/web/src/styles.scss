@@ -8,10 +8,16 @@ body {
 }
 
 html, body { height: 100%; }
-span { color: #424242;}
+span { 
+    font-family: 'Montserrat', sans-serif;
+    color: #424242;
+}
 
+*:focus { outline: none !important;} // Remove outline highlight from all elements on focus; 
 /* HEADINGS*/
+
 h2 { font-family: 'Pacifico', cursive;}
+
 /* MATERIAL BUTTONS */
 
 a { width: auto;}
@@ -19,10 +25,12 @@ button {
     width: 100%;
     span { color: #ffffff}
 }
+
+.large-button { height: 75px;}
 .mat-fab, .mat-mini-fab { box-shadow: none !important;}
 .button-rounded { border-radius: 50px !important;}
 
-.primary-button { background-color: #ff5757;}
+.primary-button { background-color: #ff5757; }
 .primary-button:focus { outline: 5px auto #f78888 !important; }
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
@@ -32,9 +40,11 @@ button {
         color: #f3D250;
     }
 }
-.yellow-button:focus {outline: #f3e7b8; }
+.yellow-button:focus { outline: #f3e7b8; }
 
 /* MATERIAL ICONS */
+
+.mat-icon { width: auto !important;}
 
 .primary-icon {
     color: #ff5757;
@@ -72,7 +82,7 @@ button {
     background-color: #ff5757 !important;
 }
 
-/* DESKTOP */
+/* RESPONSIVE */
 @media screen and (max-width: 768px) {
     .background-wrap {
         background-image: linear-gradient(rgba(255,255,255,.78), 

@@ -33,7 +33,7 @@ public class EventController {
     public ResponseEntity<Void> completeEvent(
             @PathVariable Long eventId
     ) {
-        return null;
+        return eventService.completeEvent(eventId);
     }
 
     @CrossOrigin(maxAge = 3600)
@@ -41,6 +41,6 @@ public class EventController {
     public ResponseEntity<Void> deleteEvent(
             @PathVariable Long eventId
     ) {
-        return null;
+        return eventService.deleteEvent(eventId);
     }
 }
