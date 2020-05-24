@@ -19,13 +19,17 @@ import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { TitleCasePipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
+import { MatTableModule} from '@angular/material/table';
+import { MatListModule} from '@angular/material/list';
+import { MatTooltipModule} from '@angular/material/tooltip';
 // import { MatDialogContent, MatDialogModule} from '@angular/material/dialog';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatMenuModule} from '@angular/material/menu';
-import { MenuComponent } from './components/menu/menu.component';
+import { MenuComponent } from './components/home/menu/menu.component';
 import { AddFlatComponent } from './components/add-flat/add-flat.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { FlatListComponent } from './components/home/flat-list/flat-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,8 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     SnackBarComponent,
     MenuComponent,
     AddFlatComponent,
-    CreateEventComponent
+    CreateEventComponent,
+    FlatListComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,10 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
     MatInputModule,
     MatButtonModule,
     MatIconModule,
+    MatTableModule,
+    MatListModule,
     RouterModule,
+    MatTooltipModule,
     MatMenuModule,
     MatDatepickerModule,
     MatSnackBarModule,
