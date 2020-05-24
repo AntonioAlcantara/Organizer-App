@@ -5,7 +5,7 @@ import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, ROUTES } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 // MATERIAL COMPONENTS
@@ -25,6 +25,7 @@ import { MatMenuModule} from '@angular/material/menu';
 import { MenuComponent } from './components/menu/menu.component';
 import { AddFlatComponent } from './components/add-flat/add-flat.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { CreateEventComponent } from './components/create-event/create-event.com
     MatMenuModule,
     MatDatepickerModule,
     MatSnackBarModule,
+    HttpClientModule
     // MatDialogContent,
     // MatDialogModule
 
@@ -62,7 +64,13 @@ import { CreateEventComponent } from './components/create-event/create-event.com
     TitleCasePipe,
     DatePipe,
     { provide: MAT_DIALOG_DATA, useValue: {} },
-    { provide: MatDialogRef, useValue: {} }],
+    { provide: MatDialogRef, useValue: {} },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
