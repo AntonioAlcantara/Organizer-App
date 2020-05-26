@@ -29,7 +29,6 @@ import { MenuComponent } from './components/home/menu/menu.component';
 import { AddFlatComponent } from './components/add-flat/add-flat.component';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
-import { FlatListComponent } from './components/home/flat-list/flat-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,8 +36,7 @@ import { FlatListComponent } from './components/home/flat-list/flat-list.compone
     SnackBarComponent,
     MenuComponent,
     AddFlatComponent,
-    CreateEventComponent,
-    FlatListComponent
+    CreateEventComponent
   ],
   imports: [
     BrowserModule,
