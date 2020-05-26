@@ -1,0 +1,11 @@
+.mat-list-item {
+     margin: 10px 0px;
+     height: auto !important;
+}
+::ng-deep .mat-list-item-content { padding: 0px !important;} // Outside ripple effect
+.card { 
+     height: auto;
+     width: 350px;
+     border: 2px solid #f3D250 !important;
+     :hover { background-color: #f8f4e4;}
+}

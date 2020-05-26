@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { AddFlatComponent } from '../add-flat/add-flat.component';
+import { AddFlatComponent } from '../../add-flat/add-flat.component';
 import { Router } from '@angular/router';
 
 @Component({
