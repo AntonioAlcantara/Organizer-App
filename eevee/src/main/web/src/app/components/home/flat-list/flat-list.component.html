@@ -1,3 +1,10 @@
+<div class="row d-flex justify-content-between header ml-3 mr-0 mt-4">
+     <h5><b>FLAT LIST</b></h5>
+     <mat-icon role="button" #tooltip="matTooltip" matTooltip="Reload list"
+     matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" (click)="reload()"
+     aria-hidden="false" aria-label="add">replay
+     </mat-icon>
+</div>
 <!-- =========================================-->
 <!-- FLATS LIST -->
 <!-- =========================================-->
@@ -16,8 +23,9 @@
                     </div>
                     <div class="col-3 pl-0 text-right">
                          <mat-icon role="button" #tooltip="matTooltip" matTooltip="Add more users to flat."
-                              matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" (click)="addUser(flat.id, flat.name)"
-                              aria-hidden="false" aria-label="add">person_add</mat-icon>
+                              matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" (click)="openSearchModal(flat.id, flat.users)"
+                              aria-hidden="false" aria-label="add">person_add
+                         </mat-icon>
                     </div>
                </div>
           </div>
@@ -34,3 +42,4 @@
           <span>Add a new flat on the top left menu</span>
      </div>
 </div>
+<app-loading [loading]='loading'></app-loading>
