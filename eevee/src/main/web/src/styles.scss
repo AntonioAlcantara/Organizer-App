@@ -84,6 +84,12 @@ button {
 
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
+    html, body {
+        overflow-x: hidden;
+   }
+   body {
+        position: relative
+   }
     .background-wrap {
         background-image: linear-gradient(rgba(255,255,255,.78), 
         rgba(255,255,255,.78)), url("/assets/images/roommate.jpg") !important;

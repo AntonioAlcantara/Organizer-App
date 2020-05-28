@@ -15,15 +15,16 @@
                     <div class="col-9 pr-1 d-flex flex-column">
                          <span><b>{{flat.name}}</b></span>
                          <span>{{flat.address}}</span>
-                         <div mat-subheader class="p-0"><b>Users: </b>
-                              <div *ngFor="let user of flat.users">
-                                   <span class="ml-2">@{{user.nickname}}</span>
-                              </div>
+                         <div mat-subheader class="p-0 mt-3"><b>Users: </b>
+                              <span class="ml-2" *ngFor="let user of flat.users">
+                                   @{{user.nickname}}
+                              </span>
                          </div>
                     </div>
                     <div class="col-3 pl-0 text-right">
                          <mat-icon role="button" #tooltip="matTooltip" matTooltip="Add more users to flat."
-                              matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" (click)="openSearchModal(flat.id, flat.users)"
+                              matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" 
+                              (click)="openSearchModal(flat.id, flat.users)"
                               aria-hidden="false" aria-label="add">person_add
                          </mat-icon>
                     </div>
