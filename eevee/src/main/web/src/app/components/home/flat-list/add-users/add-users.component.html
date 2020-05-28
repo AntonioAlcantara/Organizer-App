@@ -1,0 +1,28 @@
+<!-- =========================================-->
+<!-- SEARCH ROOMMATES MODAL -->
+<!-- =========================================-->
+<div class="modal-body">
+     <form [formGroup]="searchRoommateForm">
+          <div class="container ">
+               <div class="row m-0 d-flex justify-content-end">
+                    <mat-icon role="button" class="accent-icon" (click)="close()" aria-hidden="false" aria-label="Close">close</mat-icon>
+               </div>
+               <div class="row m-0">
+                    <mat-form-field class="w-100">
+                         <mat-label>Search roommates</mat-label>
+                         <input matInput formControlName="userName" #userSearch placeholder="Search by username"
+                              (keyup)="findUsers(userSearch.value)" [matAutocomplete]="completeUser"
+                              (ngModelChange)="autocompleteClose($event)">
+                         <mat-icon matSuffix class="accent-icon">account_circle</mat-icon>
+                         <mat-autocomplete class="autocomplete" #completeUser="matAutocomplete">
+                              <mat-option *ngFor="let user of flatUser" [value]="user[0].nickname" [ngClass]="{'hide-autocomplete': !showAutocomplete}">
+                                   {{user[0].nickname}}
+                              </mat-option>
+                         </mat-autocomplete>
+                    </mat-form-field>
+
+               </div>
+          </div>
+     </form>
+     <button mat-button mat-flat-button ngbAutofocus class="accent-button" (click)="addUser()">ADD USER</button>
+</div>

@@ -4,6 +4,10 @@ import { FlatService } from 'src/app/services/flat.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { CreateFlatModel } from 'src/app/models/create-flat.model';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { HttpResponse } from '@angular/common/http';
+import { FlatModel } from 'src/app/models/flat.model';
 
 @Component({
   selector: 'app-add-flat',
@@ -14,10 +18,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class AddFlatComponent implements OnInit {
 
   addFlatForm: FormGroup;
+  loading = false;
   constructor(
     public dialogRef: MatDialogRef<AddFlatComponent>,
     private flatService: FlatService,
-    private notificationsService: NotificationsService
+    private userService: UserService,
+    private notificationsService: NotificationsService,
+    private router: Router
   ) {
     this.dialogRef.disableClose = true;
     this.addFlatForm = new FormGroup({
@@ -33,14 +40,16 @@ export class AddFlatComponent implements OnInit {
   }
   addFlat() {
     if (this.addFlatForm.valid) {
+      this.loading = true;
       const flat = new CreateFlatModel();
       flat.name = this.addFlatForm.controls.name.value;
       flat.address = this.composeAddress();
       flat.userIds.push(localStorage.getItem('userId'));
-      console.log(flat);
       this.flatService.createFlat(flat).subscribe(response => {
         this.dialogRef.close(true);
         this.notificationsService.getSuccessMessage(flat.name + ' created successfully.');
+        this.saveFlats();
+        this.loading = false;
       }, error => this.notificationsService.getErrorNotification(error.status)
       );
     }
@@ -51,6 +60,15 @@ export class AddFlatComponent implements OnInit {
   }
   cancel() {
     this.dialogRef.close(true);
+  }
+  saveFlats() {
+    this.userService.getUserFlats().subscribe((response: HttpResponse<FlatModel[]>) => {
+      if (response.status !== 204) {
+        sessionStorage.setItem('flatsList', JSON.stringify(response.body));
+      } else {
+        this.notificationsService.getNoContentNotification();
+      }}, error => this.notificationsService.getErrorNotification(error.status)
+    );
   }
 
 }

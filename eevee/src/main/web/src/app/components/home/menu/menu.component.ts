@@ -27,6 +27,9 @@ export class MenuComponent implements OnInit {
       minHeight: '300px'
     });
   }
+  showFlats() {
+    this.router.navigate(['/home/flats']);
+  }
   logOut() {
     localStorage.clear();
     this.router.navigateByUrl('/');

@@ -1,0 +1,18 @@
+.mat-focused .mat-form-field-label {
+     /*change color of label*/
+     color: #52a2d5 !important;
+}
+.mat-form-field-underline {
+     /*change color of underline*/
+     background-color: #52a2d5 !important;
+} 
+.mat-form-field-ripple {
+     /*change color of underline when focused*/
+     background-color: #52a2d5 !important;
+}
+.cdk-overlay-container {
+     z-index: 9999 !important;
+}
+.autocomplete {z-index: 99999 !important;}
+.cdk-overlay-container {z-index: 999999 !important;}
+.hide-autocomplete { display: none; }

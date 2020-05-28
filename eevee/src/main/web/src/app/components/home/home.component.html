@@ -5,8 +5,10 @@
                <app-menu></app-menu>
           </div>
           <div class="col-6 p-0 text-center">
-               <img class="icon d-none d-lg-inline" src="/assets/images/flapp-icon.png">
-               <img class="icon w-20 d-lg-none" src="assets/images/flapp-flat-icon.png">
+               <img class="icon d-none d-lg-inline" role="button" routerLinkActive="active" 
+               [routerLink]="['home']" src="/assets/images/flapp-icon.png">
+               <img class="icon w-20 d-lg-none" role="button" routerLinkActive="active" 
+               [routerLink]="['home']"src="assets/images/flapp-flat-icon.png">
           </div>
           <div class="col-3 p-0 text-center nav-item">
                <button mat-icon-button color="accent" aria-label="User info icon">
@@ -15,7 +17,6 @@
           </div>
      </div>
      <div class="row navbar-row pt-3 justify-content-center">
-          <app-flat-list [dataSource]="flats"></app-flat-list>
+          <router-outlet></router-outlet>
      </div>
-     
 </div>
