@@ -39,7 +39,8 @@ export class FlatListComponent implements OnInit {
     });
     // We could use option backdrop: 'static' in modal options to block backdrop
     const modalRef = this.dialog.open(AddUsersComponent,
-      { width: 'auto',
+      { minWidth: '350px',
+        minHeight: '250px',
         disableClose: true,
       });
     modalRef.addPanelClass('customModal');

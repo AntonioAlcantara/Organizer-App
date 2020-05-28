@@ -1,19 +1,20 @@
 <!-- =========================================-->
 <!-- SEARCH ROOMMATES MODAL -->
 <!-- =========================================-->
-<div class="modal-body">
+<div class="modal-body p-0">
+     <div class="row m-0 mb-4 d-flex justify-content-between">
+          <h4><b>AÑADE COMPAÑEROS AL PISO</b></h4>
+          <mat-icon role="button" class="accent-icon" (click)="close()" aria-hidden="false" aria-label="Close">close</mat-icon>
+     </div>
      <form [formGroup]="searchRoommateForm">
           <div class="container ">
-               <div class="row m-0 d-flex justify-content-end">
-                    <mat-icon role="button" class="accent-icon" (click)="close()" aria-hidden="false" aria-label="Close">close</mat-icon>
-               </div>
                <div class="row m-0">
                     <mat-form-field class="w-100">
-                         <mat-label>Search roommates</mat-label>
-                         <input matInput formControlName="userName" #userSearch placeholder="Search by username"
-                              (keyup)="findUsers(userSearch.value)" [matAutocomplete]="completeUser"
-                              (ngModelChange)="autocompleteClose($event)">
+                         <mat-label>BUSCA A TU COMPAÑERO</mat-label>
+                         <input matInput formControlName="userName" #userSearch placeholder="Nombre de usuario" (keyup)="findUsers(userSearch.value)"
+                              [matAutocomplete]="completeUser" (ngModelChange)="autocompleteClose($event)">
                          <mat-icon matSuffix class="accent-icon">account_circle</mat-icon>
+                         <mat-error *ngIf="searchRoommateForm.controls.userName.invalid">Usuario invalido</mat-error>
                          <mat-autocomplete class="autocomplete" #completeUser="matAutocomplete">
                               <mat-option *ngFor="let user of flatUser" [value]="user[0].nickname" [ngClass]="{'hide-autocomplete': !showAutocomplete}">
                                    {{user[0].nickname}}
@@ -24,5 +25,5 @@
                </div>
           </div>
      </form>
-     <button mat-button mat-flat-button ngbAutofocus class="accent-button" (click)="addUser()">ADD USER</button>
+     <button mat-button mat-flat-button ngbAutofocus class="accent-button mt-4" (click)="addUser()">AÑADIR</button>
 </div>
