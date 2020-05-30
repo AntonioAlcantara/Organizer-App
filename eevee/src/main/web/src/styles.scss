@@ -63,6 +63,9 @@ button {
     color: red !important;
 }
 
+.mat-form-field:hover {
+    color: #ff5757 !important;
+}
 .mat-form-field-label {
     color: #424242 !important;
 }
@@ -71,7 +74,10 @@ button {
     /*change color of label*/
     color: #ff5757 !important;
 }
-  
+.mat-form-field-outline-thick {
+    color: #ff5757 !important;
+}
+
 .mat-form-field-underline {
     /*change color of underline*/
     background-color: #ff5757 !important;

@@ -9,87 +9,89 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-sm-12 form justify-content-center text-center 
             border-right d-none d-lg-block">
-                <h2>Join the Flapp community and start sharing with your roommates.</h2>
+                <h2>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</h2>
                 <img src="/assets/images/roommate.jpg" aria-label="Roommates" id="roommates-img">
-                <span>Already registered?
+                <span>Ya estás registrado?
                     <button mat-button mat-flat-button [routerLink]="['../login']" class="yellow-button 
-                    button-rounded ml-3 w-50">Sign
-                        in here</button>
+                    button-rounded ml-3 w-50">Haz
+                        Login aquí</button>
                 </span>
             </div>
             <div class="col-lg-5 col-sm-12 m-2 form justify-content-center text-center d-lg-none d-sm-block">
-                <h3><b>Join the Flapp community and start sharing with your roommates.</b></h3>
+                <h3><b>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</b></h3>
             </div>
             <div class="col-lg-7 col-sm-12 form justify-content-center text-start">
 
                 <form [formGroup]="registerForm">
                     <div class="register-form ml-3 mr-3 mb-3 mt-0">
                         <div class="mb-3 text-center">
-                            <h2>Create a new account </h2>
+                            <h2>Crear cuenta </h2>
                         </div>
                         <!-- NAME & SURNAME ROW -->
                         <div class="row d-flex justify-content-between">
                             <mat-form-field>
-                                <mat-label>Name</mat-label>
-                                <input matInput type="text" #name formControlName="name" placeholder="Insert your name"
+                                <mat-label>Nombre</mat-label>
+                                <input matInput type="text" #name formControlName="name" placeholder="Inserta tu nombre *"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.name.invalid">Name is required</mat-error>
+                                <mat-error *ngIf="registerForm.controls.name.invalid">Campo obligatorio</mat-error>
                             </mat-form-field>
                             <mat-form-field class="ml-4">
-                                <mat-label>Surname</mat-label>
-                                <input matInput type="text" #surname formControlName="surname" placeholder="Insert your surname"
+                                <mat-label>Apellido</mat-label>
+                                <input matInput type="text" #surname formControlName="surname" placeholder="Inserta tu apellido *"
                                     required>
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.surname.invalid">Surname is required</mat-error>
+                                <mat-error *ngIf="registerForm.controls.surname.invalid">Campo obligatorio</mat-error>
                             </mat-form-field>
                         </div>
                         <!-- NICKAME & EMAIL ROW-->
                         <div class="row d-flex justify-content-between">
                             <mat-form-field>
-                                <mat-label>Username</mat-label>
-                                <input matInput type="text" formControlName="nickname" placeholder="Insert a user name"
-                                    required onkeyup="checheckNickname()">
+                                <mat-label>Nombre de usuario</mat-label>
+                                <input matInput type="text" formControlName="nickname" placeholder="Inserta un nombre de usuario *"
+                                    required (onkeyup)="checkNickname()">
                                 <mat-icon class="primary-icon" matSuffix>account_circle</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.nickname.invalid">Surname is required</mat-error>
+                                <mat-error *ngIf="registerForm.controls.nickname.invalid">Campo obligatorio</mat-error>
                             </mat-form-field>
-                            <mat-form-field class="ml-4">
-                                <mat-label>E-mail</mat-label>
-                                <input type="email" matInput formControlName="email" placeholder="Insert your email"
-                                    required>
-                                <mat-icon class="primary-icon" matSuffix>mail</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.email.invalid">You must enter an e-mail account</mat-error>
+                            <mat-form-field name="city" class="ml-4">
+                                <mat-select placeholder="Selecciona província *" disableOptionCentering panelClass="myPanelClass"
+                                    formControlName="city">
+                                    <!--<mat-option [(value)]="city">C</mat-option>-->
+                                    <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
+                                </mat-select>
                             </mat-form-field>
+
                         </div>
-                        <!-- PASSWORD & PASSWORD CONFIRMATION ROW-->
+                        <!-- PASSWORD & EMAIL ROW-->
                         <div class="row d-flex justify-content-between">
                             <mat-form-field>
-                                <mat-label>Password</mat-label>
-                                <input matInput type="password" formControlName="password" placeholder="Insert your password"
+                                <mat-label>E-mail</mat-label>
+                                <input type="email" matInput formControlName="email" placeholder="Inserta tu email *"
                                     required>
-                                <mat-icon matSuffix class="primary-icon">lock</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.password.invalid">Password is required</mat-error>
+                                <mat-icon class="primary-icon" matSuffix>mail</mat-icon>
+                                <mat-error *ngIf="registerForm.controls.email.invalid">Inserta un correo electrónico
+                                    válido</mat-error>
                             </mat-form-field>
                             <mat-form-field class="ml-4">
-                                <mat-label>Repeat password</mat-label>
-                                <input matInput type="password" formControlName="validatePassword" placeholder="Insert your password"
+                                <mat-label>Contraseña</mat-label>
+                                <input matInput type="password" formControlName="password" placeholder="Inserta una contraseña *"
                                     required>
                                 <mat-icon matSuffix class="primary-icon">lock</mat-icon>
-                                <mat-error *ngIf="registerForm.controls.validatePassword.invalid">Please, repeat your password</mat-error>
+                                <mat-error *ngIf="registerForm.controls.password.invalid">Campo obligatorio</mat-error>
                             </mat-form-field>
                         </div>
                         <div class="row ml-0 mr-0 mt-3 mb-3 justify-content-center">
-                            <button mat-button mat-flat-button class="primary-button" (click)="register()">REGISTER</button>
+                            <button mat-button mat-flat-button class="primary-button" (click)="register()">REGÍSTRATE</button>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="col-lg-5 col-sm-12 m-3 form justify-content-center 
             text-center d-lg-none d-sm-block">
-                <span>Already registered?
+                <span>Ya estás registrado?
                     <button mat-button mat-flat-button [routerLink]="['../login']" class="yellow-button 
-                    button-rounded ml-3 w-50">Sign
-                        in here</button>
+                    button-rounded ml-3 w-50">Logueate
+                        aquí</button>
                 </span>
             </div>
         </div>

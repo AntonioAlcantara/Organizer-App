@@ -33,6 +33,7 @@ import { HttpInterceptorService } from './services/http-interceptor.service';
 import { AddUsersComponent } from './components/home/flat-list/add-users/add-users.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     LoadingComponent
   ],
   imports: [
-    
     NgbModule,
     BrowserModule,
     HttpClientModule,
@@ -67,7 +67,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDatepickerModule,
     MatSnackBarModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatSelectModule
 
   ],
   entryComponents: [

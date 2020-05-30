@@ -57,7 +57,7 @@ export class FlatListComponent implements OnInit {
     this.flatService.addUsersToFlat(flatID, userIds)
       .subscribe(response => {
         if (response.status === 200) {
-          this.notificationsService.getSuccessMessage('User added successfully!');
+          this.notificationsService.getSuccessMessage('Usuario añadido correctamente!');
           this.reload();
         }
       }, error => {

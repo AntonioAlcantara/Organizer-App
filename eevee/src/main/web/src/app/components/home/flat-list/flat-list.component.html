@@ -1,5 +1,5 @@
 <div class="row d-flex justify-content-between header ml-3 mr-0 mt-4">
-     <h5><b>FLAT LIST</b></h5>
+     <h5><b>LISTA DE PISOS</b></h5>
      <mat-icon role="button" #tooltip="matTooltip" matTooltip="Reload list"
      matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" (click)="reload()"
      aria-hidden="false" aria-label="add">replay
@@ -15,14 +15,14 @@
                     <div class="col-9 pr-1 d-flex flex-column">
                          <span><b>{{flat.name}}</b></span>
                          <span>{{flat.address}}</span>
-                         <div mat-subheader class="p-0 mt-3"><b>Users: </b>
+                         <div mat-subheader class="p-0 mt-3"><b>Usuarios: </b>
                               <span class="ml-2" *ngFor="let user of flat.users">
                                    @{{user.nickname}}
                               </span>
                          </div>
                     </div>
                     <div class="col-3 pl-0 text-right">
-                         <mat-icon role="button" #tooltip="matTooltip" matTooltip="Add more users to flat."
+                         <mat-icon role="button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
                               matTooltipPosition="above" matTooltipHideDelay="500" class="yellow-icon" 
                               (click)="openSearchModal(flat.id, flat.users)"
                               aria-hidden="false" aria-label="add">person_add
@@ -37,10 +37,10 @@
 <!-- =========================================-->
 <div class="table-empty ml-2 mr-2 pt-4" *ngIf="dataSource.data == undefined || dataSource.data.length == 0">
      <div class="row text-center justify-content-center">
-          <span class="font-weight-bold">No results to display</span>
+          <span class="font-weight-bold">No se encontraron resultados</span>
      </div>
      <div class="row text-center justify-content-center">
-          <span>Add a new flat on the top left menu</span>
+          <span>Puedes añadir pisos en el menú lateral</span>
      </div>
 </div>
 <app-loading [loading]='loading'></app-loading>

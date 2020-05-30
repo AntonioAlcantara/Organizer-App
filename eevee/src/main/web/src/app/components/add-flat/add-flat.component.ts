@@ -47,7 +47,7 @@ export class AddFlatComponent implements OnInit {
       flat.userIds.push(localStorage.getItem('userId'));
       this.flatService.createFlat(flat).subscribe(response => {
         this.dialogRef.close(true);
-        this.notificationsService.getSuccessMessage(flat.name + ' created successfully.');
+        this.notificationsService.getSuccessMessage(flat.name + ' se ha añadido correctamente.');
         this.saveFlats();
         this.loading = false;
       }, error => this.notificationsService.getErrorNotification(error.status)

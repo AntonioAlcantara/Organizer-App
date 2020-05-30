@@ -14,18 +14,20 @@ export class RegisterComponent {
 
    registerForm: FormGroup;
    regEx = '\\S+[@]+\\S+[.]+\\S+';
+   cities: string[];
    constructor(
       private router: Router,
       private userService: UserService,
       private notificationsService: NotificationsService
    ) {
+      this.cities = this.getCities();
       this.registerForm = new FormGroup({
          name: new FormControl('', [Validators.required]),
          surname: new FormControl('', [Validators.required]),
          email: new FormControl('', [Validators.required, Validators.pattern(this.regEx)]),
          password: new FormControl('', [Validators.required]),
-         validatePassword: new FormControl('', [Validators.required]),
-         nickname: new FormControl('', [Validators.required])
+         nickname: new FormControl('', [Validators.required]),
+         city: new FormControl('', [Validators.required])
       });
 
    }
@@ -38,6 +40,7 @@ export class RegisterComponent {
          user.surname = this.registerForm.controls.surname.value;
          user.password = this.registerForm.controls.password.value;
          user.nickname = this.registerForm.controls.nickname.value;
+         user.city = this.registerForm.controls.city.value;
 
          this.userService.register(user).subscribe(response => {
             if (response.status === 201) {
@@ -59,5 +62,12 @@ export class RegisterComponent {
          }
       });
    }
-
+   getCities(): string[] {
+      const cities = ['Álava', 'Albacete', 'Alicante', 'Almería', 'Asturias', 'Ávila', 'Badajoz', 'Barcelona', 'Burgos', 'Cáceres',
+         'Cádiz', 'Cantabria', 'Castellón', 'Ciudad Real', 'Córdoba', 'La Coruña', 'Cuenca', 'Gerona', 'Granada', 'Guadalajara',
+         'Guipúzcoa', 'Huelva', 'Huesca', 'Islas Baleares', 'Jaén', 'León', 'Lérida', 'Lugo', 'Madrid', 'Málaga', 'Murcia', 'Navarra',
+         'Orense', 'Palencia', 'Las Palmas', 'Pontevedra', 'La Rioja', 'Salamanca', 'Segovia', 'Sevilla', 'Soria', 'Tarragona',
+         'Santa Cruz de Tenerife', 'Teruel', 'Toledo', 'Valencia', 'Valladolid', 'Vizcaya', 'Zamora', 'Zaragoza'];
+      return cities;
+   }
 }
