@@ -39,7 +39,8 @@ export class FlatListComponent implements OnInit {
     });
     // We could use option backdrop: 'static' in modal options to block backdrop
     const modalRef = this.dialog.open(AddUsersComponent,
-      { width: 'auto',
+      { minWidth: '350px',
+        minHeight: '250px',
         disableClose: true,
       });
     modalRef.addPanelClass('customModal');
@@ -56,7 +57,7 @@ export class FlatListComponent implements OnInit {
     this.flatService.addUsersToFlat(flatID, userIds)
       .subscribe(response => {
         if (response.status === 200) {
-          this.notificationsService.getSuccessMessage('User added successfully!');
+          this.notificationsService.getSuccessMessage('Usuario añadido correctamente!');
           this.reload();
         }
       }, error => {

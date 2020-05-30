@@ -5,6 +5,7 @@ import { UserService } from 'src/app/services/user.service';
 import { HttpResponse } from '@angular/common/http';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { invalid } from '@angular/compiler/src/render3/view/util';
 
 @Component({
   selector: 'app-add-users',
@@ -38,8 +39,11 @@ export class AddUsersComponent implements OnInit {
       this.userService.findUsersByNickname(name)
         .subscribe((users: HttpResponse<UserLowInfoModel>) => {
           if (users.status !== 204) {
-            this.flatUser.push(users.body);
-          } else {this.notificationsService.getNoContentNotification();
+            if (!this.flatUser.find(x  => x.nickname === users.body.nickname)) {
+              this.flatUser.push(users.body);
+            }
+          } else {
+            this.searchRoommateForm.controls.userName.setErrors({ invalid: true });
           }
         }, error => this.notificationsService.getErrorNotification(error.status));
     }

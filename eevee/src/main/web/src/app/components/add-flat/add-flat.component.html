@@ -3,29 +3,29 @@
           <div class="container p-0">
                <div class="row m-0 justify-content-center">
                     <div class="col-12 form justify-content-center text-center">
-                         <h2><b>ADD FLAT</b></h2>
+                         <h2><b>AÑADIR PISO</b></h2>
                          <div class="row m-0">
                               <mat-form-field class="modal-form w-100">
-                                   <mat-label>Name</mat-label>
-                                   <input matInput formControlName="name" placeholder="Insert a name for the flat">
+                                   <mat-label>Nombre</mat-label>
+                                   <input matInput formControlName="name" placeholder="Nombre del piso *">
                                    <mat-icon class="accent-icon" matSuffix>apartment</mat-icon>
-                                   <mat-error *ngIf="addFlatForm.controls.name.invalid">Name required. 25 chars max</mat-error>
+                                   <mat-error *ngIf="addFlatForm.controls.name.invalid">Campo obligatorio. Máximo 25 chars.</mat-error>
                               </mat-form-field>
                          </div>
                          <div class="row m-0">
                               <mat-form-field class="modal-form w-100">
-                                   <mat-label>Street</mat-label>
-                                   <input matInput formControlName="street" placeholder="Insert street address">
+                                   <mat-label>Calle</mat-label>
+                                   <input matInput formControlName="street" placeholder="Inserta la calle *">
                                    <mat-icon matSuffix class="accent-icon">place</mat-icon>
-                                   <mat-error *ngIf="addFlatForm.controls.street.invalid">Street address is required.
-                                        50 chars max</mat-error>
+                                   <mat-error *ngIf="addFlatForm.controls.street.invalid">Campo obligatorio.
+                                        Máximo 50 chars.</mat-error>
                               </mat-form-field>
                          </div>
                          <div class="row m-0">
                               <div class="col-lg-6 col-sm-12 p-0">
                                    <mat-form-field class="modal-form w-100">
-                                        <mat-label>Number</mat-label>
-                                        <input matInput formControlName="number" placeholder="Insert number">
+                                        <mat-label>Número</mat-label>
+                                        <input matInput formControlName="number" placeholder="Número de calle *">
                                         <mat-icon matSuffix class="accent-icon">place</mat-icon>
                                         <mat-error *ngIf="addFlatForm.controls.number.invalid">Street address is
                                              required. 3 chars max</mat-error>
@@ -33,21 +33,20 @@
                               </div>
                               <div class="col-lg-6 col-sm-12 p-0">
                                    <mat-form-field class="modal-form w-100 ml-2">
-                                        <mat-label>Zip Code</mat-label>
-                                        <input matInput formControlName="postalCode" placeholder="Insert ZIP code. E.g.: 07007 ">
+                                        <mat-label>Código postal</mat-label>
+                                        <input matInput formControlName="postalCode" placeholder="Inserta CP *. Ej.: 07007 ">
                                         <mat-icon matSuffix class="accent-icon">place</mat-icon>
-                                        <mat-error *ngIf="addFlatForm.controls.postalCode.invalid">ZIP code is
-                                             required.</mat-error>
+                                        <mat-error *ngIf="addFlatForm.controls.postalCode.invalid">Campo obligatorio.</mat-error>
                                    </mat-form-field>
                               </div>
                          </div>
                          <div class="row ml-0 mr-0 mt-3 justify-content-center">
                               <div class="col-lg-6 mb-2">
-                                   <button mat-button mat-stroked-button (click)="cancel()">CANCEL</button>
+                                   <button mat-button mat-stroked-button (click)="cancel()">CANCELAR</button>
                               </div>
                               <div class="col-lg-6 mb-2">
-                                   <button mat-button mat-flat-button class="accent-button" (click)="addFlat()">ADD
-                                        FLAT</button>
+                                   <button mat-button mat-flat-button class="accent-button" (click)="addFlat()">AÑADIR
+                                        PISO</button>
                               </div>
                          </div>
                     </div>

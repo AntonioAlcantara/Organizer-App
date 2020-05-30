@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('token', response.body.token);
         localStorage.setItem('userId', response.body.id.toString());
         this.router.navigate(['home']);
-        this.notificationsService.getSuccessMessage('Welcome to Flapp!');
+        this.notificationsService.getSuccessMessage('Bienvenid@ a Flapp!');
     }, error => this.notificationsService.getErrorNotification(error.status));
   }
 
