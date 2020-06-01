@@ -34,6 +34,8 @@ import { AddUsersComponent } from './components/home/flat-list/add-users/add-use
 import { LoadingComponent } from './components/loading/loading.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule} from '@angular/material/select';
+import { ModalInfoDialogComponent } from './components/modal-info-dialog/modal-info-dialog.component';
+import { FooterComponent } from './components/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +45,9 @@ import { MatSelectModule} from '@angular/material/select';
     AddFlatComponent,
     CreateEventComponent,
     AddUsersComponent,
-    LoadingComponent
+    LoadingComponent,
+    ModalInfoDialogComponent,
+    FooterComponent
   ],
   imports: [
     NgbModule,

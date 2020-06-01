@@ -27,16 +27,24 @@ a:hover {
  
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
-     .icon {height: 170px; margin-bottom: -30px;}
+     .icon {
+          height: 170px;
+          margin-bottom: -30px;
+     }
+     .info-message {
+          padding: 0px 5px 0px 5px !important;
+     }
      .mat-form-field {
           width: 100%;
           margin: 0px !important;
+     }
+     .login-button {
+          margin: 9px 15px 0px 15px !important;
      }
      #roommates-img {
           height: 100px;
           margin-top: 20px;
      }
-     
 }
 
 /* DESKTOP */
