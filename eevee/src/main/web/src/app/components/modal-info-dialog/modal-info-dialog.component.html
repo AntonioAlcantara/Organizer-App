@@ -1,19 +1,85 @@
-<div class="container">
-     <div class="row header-info text-center">
-          <h2>Bienvenid@ a Flapp</h2>
-          <h5>Y empieza a compartir...</h5>
+<div #aboutSection class="container">
+     <div class="row header d-flex justify-content-end m-3">
+          <div class="col-lg-6 col-sm-12 d-flex justify-content-center align-items">
+               <h2><b>Bienvenid@ a </b></h2>
+               <h2 class="header-icon pl-2">Flapp</h2>
+          </div>
+          <div class="col-lg-6 col-sm-12 d-flex justify-content-center align-items-center">
+               <mat-icon role="button" class="accent-icon" aria-hidden="false" aria-label="Home"
+               #tooltip="matTooltip" matTooltip="Página principal"
+               matTooltipPosition="above" matTooltipHideDelay="100">home</mat-icon>
+               <mat-icon role="button" class="accent-icon ml-4" aria-hidden="false" aria-label="Login"
+               #tooltip="matTooltip" matTooltip="Login"
+               matTooltipPosition="above" matTooltipHideDelay="100">person_outline</mat-icon>
+          </div>
+
      </div>
      <div class="row body-info">
-          <div class="col-lg-6 col-sm-12">
+          <div class="col-lg-6 col-sm-12 text-center pt-3 pr-5 pl-5">
+               <h4 class="m-0"><b>Flapp es una herramienta para compartir tareas y eventos con tus compañeros de piso.</b></h4>
+               <br>
+               <mat-icon class="accent-icon mb-3" aria-hidden="false">more_horiz</mat-icon>
+               <br>
+               <span>Organizar las tareas del hogar, llevar al día las facturas o símplemente repartir los gastos
+                    resultará mucho más sencillo con Flapp.</span>
 
           </div>
-          <div class="col-lg-6 col-sm-12">
-               <span>Flapp es una herramienta para compartir tareas y eventos con tus compañeros de piso.</span>
-               <span>Organizar las tareas del hogar, llevar día las facturas o símplemente repartir los gastos resultará mucho más sencillo</span>
+          <div class="col-lg-6 col-sm-12 text-center">
+               <img class="roommates-img" src="/assets/images/roommatesketch.jpg">
           </div>
-          
      </div>
-     <div class="row footer-info">
-
+     <div class="row footer-info d-flex justify-content-center">
+          <div class="col-lg-6 col-sm-12 text-center d-none d-lg-inline">
+               <img class="screenshot" src="/assets/images/login.png">
+               <img class="screenshot ml-3" src="/assets/images/home.png">
+          </div>
+          <div class="col-lg-6 col-sm-12 text-center">
+          <button mat-button ngbAutofocus class="accent-button button-rounded w-50 mt-4 mb-5" (click)="showMoreInfo()">{{showButton}}
+               <mat-icon class="ml-2" aria-hidden="false">{{showIcon}}</mat-icon>
+          </button>
+          </div>
      </div>
 </div>
+<div id='showMoreSection' #showMoreSection class="container mt-4 show-more">
+     <div class="row d-flex justify-content-center p-3">
+          <div class="col-lg-6 col-sm-12 text-center">
+               <h3 class="mb-2"><b>Registra tu piso</b></h3>
+               <span>Si aún no se ha registrado, créalo y añade a tus compañeros registrados en Flapp. </span>
+               <br>
+               <span>Podrás buscarlos por su nombre de usuario. Es muy sencillo!</span>
+               <br>
+               <mat-icon class="accent-icon m-3" aria-hidden="false">more_horiz</mat-icon>
+          </div>
+     </div>
+     <div class="row d-flex justify-content-center p-3">
+          <div class="col-lg-6 col-sm-12 text-center">
+               <h3 class="mb-2"><b>Listado de pisos</b></h3>
+               <span>Podrás ver un listado de todos los pisos a los que perteneces.</span>
+               <br>
+               <span>Sabemos que a veces te mueves de un sitio a otro, por ello agrega las viviendas que necesites.</span>
+               <br>
+               <mat-icon class="accent-icon m-3" aria-hidden="false">more_horiz</mat-icon>
+          </div>
+     </div>
+     <div class="row d-flex justify-content-center p-3">
+          <div class="col-lg-6 col-sm-12 text-center">
+               <h3 class="mb-2"><b>Añade eventos</b></h3>
+               <span>Crea eventos personalizados para organizar el piso y añade a tus compañeros.</span>
+               <br>
+               <span>Ya sea repartir las tareas del hogar o un recordatorio a tus compañeros para pagar las facturas a medias. Tendrás una lista con todos los eventos y sus detalles.</span>
+               <br>
+               <mat-icon class="accent-icon m-3" aria-hidden="false">more_horiz</mat-icon>
+          </div>
+     </div>
+     <div class="row d-flex justify-content-center p-3">
+               <div class="col-lg-6 col-sm-12 text-center">
+                    <h3 class="mb-2"><b>Calendario</b></h3>
+                    <span>Visualiza los eventos por fecha.</span>
+                    <br>
+                    <span>Para que resulte más sencillo organizarte. Visualiza los eventos en el calendario.</span>
+                    <br>
+                    <mat-icon class="accent-icon m-3" aria-hidden="false">more_horiz</mat-icon>
+               </div>
+          </div>
+</div>
+<app-footer></app-footer>
