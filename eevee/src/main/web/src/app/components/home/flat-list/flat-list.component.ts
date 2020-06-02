@@ -19,6 +19,8 @@ export class FlatListComponent implements OnInit {
 
   dataSource: MatTableDataSource<FlatModel>;
   loading: boolean;
+  selectable = true;
+  removable = true;
   constructor(
     private userService: UserService,
     private flatService: FlatService,

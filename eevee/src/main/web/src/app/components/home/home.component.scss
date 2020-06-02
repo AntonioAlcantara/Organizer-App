@@ -2,7 +2,7 @@
 .mat-icon-button {
      height: 60px !important;
      background-color: none !important;
-     width: 70px !important; // Otherwise outline focus it's irregular
+     width: 70px !important;
      :focus { outline: none !important;}
 }
 .mat-icon-no-color { color: #ff5757 !important;}
@@ -11,8 +11,20 @@
 .nav-item { align-self: flex-end;}
 
 /* RESPONSIVE */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
+     .navbar-row { padding-bottom: 1rem !important}
+     .mat-icon-button {
+          height: 55px !important;
+          background-color: none !important;
+          width: 50px !important;
+          :focus { outline: none !important;}
+     }
+     .mat-icon { 
+          font-size: 35px !important;
+          line-height: 20px !important;
+     }
      .background-wrap { min-height: 100px;}
-     .icon { height: 70px; margin-bottom: -30px;}
+     .icon { height: 60px; margin-bottom: -30px;}
+
      
 }
