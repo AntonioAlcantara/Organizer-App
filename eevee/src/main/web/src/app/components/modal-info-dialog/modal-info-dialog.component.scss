@@ -15,9 +15,7 @@ h3 {
      font-family: 'Pacifico', cursive;
      color: #52a2d5;
 }
-.header {
-     border-bottom: 2px solid #52a2d5 
-}
+
 .show-more { 
      margin-bottom: 300px;
      display: none;
@@ -27,6 +25,9 @@ h3 {
      .body-info {
           margin-top: 50px;
           margin-bottom: 30px;
+     }
+     .header {
+          border-bottom: 2px solid #52a2d5 
      }
 }
 /* RESPONSIVE */
