@@ -5,7 +5,7 @@ export class CreateFlatModel {
   address: string;
   /**
    * NotEmpty
-   * Array with creator Id from localstorage (json) and rest of the user's Ids we'll add later.
+   * Array with creator Id from sessionStorage (json) and rest of the user's Ids we'll add later.
    */
   userIds: string[];
   constructor() {
