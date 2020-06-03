@@ -32,6 +32,7 @@ export class MenuComponent implements OnInit {
   }
   logOut() {
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigateByUrl('/');
   }
 }

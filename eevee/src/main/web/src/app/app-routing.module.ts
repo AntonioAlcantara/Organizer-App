@@ -4,19 +4,22 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { FlatListComponent } from './components/home/flat-list/flat-list.component';
+import { ModalInfoDialogComponent } from './components/modal-info-dialog/modal-info-dialog.component';
+import { AuthGuard } from './components/login/guards/auth.guard';
 
 
 
 const ROUTES: Routes = [
   // routes
-  { path: '', component: LoginComponent},
-  { path: 'home', component: HomeComponent,
+  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
   children: [
-    { path: 'flats', component: FlatListComponent}
+    { path: 'flats', component: FlatListComponent, canActivate: [AuthGuard]},
   ]},
+  { path: 'about', component: ModalInfoDialogComponent},
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'home' }
+  { path: '**', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]}
 ];
 export const APP_ROUTING = RouterModule.forRoot(ROUTES, {useHash: true});
 
@@ -26,4 +29,10 @@ export const APP_ROUTING = RouterModule.forRoot(ROUTES, {useHash: true});
 })
 
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, RegisterComponent, HomeComponent, FlatListComponent];
+export const routingComponents = [
+  LoginComponent,
+  RegisterComponent,
+  HomeComponent,
+  FlatListComponent,
+  ModalInfoDialogComponent
+];

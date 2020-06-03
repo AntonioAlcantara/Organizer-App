@@ -44,7 +44,7 @@ export class AddFlatComponent implements OnInit {
       const flat = new CreateFlatModel();
       flat.name = this.addFlatForm.controls.name.value;
       flat.address = this.composeAddress();
-      flat.userIds.push(localStorage.getItem('userId'));
+      flat.userIds.push(sessionStorage.getItem('userId'));
       this.flatService.createFlat(flat).subscribe(response => {
         this.dialogRef.close(true);
         this.notificationsService.getSuccessMessage(flat.name + ' se ha añadido correctamente.');

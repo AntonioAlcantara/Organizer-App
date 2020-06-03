@@ -1,9 +1,8 @@
-
 footer {
      position: fixed;
      width: 100%; 
-     bottom: 0;
-     height: 65px;
+     bottom: 0px;
+     height: 50px;
      background-color: #ff5757;
      a {
           color: #ffffff;
@@ -12,9 +11,20 @@ footer {
           font-family: 'Pacifico', cursive;
           color: #ffffff;
           margin: 0;
+          padding-bottom: 5px;
      }
      
  }
+
+a:hover {
+transform: scale(1);
+text-decoration: none;
+-ms-transform: scale(1.1); /* IE 9 */
+-webkit-transform: scale(1.1); /* Safari 3-8 */
+transform: scale(1.1);
+transition: all 0.3s ease-in-out 0.1s;
+color: #ffffff !important;
+}
 
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {

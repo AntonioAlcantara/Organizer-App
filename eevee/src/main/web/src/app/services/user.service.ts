@@ -77,4 +77,9 @@ export class UserService {
         const url = `${this.host}v1/user/find/${nickname}`;
         return this.http.get<UserLowInfoModel>(url, { observe: 'response' });
     }
+    isAuthenticated(): boolean {
+        if (JSON.parse(sessionStorage.getItem('userId')) !== null) {
+             return true;
+        } else { return false; }
+   }
 }

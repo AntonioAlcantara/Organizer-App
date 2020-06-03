@@ -9,23 +9,25 @@
         <div class="row justify-content-center">
             <div class="col-lg-5 col-sm-12 form justify-content-center text-center 
             border-right d-none d-lg-block">
-                <h2>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</h2>
+                <h2><i>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</i></h2>
                 <img src="/assets/images/roommate.jpg" aria-label="Roommates" id="roommates-img">
+                <br>
                 <span>Ya estás registrado?
                     <button mat-button mat-flat-button [routerLink]="['../login']" class="yellow-button 
-                    button-rounded ml-3 w-50">Haz
-                        Login aquí</button>
+                    button-rounded ml-3 w-50"><u>Haz Login aquí</u>
+                    </button>
                 </span>
             </div>
-            <div class="col-lg-5 col-sm-12 info-message m-2 form justify-content-center text-center d-lg-none d-sm-block">
-                <h3><b>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</b></h3>
+            <div class="col-lg-5 col-sm-12 info-message mt-1 m-2 mb-0 form justify-content-center text-center d-lg-none d-sm-block">
+                <h3><b><i>Únete a la comunidad de Flapp y empieza a compartir con tus compañeros de piso.</i></b></h3>
+                <hr>
             </div>
             <div class="col-lg-7 col-sm-12 form justify-content-center text-start">
 
                 <form [formGroup]="registerForm">
                     <div class="register-form ml-3 mr-3 mb-3 mt-0">
                         <div class="mb-3 text-center">
-                            <h2>Crear cuenta </h2>
+                            <h2>CREAR CUENTA </h2>
                         </div>
                         <!-- NAME & SURNAME ROW -->
                         <div class="row d-flex justify-content-between">
@@ -81,7 +83,7 @@
                             </mat-form-field>
                         </div>
                         <div class="row ml-0 mr-0 mt-3 mb-3 justify-content-center">
-                            <button mat-button mat-flat-button class="primary-button" (click)="register()">REGÍSTRATE</button>
+                            <button mat-button mat-flat-button class="primary-button" (click)="register()"><b>REGÍSTRATE</b></button>
                         </div>
                     </div>
                 </form>

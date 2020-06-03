@@ -91,7 +91,9 @@ button {
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
     html, body {
+        height: 100%;
         overflow-x: hidden;
+        overflow-y: auto;
    }
    body {
         position: relative

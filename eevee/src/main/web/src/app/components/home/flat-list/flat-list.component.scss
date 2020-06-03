@@ -1,21 +1,23 @@
+h3 {color: #f3D250;}
 .mat-list-item {
      margin: 10px 0px;
      height: auto !important;
 }
-::ng-deep .mat-list-item-content { 
+
+.mat-list-item-content { 
      padding: 0px !important; // Outside ripple effect
 } 
 .card { 
      height: auto;
-     width: 350px;
+     width: 650px;
      border: 2px solid #f3D250 !important;
      :hover { background-color: #f8f4e4;}
 }
-.header { width: 350px;}
+.header { width: 650px;}
 .mat-subheader { display: inline !important;}
+.mat-chip {background-color: #f8f4e4 !important;}
 
 /* MATERIAL FORMS */
-
 // custom class for modal
 .customModal{
      .mat-focused .mat-form-field-label {
@@ -38,3 +40,10 @@
      .cdk-overlay-container {z-index: 999999 !important;}
 }
 .cdk-overlay-container {z-index: 999999 !important;}
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+     .card { width: 350px !important;}
+     .header { width: 350px !important;}
+     ::ng-deep.mat-subheader { height: auto !important;}
+}

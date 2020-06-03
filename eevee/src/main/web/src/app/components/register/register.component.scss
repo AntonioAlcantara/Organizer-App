@@ -50,15 +50,16 @@ a:hover {
 /* DESKTOP */
 @media screen and (min-width: 769px) {
      .mat-form-field { min-width: 45%;}
-     .icon { height: 200px;}
+     .icon { height: 180px;}
      .register-form { 
           margin: 5%;
           padding: 5%
      }
      #roommates-img {
-          height: 150px;
+          height: 140px;
           margin-top: 20px;
           margin-bottom: 20px;
+          box-shadow: 1px 4px 10px 1px grey;
      }
 }
 
