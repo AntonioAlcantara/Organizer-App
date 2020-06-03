@@ -58,7 +58,6 @@
                             <mat-form-field name="city" class="ml-4">
                                 <mat-select placeholder="Selecciona província *" disableOptionCentering panelClass="myPanelClass"
                                     formControlName="city">
-                                    <!--<mat-option [(value)]="city">C</mat-option>-->
                                     <mat-option *ngFor="let city of cities" [value]="city">{{city}}</mat-option>
                                 </mat-select>
                             </mat-form-field>

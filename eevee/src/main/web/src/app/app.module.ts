@@ -15,11 +15,11 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 // BOOTSTRAP COMPONENTS
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // MATERIAL COMPONENTS
+import { MatSliderModule} from '@angular/material/slider';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
@@ -74,7 +74,8 @@ import { MatSelectModule} from '@angular/material/select';
     HttpClientModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSliderModule
 
   ],
   entryComponents: [
