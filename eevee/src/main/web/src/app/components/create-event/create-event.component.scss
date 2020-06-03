@@ -1,2 +1,7 @@
 // DESKTOP
 .container { width: 600px;}
+
+//RESPONSIVE 
+@media screen and (max-width: 768px) {
+     .container { width: 350px;}
+}
