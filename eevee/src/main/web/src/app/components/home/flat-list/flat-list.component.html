@@ -35,7 +35,7 @@
                </div>
                <div class="row pl-2 pr-2 m-0 mt-3 m-2 mb-3">
                     <mat-chip-list>Usuarios: 
-                         <mat-chip class="ml-2" color="accent" *ngFor="let user of flat.users"
+                         <mat-chip class="ml-2" *ngFor="let user of flat.users"
                          [selectable]="selectable" [removable]="removable">
                               @{{user.nickname}}
                               <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
