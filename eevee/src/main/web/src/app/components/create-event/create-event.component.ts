@@ -10,6 +10,7 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { UserLowInfoModel } from 'src/app/models/user-low-info.model';
 import { DateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { CreateEventModel } from 'src/app/models/create-event.model';
 
 @Component({
   selector: 'app-create-event',
@@ -26,6 +27,7 @@ export class CreateEventComponent implements OnInit {
   isFlatSelected = false;
   loading = false;
   today: Date = new Date();
+  newEvent: CreateEventModel;
 
   constructor(
     private userService: UserService,
@@ -76,7 +78,22 @@ export class CreateEventComponent implements OnInit {
   }
   createEvent() {
     this.loading = true;
+    const roommatesIDS: number[] = [];
+    this.eventForm.controls.roommates.value.forEach(user => {
+      roommatesIDS.push(user.id);
+    });
     console.log(this.eventForm.value);
+    this.newEvent = new CreateEventModel();
+    this.newEvent.title = this.eventForm.controls.eventName.value;
+    this.newEvent.description = this.eventForm.controls.description.value;
+    this.newEvent.flatId = this.eventForm.controls.selectedFlat.value.id;
+    this.newEvent.amount = this.eventForm.controls.amount.value;
+    this.newEvent.eventType = this.eventForm.controls.eventType.value;
+    this.newEvent.roomIds = [this.eventForm.controls.belongingRoom.value.id];
+    this.newEvent.userIds = roommatesIDS;
+    this.newEvent.startDate = this.datePipe.transform(this.eventForm.controls.startDate.value, 'dd-MM-yyyy');
+    this.newEvent.endDate = this.datePipe.transform(this.eventForm.controls.endDate.value, 'dd-MM-yyyy');
+    console.log(this.newEvent);
     this.loading = false;
   }
 
