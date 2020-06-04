@@ -29,6 +29,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatCardModule} from '@angular/material/card';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material/core';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule} from '@angular/material/table';
 import { MatListModule} from '@angular/material/list';
@@ -70,6 +71,7 @@ import { MatSelectModule} from '@angular/material/select';
     MatTooltipModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatSnackBarModule,
     HttpClientModule,
     MatProgressSpinnerModule,
