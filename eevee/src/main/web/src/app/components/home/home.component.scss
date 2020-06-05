@@ -1,4 +1,11 @@
-.icon { height: 120px; margin-bottom: -30px;}
+.icon { height: 170px; margin-bottom: -30px;}
+
+.mat-menu-item {
+     height: 70px !important;
+     padding-bottom: 0px !important; 
+     display: flex;
+}
+
 .mat-icon-button {
      height: 60px !important;
      background-color: none !important;
@@ -6,10 +13,34 @@
      :focus { outline: none !important;}
 }
 .mat-icon-no-color { color: #ff5757 !important;}
-.mat-icon { font-size: 45px !important;}
+.mat-icon { font-size: 50px !important;}
 .mat-icon-button.mat-accent { color: transparent !important;} // Hide background on focus
 .nav-item { align-self: flex-end;}
 
+a:hover {
+     transform: scale(1);
+     text-decoration: none;
+     -ms-transform: scale(1.1); /* IE 9 */
+     -webkit-transform: scale(1.1); /* Safari 3-8 */
+     transform: scale(1.1);
+     transition: all 0.3s ease-in-out 0.1s;
+}
+.header-button {
+     width: 100%;
+     font-family: 'Montserrat', sans-serif;
+     font-size: 18px;
+     line-height: 1;
+     color: #ff5757 !important;
+}
+.header-button:nth-child(3) {
+     font-family: 'Pacifico', cursive;
+     font-size: 22px;
+     color: #f3D250 !important;
+}
+
+.mat-button, button {
+     span{ color: #ff5757 !important;}
+}
 /* RESPONSIVE */
 @media screen and (max-width: 767px) {
      .navbar-row { padding-bottom: 1rem !important}

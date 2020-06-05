@@ -65,9 +65,11 @@
                     <mat-form-field name="flat" class="w-100">
                          <mat-select placeholder="Tipo de evento" disableOptionCentering panelClass="myPanelClass"
                               formControlName="eventType">
-                              <mat-option *ngFor="let type of eventTypes" [value]="type.name">
-                                   <mat-icon aria-hidden="false" aria-label="type-icon" class="pl-2 pr-2">{{type.iconName}}
-                                   </mat-icon>
+                              <mat-select-trigger>
+                                   <mat-icon>{{eventForm.controls.eventType.value.iconName}}</mat-icon>&nbsp;{{eventForm.controls.eventType.value.name}}
+                              </mat-select-trigger>
+                              <mat-option *ngFor="let type of eventTypes" [value]="type">
+                                   <mat-icon class="pl-2 pr-2">{{type.iconName}}</mat-icon>
                                    {{type.name}}
                               </mat-option>
                          </mat-select>

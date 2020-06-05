@@ -88,12 +88,13 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.description = this.eventForm.controls.description.value;
     this.newEvent.flatId = this.eventForm.controls.selectedFlat.value.id;
     this.newEvent.amount = this.eventForm.controls.amount.value;
-    this.newEvent.eventType = this.eventForm.controls.eventType.value;
+    this.newEvent.eventType = this.eventForm.controls.eventType.value.name;
     this.newEvent.roomIds = [this.eventForm.controls.belongingRoom.value.id];
     this.newEvent.userIds = roommatesIDS;
-    this.newEvent.startDate = this.datePipe.transform(this.eventForm.controls.startDate.value, 'dd-MM-yyyy');
-    this.newEvent.endDate = this.datePipe.transform(this.eventForm.controls.endDate.value, 'dd-MM-yyyy');
+    this.newEvent.startDate = this.eventForm.controls.startDate.value;
+    this.newEvent.endDate = this.eventForm.controls.endDate.value;
     console.log(this.newEvent);
+    this.eventService.createEvent(this.newEvent).subscribe(response => console.log(response));
     this.loading = false;
   }
 

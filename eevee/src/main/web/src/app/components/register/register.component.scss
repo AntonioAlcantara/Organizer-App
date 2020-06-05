@@ -4,7 +4,7 @@ h2 { color:#f3d250;}
      min-width: 250px;
      padding: 28px;
    }
-a { font-weight: bold;}
+:host a { font-weight: bold;}
 a:hover {
   transform: scale(1);
   text-decoration: none;
