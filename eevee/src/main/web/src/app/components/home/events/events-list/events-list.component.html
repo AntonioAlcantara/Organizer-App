@@ -1,1 +1,36 @@
-<p>events-list works!</p>
+<!-- =========================================-->
+<!-- EVENTS LIST -->
+<!-- =========================================-->
+<mat-action-list *ngIf="dataSource.data != undefined" class="p-2 mb-5">
+     <mat-list-item *ngFor="let element of dataSource.data">
+          <div class="card">
+               <div class="row pt-3 pr-2 m-0">
+                    <div class="col-9 pt-1 pr-1 d-flex flex-column">
+                         <mat-icon aria-hidden="false" [ngStyle]="{'color':getElementColor(element.eventType)}"
+                              aria-label="type">
+                              {{getElementIcon(element.eventType)}}</mat-icon>
+                         <span><b>{{element.title}}</b></span>
+                         <mat-icon *ngIf="isElementActive(element) == true" class="completed md-18">event_available</mat-icon>
+                    <mat-icon *ngIf="isElementActive(element) == false" class="not-completed md-18">event_busy</mat-icon>
+                    </div>
+                    <div class="col-3 pl-0 text-right">
+                         <button mat-icon-button class="primary-button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
+                              matTooltipPosition="above" matTooltipHideDelay="100" >
+                              <mat-icon aria-hidden="false" aria-label="add">group_add</mat-icon>
+                         </button>
+                    </div>
+               </div>
+          </div>
+     </mat-list-item>
+</mat-action-list>
+<!-- =========================================-->
+<!-- EMPTY LIST -->
+<!-- =========================================-->
+<div class="table-empty ml-2 mr-2 pt-4" *ngIf="dataSource.data == undefined || dataSource.data.length == 0">
+     <div class="row text-center justify-content-center">
+          <span class="font-weight-bold">No se encontraron resultados</span>
+     </div>
+     <div class="row text-center justify-content-center">
+          <span>Puedes añadir eventos en el menú lateral</span>
+     </div>
+</div>

@@ -34,9 +34,7 @@ export class EventsTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(JSON.parse(sessionStorage.getItem('eventsList')));
     this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
-    console.log(this.dataSource);
   }
 
   delete(event) {}

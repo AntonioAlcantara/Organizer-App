@@ -33,7 +33,6 @@ export class FlatListComponent implements OnInit {
   ngOnInit(): void {
     const flats: FlatModel[] = JSON.parse(sessionStorage.getItem('flatsList'));
     this.dataSource = new MatTableDataSource<FlatModel>(flats);
-    console.log(this.dataSource);
   }
 
   openCreateFlat() {

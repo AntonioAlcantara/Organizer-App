@@ -1,26 +1,29 @@
-<div class="row d-flex justify-content-between header ml-2 mr-0 mt-1">
-     <div class="col-lg-3 col-sm-12 d-flex align-items-end">
-          <h3 class="m-0">
-               <b class="d-flex">LISTADO DE EVENTOS
-                    <mat-icon aria-hidden="false" aria-label="apartment" class="primary-icon pl-2">calendar_today</mat-icon>
-               </b>
-          </h3>
+<div class="container">
+     <div class="row d-flex justify-content-between ml-2 mr-0 mt-1">
+          <div class="col-lg-3 col-sm-12 d-flex align-items-end">
+               <h3 class="m-0">
+                    <b class="d-flex">LISTADO DE EVENTOS
+                         <mat-icon aria-hidden="false" aria-label="apartment" class="primary-icon pl-2">calendar_today</mat-icon>
+                    </b>
+               </h3>
+          </div>
+          <div class="col-lg-6 col-sm-12 d-flex justify-content-end align-items-end">
+               <mat-form-field>
+                    <mat-label>Elegir eventos:</mat-label>
+                    <mat-select>
+                         <mat-option [(value)]="selectedOption">
+                              ACTIVOS
+                         </mat-option>
+                         <mat-option [value]="true">
+                              INACTIVOS
+                         </mat-option>
+                    </mat-select>
+               </mat-form-field>
+          </div>
+          <div class="col-lg-3 d-sm-none d-lg-inline">
+               <img class="float-right events-img" src="/assets/images/vector2.png">
+          </div>
      </div>
-     <div class="col-lg-6 col-sm-12 d-flex justify-content-end align-items-end">
-          <mat-form-field>
-               <mat-label>Elegir eventos:</mat-label>
-               <mat-select>
-                    <mat-option [(value)]="selectedOption">
-                         ACTIVOS
-                    </mat-option>
-                    <mat-option [value]="true">
-                         INACTIVOS
-                    </mat-option>
-               </mat-select>
-          </mat-form-field>
-     </div>
-     <div class="col-lg-3 d-sm-none d-lg-inline">
-          <img class="float-right events-img" src="/assets/images/vector2.png">
-     </div>
+     <app-events-table class="d-none d-lg-inline"></app-events-table>
+     <app-events-list class="d-lg-none"></app-events-list>
 </div>
-<app-events-table></app-events-table>
