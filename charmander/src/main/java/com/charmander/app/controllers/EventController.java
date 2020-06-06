@@ -37,7 +37,7 @@ public class EventController {
     }
 
     @CrossOrigin(maxAge = 3600)
-    @DeleteMapping("/delete/{$eventId}")
+    @DeleteMapping("/delete/{eventId}")
     public ResponseEntity<Void> deleteEvent(
             @PathVariable Long eventId
     ) {
