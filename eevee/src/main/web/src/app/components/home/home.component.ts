@@ -6,6 +6,7 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { EventModel } from 'src/app/models/event.model';
+import { UserModel } from 'src/app/models/user';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,7 @@ import { EventModel } from 'src/app/models/event.model';
 })
 export class HomeComponent implements OnInit {
 
+  private user: UserModel;
   constructor(
     private router: Router,
     private userService: UserService,
@@ -35,6 +37,7 @@ export class HomeComponent implements OnInit {
         this.notificationsService.getNoContentNotification();
       }}, error => this.notificationsService.getErrorNotification(error.status)
     );
+
   }
   logOut() {
     localStorage.clear();

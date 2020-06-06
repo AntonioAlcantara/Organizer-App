@@ -40,6 +40,10 @@ table {
 
 //----------------------------------
 
+th { 
+     color: #ffffff;
+     background-color: #ff5757;
+}
 .detailed-combination-row {
      width: 100%;
      height: 100%;
@@ -68,10 +72,9 @@ tr.example-detail-row {
      font-weight: lighter;
      margin: 8px 0;
      height: 104px;
-   }
-   
-   .example-element-symbol {
+}
+.example-element-symbol {
      font-weight: bold;
      font-size: 40px;
      line-height: normal;
-   }
+}

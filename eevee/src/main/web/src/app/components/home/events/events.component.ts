@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventsComponent implements OnInit {
 
+  selectedOption = false;
   constructor() { }
 
   ngOnInit(): void {

@@ -8,7 +8,7 @@
                     </mat-icon>
                </b>
           </h3>
-          <a href="javascript:void(0)" (click)="clearForm()">Limpiar campos</a>
+          <a href="javascript:void(0)" (click)="clearForm()" class="mr-3">Limpiar campos</a>
      </div>
 
      <form [formGroup]="eventForm" class="mt-4">
@@ -78,7 +78,7 @@
                </div>
                <!-- ROOMMATES -->
                <div class="row ml-1 mr-0 mt-2 mb-3">
-                    <mat-label><i>Personas que forman parte del evento</i></mat-label>
+                    <mat-label><i>Personas que forman parte del evento (incluye tu usuario si vas a participar)</i></mat-label>
                     <mat-form-field name="flat" class="w-100">
                          <mat-select placeholder="Selecciona compañeros" disableOptionCentering panelClass="myPanelClass"
                               formControlName="roommates" multiple>

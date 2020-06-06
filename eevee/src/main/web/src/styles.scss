@@ -31,7 +31,7 @@ button {
 .button-rounded { border-radius: 50px !important;}
 
 .primary-button { background-color: #ff5757; }
-.primary-button:focus { outline: 5px auto #f78888 !important; }
+.primary-button:focus { outline: 5px auto #ffcece !important; }
 .primary-button-stroked { border-color: #ff5757 !important;
     span{ color: #ff5757;}
 }
@@ -105,7 +105,7 @@ button {
    }
     .background-wrap {
         background-image: linear-gradient(rgba(255,255,255,.78), 
-        rgba(255,255,255,.78)), url("/assets/images/roommate.jpg") !important;
+        rgba(255,255,255,.78)), url("/assets/images/vector4.png") !important;
         background-repeat: no-repeat !important;
         background-size: 100% !important;
     }

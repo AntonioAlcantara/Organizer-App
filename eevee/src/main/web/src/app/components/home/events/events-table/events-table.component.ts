@@ -7,6 +7,7 @@ import { stringify } from 'querystring';
 import { EventService } from 'src/app/services/event.service';
 import { EventTypeModel } from 'src/app/models/event-type.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-events-table',
@@ -25,43 +26,21 @@ export class EventsTableComponent implements OnInit {
   columns = ['type', 'name', 'amount', 'active', 'delete', 'markAsComplete', 'details'];
   selection = new SelectionModel<EventModel>(true, []);
   expandedElement: EventModel | null;
+  dataSource;
   constructor(
     private eventService: EventService,
     private adapter: DateAdapter<any>,
     private datePipe: DatePipe,
-  ) { }
-  @Input() dataSource: EventModel[] = [{
-    id: 6,
-    title: 'Pagar netflix',
-    description: 'Pagar factura junio',
-    amount: 122.9 ,
-    startDate: new Date ('2020-06-01'),
-    endDate: new Date ('2020-06-01'),
-    eventType: 'Mascotas',
-    rooms: [{id: 1, name: 'Cosina'}],
-    creator: 'Sylvia',
-    users: [{id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'},
-  {id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'}]
-  },
-  {
-    id: 6,
-    title: 'Pagar netflix',
-    description: 'Pagar factura junio',
-    amount: 122.9 ,
-    startDate: new Date ('2020-06-01'),
-    endDate: new Date ('2020-06-01'),
-    eventType: 'Mascotas',
-    rooms: [{id: 1, name: 'Cosina'}],
-    creator: 'Sylvia',
-    users: [{id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'},
-  {id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'}]
-  }
-];
+  ) {}
 
   ngOnInit(): void {
+    console.log(JSON.parse(sessionStorage.getItem('eventsList')));
+    this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
+    console.log(this.dataSource);
   }
 
   delete(event) {}
+  complete(event) {}
 
   isElementActive(element): boolean {
     return true;

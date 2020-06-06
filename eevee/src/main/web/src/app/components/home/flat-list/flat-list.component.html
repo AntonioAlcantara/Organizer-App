@@ -5,19 +5,19 @@
           </b>
      </h3>
      <button *ngIf="dataSource.data != undefined" mat-button mat-stroked-button class="ml-3 w-auto
-     d-none d-md-inline d-lg-inline button-rounded primary-button-stroked"
+                         d-none d-md-inline d-lg-inline button-rounded primary-button-stroked"
           (click)="reload()">RECARGAR
           <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Recargar lista" matTooltipPosition="above"
                matTooltipHideDelay="500">replay</mat-icon>
      </button>
      <button mat-button mat-flat-button (click)="openCreateFlat()" class="float-right primary-button 
-     button-rounded ml-1 w-auto d-none d-md-inline d-lg-inline">AÑADIR
+                         button-rounded ml-1 w-auto d-none d-md-inline d-lg-inline">AÑADIR
           PISO
           <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Añadir piso" matTooltipPosition="above"
                matTooltipHideDelay="500">add</mat-icon>
      </button>
      <mat-icon role="button" #tooltip="matTooltip" matTooltip="Recargar lista" matTooltipPosition="above"
-          matTooltipHideDelay="500" class="accent-icon d-md-none d-lg-none mr-3" (click)="reload()" aria-hidden="false"
+          matTooltipHideDelay="500" class="primary-icon d-md-none d-lg-none mr-3" (click)="reload()" aria-hidden="false"
           aria-label="add">replay
      </mat-icon>
 </div>
@@ -61,4 +61,5 @@
           <span>Puedes añadir pisos en el menú lateral</span>
      </div>
 </div>
+
 <app-loading [loading]='loading'></app-loading>
