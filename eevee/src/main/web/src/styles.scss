@@ -32,6 +32,9 @@ button {
 
 .primary-button { background-color: #ff5757; }
 .primary-button:focus { outline: 5px auto #f78888 !important; }
+.primary-button-stroked { border-color: #ff5757 !important;
+    span{ color: #ff5757;}
+}
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
 .accent-button-stroked { border-color: #52a2d5 !important;

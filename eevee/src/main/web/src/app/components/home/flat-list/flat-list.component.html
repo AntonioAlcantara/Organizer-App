@@ -5,12 +5,12 @@
           </b>
      </h3>
      <button *ngIf="dataSource.data != undefined" mat-button mat-stroked-button class="ml-3 w-auto
-     d-none d-md-inline d-lg-inline button-rounded accent-button-stroked"
+     d-none d-md-inline d-lg-inline button-rounded primary-button-stroked"
           (click)="reload()">RECARGAR
           <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Recargar lista" matTooltipPosition="above"
                matTooltipHideDelay="500">replay</mat-icon>
      </button>
-     <button mat-button mat-flat-button (click)="openCreateFlat()" class="float-right accent-button 
+     <button mat-button mat-flat-button (click)="openCreateFlat()" class="float-right primary-button 
      button-rounded ml-1 w-auto d-none d-md-inline d-lg-inline">AÑADIR
           PISO
           <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Añadir piso" matTooltipPosition="above"
@@ -33,7 +33,7 @@
                          <span><i>{{flat.address}}</i></span>
                     </div>
                     <div class="col-3 pl-0 text-right">
-                         <button mat-icon-button class="accent-button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
+                         <button mat-icon-button class="primary-button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
                               matTooltipPosition="above" matTooltipHideDelay="100" (click)="openSearchModal(flat.id, flat.users)">
                               <mat-icon aria-hidden="false" aria-label="add">group_add</mat-icon>
                          </button>

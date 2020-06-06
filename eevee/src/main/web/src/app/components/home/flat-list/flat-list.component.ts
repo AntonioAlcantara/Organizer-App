@@ -77,22 +77,26 @@ export class FlatListComponent implements OnInit {
   }
 
   deleteUser(userToDelete: UserLowInfoModel, userIDS: UserLowInfoModel[], flatID: number) {
-    const userIds = [];
-    const index = userIDS.findIndex(user => user.id === userToDelete.id);
-    userIDS.splice(index, 1);
-    userIDS.forEach(user => {
-      userIds.push(user.id);
-    });
-    this.flatService.addUsersToFlat(flatID, userIds)
-    .subscribe(response => {
-      if (response.status === 200) {
-        this.notificationsService.getSuccessMessage('Usuario eliminado correctamente!');
-        this.reload();
-      }
-    }, error => {
-      this.notificationsService.getErrorNotification(error.status);
-      this.loading = false;
-    });
+    if (userToDelete.id !== JSON.parse(sessionStorage.getItem('userId'))) {
+      const userIds = [];
+      const index = userIDS.findIndex(user => user.id === userToDelete.id);
+      userIDS.splice(index, 1);
+      userIDS.forEach(user => {
+        userIds.push(user.id);
+      });
+      this.flatService.addUsersToFlat(flatID, userIds)
+      .subscribe(response => {
+        if (response.status === 200) {
+          this.notificationsService.getSuccessMessage('Usuario eliminado correctamente!');
+          this.reload();
+        }
+      }, error => {
+        this.notificationsService.getErrorNotification(error.status);
+        this.loading = false;
+      });
+    } else {
+      this.notificationsService.getSuccessMessage('No puedes eliminarte de la lista!');
+    }
 }
   reload() {
     this.loading = true;
