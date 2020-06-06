@@ -4,7 +4,7 @@
           <ng-container matColumnDef="type">
                <th mat-header-cell *matHeaderCellDef>Tipo</th>
                <td mat-cell *matCellDef="let element">
-                    <mat-icon aria-hidden="false" aria-label="type">{{getElementIcon(element.eventType)}}</mat-icon>
+                    <mat-icon aria-hidden="false" [ngStyle]="{'color':getElementColor(element.eventType)}" aria-label="type">{{getElementIcon(element.eventType)}}</mat-icon>
                </td>
           </ng-container>
           <!-- NAME COLUMN -->
@@ -34,7 +34,7 @@
           <ng-container matColumnDef="delete">
                <th mat-header-cell *matHeaderCellDef>Borrar</th>
                <td mat-cell *matCellDef="let element">
-                    <button mat-button (click)="delete(element)">
+                    <button mat-icon-button class="accent-button" (click)="delete(element)">
                          <mat-icon aria-hidden="false" aria-label="delete">delete</mat-icon>
                     </button>
                </td>
@@ -43,7 +43,7 @@
           <ng-container matColumnDef="markAsComplete">
                <th mat-header-cell *matHeaderCellDef>Completar</th>
                <td mat-cell *matCellDef="let element">
-                    <button mat-button (click)="delete(element)">
+                    <button mat-icon-button class="accent-button" (click)="delete(element)">
                          <mat-icon aria-hidden="false" aria-label="delete">done_outline</mat-icon>
                     </button>
                </td>
@@ -61,10 +61,36 @@
           <!--DETAILED EVENT-->
           <ng-container matColumnDef="expandedDetail">
                <td mat-cell *matCellDef="let element" [attr.colspan]="columns.length">
-
                     <div class="row example-element-detail ml-0" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                         <tr mat-header-row *matHeaderRowDef="columns"></tr>
-                         <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+                         <h4>DETALLES DEL EVENTO</h4>
+                         <div class="row">
+                              <div class="col-4">
+                                   <label>Descripción: </label>
+                                   {{element.description}}
+                              </div>
+                              <div class="col-4">
+                                   <label>Creador: </label>
+                                   {{element.creator}}
+                              </div>
+                              <div class="col-4">
+                                   <label>Habitación: </label>
+                                  <!--<span [ngFor]="let room of element.rooms">{{room.name}}</span>--> 
+                              </div>
+                         </div>
+                         <div class="row">
+                              <div class="col-4">
+                                   <label>Fecha inicio: </label>
+                                   {{element.startDate | date:'dd/MM/yyyy'}}
+                              </div>
+                              <div class="col-4">
+                                   <label>Fecha fin: </label>
+                                   {{element.endDate | date: 'dd/MM/yyyy'}}
+                              </div>
+                              <div class="col-4">
+                                   <label>Habitación: </label>
+                                   {{element.rooms}}}
+                              </div>
+                         </div>
                     </div>
                </td>
           </ng-container>
