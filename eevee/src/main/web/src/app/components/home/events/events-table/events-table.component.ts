@@ -2,6 +2,10 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EventModel } from 'src/app/models/event.model';
 import { DatePipe } from '@angular/common';
 import { DateAdapter } from '@angular/material/core';
+import { SelectionModel } from '@angular/cdk/collections';
+import { stringify } from 'querystring';
+import { EventService } from 'src/app/services/event.service';
+import { EventTypeModel } from 'src/app/models/event-type.model';
 
 @Component({
   selector: 'app-events-table',
@@ -11,7 +15,10 @@ import { DateAdapter } from '@angular/material/core';
 export class EventsTableComponent implements OnInit {
 
   columns = ['type', 'name', 'amount', 'active', 'delete', 'markAsComplete', 'details'];
+  selection = new SelectionModel<EventModel>(true, []);
+  expandedElement: EventModel | null;
   constructor(
+    private eventService: EventService,
     private adapter: DateAdapter<any>,
     private datePipe: DatePipe,
   ) { }
@@ -28,7 +35,21 @@ export class EventsTableComponent implements OnInit {
     users: [{id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'},
   {id: 2, name: 'Silvia', surname: 'Marin', nickname: '@Karen', city: 'PMI'}]
   }];
+
   ngOnInit(): void {
+  }
+
+  delete(event) {}
+
+  isElementActive(element): boolean {
+    return true;
+  }
+
+  getElementIcon(elementType: string): string {
+    const types = this.eventService.getEventTypes();
+    let eventType: EventTypeModel = new EventTypeModel();
+    eventType = types.find(type => type.name === elementType);
+    return eventType.iconName;
   }
 
 }
