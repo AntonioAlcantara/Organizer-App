@@ -1,4 +1,4 @@
-h3 {color: #f3D250;}
+h3 {color: #52a2d5;}
 .mat-list-item {
      margin: 10px 0px;
      height: auto !important;
@@ -9,19 +9,20 @@ h3 {color: #f3D250;}
 } 
 .card { 
      height: auto;
-     width: 650px;
-     border: 2px solid #f3D250 !important;
+     width: 600px;
+     border: 2px solid #52a2d5 !important;
 }
-.header { width: 650px;}
+.header { width: 600px;}
 .mat-subheader { display: inline !important;}
 .mat-chip {
-     background-color: #f8f4e4 !important;
+     background-color: #a8d0e6 !important;
      :focus { background-color: none !important}
 }
 
 /* MATERIAL FORMS */
 // custom class for modal
 .customModal{
+     .mat-input-element:hover {color: #52a2d5 !important;}
      .mat-focused .mat-form-field-label {
           /*change color of label*/
           color: #52a2d5 !important;

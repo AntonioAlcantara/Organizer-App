@@ -8,6 +8,7 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUsersComponent } from './add-users/add-users.component';
 import { UserService } from 'src/app/services/user.service';
+import { AddFlatComponent } from '../../add-flat/add-flat.component';
 
 @Component({
   selector: 'app-flat-list',
@@ -21,6 +22,7 @@ export class FlatListComponent implements OnInit {
   loading: boolean;
   selectable = true;
   removable = true;
+  private dialogRef;
   constructor(
     private userService: UserService,
     private flatService: FlatService,
@@ -34,12 +36,18 @@ export class FlatListComponent implements OnInit {
     console.log(this.dataSource);
   }
 
+  openCreateFlat() {
+      this.dialogRef = this.dialog.open(AddFlatComponent, {
+        disableClose: true,
+        width: 'auto',
+        minHeight: '300px'
+      });
+  }
   openSearchModal(flatID, userIDS: UserLowInfoModel[]) {
     const userIds: number[] = [];
     userIDS.forEach(user => {
       userIds.push(user.id);
     });
-    // We could use option backdrop: 'static' in modal options to block backdrop
     const modalRef = this.dialog.open(AddUsersComponent,
       { minWidth: '350px',
         minHeight: '250px',
@@ -68,6 +76,24 @@ export class FlatListComponent implements OnInit {
       });
   }
 
+  deleteUser(userToDelete: UserLowInfoModel, userIDS: UserLowInfoModel[], flatID: number) {
+    const userIds = [];
+    const index = userIDS.findIndex(user => user.id === userToDelete.id);
+    userIDS.splice(index, 1);
+    userIDS.forEach(user => {
+      userIds.push(user.id);
+    });
+    this.flatService.addUsersToFlat(flatID, userIds)
+    .subscribe(response => {
+      if (response.status === 200) {
+        this.notificationsService.getSuccessMessage('Usuario eliminado correctamente!');
+        this.reload();
+      }
+    }, error => {
+      this.notificationsService.getErrorNotification(error.status);
+      this.loading = false;
+    });
+}
   reload() {
     this.loading = true;
     this.userService.getUserFlats().subscribe((response: HttpResponse<FlatModel[]>) => {

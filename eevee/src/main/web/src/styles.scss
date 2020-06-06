@@ -34,11 +34,12 @@ button {
 .primary-button:focus { outline: 5px auto #f78888 !important; }
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
+.accent-button-stroked { border-color: #52a2d5 !important;
+    span{ color: #52a2d5;}
+}
 .yellow-button {
     background-color: #f8f4e4 !important;
-    span {
-        color: #f3D250;
-    }
+    span {color: #f3D250;}
 }
 .yellow-button:focus { outline: #f3e7b8; }
 
@@ -62,10 +63,11 @@ button {
     caret-color: red !important ;
     color: red !important;
 }
-
+/**
 .mat-form-field:hover {
     color: #ff5757 !important;
 }
+*/
 .mat-form-field-label {
     color: #424242 !important;
 }
