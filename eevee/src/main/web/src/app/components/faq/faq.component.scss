@@ -1,0 +1,45 @@
+.roommates-img {
+  height: 250px;
+}
+.screenshot {
+  height: 200px;
+}
+h2 {
+  font-family: 'Montserrat', sans-serif;
+  color: #424242;
+}
+h3 {
+  color: #52a2d5;
+}
+.header-icon {
+  font-family: 'Pacifico', cursive;
+  color: #52a2d5;
+}
+
+.btn-faq {
+  background-color: #ff5757;
+  color: white;
+  font-weight: bold;
+}
+
+.show-more {
+  margin-bottom: 300px;
+  display: none;
+}
+/* DESKTOP */
+@media screen and (min-width: 769px) {
+  .body-info {
+       margin-top: 50px;
+       margin-bottom: 30px;
+  }
+  .header {
+       border-bottom: 2px solid #52a2d5
+  }
+}
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  .roommates-img {
+       height: 200px;
+  }
+  button { margin-bottom: 90px !important;}
+}

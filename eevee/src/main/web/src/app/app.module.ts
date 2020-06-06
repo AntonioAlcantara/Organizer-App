@@ -41,6 +41,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { EventsTableComponent } from './components/home/events/events-table/events-table.component';
 import { EventsListComponent } from './components/home/events/events-list/events-list.component';
 import { EventsComponent } from './components/home/events/events.component';
+import { FAQComponent } from './components/faq/faq.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,7 +56,8 @@ import { EventsComponent } from './components/home/events/events.component';
     FooterComponent,
     EventsTableComponent,
     EventsListComponent,
-    EventsComponent
+    EventsComponent,
+    FAQComponent
   ],
   imports: [
     NgbModule,
