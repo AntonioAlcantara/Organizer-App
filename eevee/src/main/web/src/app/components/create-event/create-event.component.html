@@ -91,15 +91,13 @@
                </div>
                <!-- AMOUNT -->
                <div class="row ml-1 mr-0 mt-2 mb-3">
-                    <mat-label><i>Selecciona la cantidad en € si corresponde</i></mat-label>
+                    <mat-label><i>Selecciona la cantidad en €, si corresponde</i></mat-label>
                     <mat-form-field class="example-margin" class="w-100">
                          <mat-label>Cantidad</mat-label>
                          <input matInput type="number" formControlName="amount">
                          <span matSuffix>&nbsp;€</span>
                          <mat-error *ngIf="eventForm.controls.amount.invalid && eventForm.controls.amount.value !=''">Formato incorrecto</mat-error>
-                         <mat-error *ngIf="eventForm.controls.amount.invalid && eventForm.controls.amount.value ==''">Campo requerido</mat-error>
                     </mat-form-field>
-                    <!-- <span>{{eventForm.controls.amount.value}}€</span> -->
                </div>
                <!--START DATE-->
                <div class="row ml-1 mr-0 mt-2">

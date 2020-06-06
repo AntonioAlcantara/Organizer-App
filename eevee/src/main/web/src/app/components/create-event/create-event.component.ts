@@ -30,7 +30,6 @@ export class CreateEventComponent implements OnInit {
   newEvent: CreateEventModel;
 
   constructor(
-    private userService: UserService,
     private eventService: EventService,
     private roomService: RoomService,
     private adapter: DateAdapter<any>,
@@ -41,7 +40,7 @@ export class CreateEventComponent implements OnInit {
       selectedFlat: new FormControl(''),
       eventName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      amount: new FormControl('', [Validators.required]),
+      amount: new FormControl(''),
       eventType: new FormControl('', [Validators.required]),
       belongingRoom: new FormControl('', [Validators.required]),
       startDate: new FormControl({disabled: true}, [Validators.required]),

@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { HttpResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { EventModel } from 'src/app/models/event.model';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,13 @@ export class HomeComponent implements OnInit {
     this.userService.getUserFlats().subscribe((response: HttpResponse<FlatModel[]>) => {
       if (response.status !== 204) {
         sessionStorage.setItem('flatsList', JSON.stringify(response.body));
+      } else {
+        this.notificationsService.getNoContentNotification();
+      }}, error => this.notificationsService.getErrorNotification(error.status)
+    );
+    this.userService.getUserEvents(false).subscribe((response: HttpResponse<EventModel[]>) => {
+      if (response.status !== 204) {
+        sessionStorage.setItem('eventsList', JSON.stringify(response.body));
       } else {
         this.notificationsService.getNoContentNotification();
       }}, error => this.notificationsService.getErrorNotification(error.status)
