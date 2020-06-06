@@ -1,4 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
+import { FlatModel } from 'src/app/models/flat.model';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { EventService } from 'src/app/services/event.service';
+import { EventTypeModel } from 'src/app/models/event-type.model';
+import { RoomModel } from 'src/app/models/room.model';
+import { RoomService } from 'src/app/services/room.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { UserLowInfoModel } from 'src/app/models/user-low-info.model';
+import { DateAdapter } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+import { CreateEventModel } from 'src/app/models/create-event.model';
 
 @Component({
   selector: 'app-create-event',
@@ -7,9 +19,85 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateEventComponent implements OnInit {
 
-  constructor() { }
+  flatList: FlatModel[];
+  roomList: RoomModel[];
+  roommatesList: UserLowInfoModel[];
+  eventTypes: EventTypeModel[];
+  eventForm: FormGroup;
+  isFlatSelected = false;
+  loading = false;
+  today: Date = new Date();
+  newEvent: CreateEventModel;
 
-  ngOnInit(): void {
+  constructor(
+    private userService: UserService,
+    private eventService: EventService,
+    private roomService: RoomService,
+    private adapter: DateAdapter<any>,
+    private datePipe: DatePipe,
+    private notificationsService: NotificationsService
+  ) {
+    this.eventForm = new FormGroup({
+      selectedFlat: new FormControl(''),
+      eventName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+      amount: new FormControl('', [Validators.required]),
+      eventType: new FormControl('', [Validators.required]),
+      belongingRoom: new FormControl('', [Validators.required]),
+      startDate: new FormControl({disabled: true}, [Validators.required]),
+      endDate: new FormControl({disabled: true}, [Validators.required]),
+      roommates: new FormControl('', [Validators.required])
+    });
   }
+  ngOnInit(): void {
+    this.flatList = JSON.parse(sessionStorage.getItem('flatsList'));
+    this.eventTypes = this.eventService.getEventTypes();
+    this.roomService.findAllRooms('es_ES').subscribe(response => {
+      this.roomList = response.body;
+    }, error => this.notificationsService.getErrorNotification(error.status));
+    this.adapter.setLocale('es');
+  }
+  /**
+   * Triggers loading component and loads event form
+   */
+  selectFlat() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.isFlatSelected = true;
+      this.roommatesList = this.eventForm.controls.selectedFlat.value.users;
+    }, 1000);
+  }
+  clearForm() {
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.isFlatSelected = false;
+      this.eventForm.reset();
+    }, 1000);
+  }
+  createEvent() {
+    this.loading = true;
+    const roommatesIDS: number[] = [];
+    this.eventForm.controls.roommates.value.forEach(user => {
+      roommatesIDS.push(user.id);
+    });
+    console.log(this.eventForm.value);
+    this.newEvent = new CreateEventModel();
+    this.newEvent.title = this.eventForm.controls.eventName.value;
+    this.newEvent.description = this.eventForm.controls.description.value;
+    this.newEvent.flatId = this.eventForm.controls.selectedFlat.value.id;
+    this.newEvent.amount = this.eventForm.controls.amount.value;
+    this.newEvent.eventType = this.eventForm.controls.eventType.value.name;
+    this.newEvent.roomIds = [this.eventForm.controls.belongingRoom.value.id];
+    this.newEvent.userIds = roommatesIDS;
+    this.newEvent.startDate = this.eventForm.controls.startDate.value;
+    this.newEvent.endDate = this.eventForm.controls.endDate.value;
+    console.log(this.newEvent);
+    this.eventService.createEvent(this.newEvent).subscribe(response => console.log(response));
+    this.loading = false;
+  }
+
+
 
 }

@@ -3,8 +3,8 @@ export class CreateEventModel {
     title: string;
     description: string;
     amount: number;
-    startDate: Date;
-    endDate: Date;
+    startDate: string;
+    endDate: string;
     // NotEmpty
     eventType: string;
     // NotEmpty

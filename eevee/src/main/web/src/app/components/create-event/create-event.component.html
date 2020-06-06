@@ -1,1 +1,133 @@
-<p>create-event works!</p>
+<app-loading [loading]="loading"></app-loading>
+<div class="container mb-5">
+     <!-- CREATE EVENT HEADER-->
+     <div class="row d-flex justify-content-between header ml-1 mr-0 mt-4">
+          <h3 class="m-0 d-flex align-items-end">
+               <b class="d-flex">CREAR EVENTO
+                    <mat-icon aria-hidden="false" aria-label="EVENT" class="pl-2">event_available
+                    </mat-icon>
+               </b>
+          </h3>
+          <a href="javascript:void(0)" (click)="clearForm()">Limpiar campos</a>
+     </div>
+
+     <form [formGroup]="eventForm" class="mt-4">
+          <!-- FLAT SELECTOR-->
+          <div *ngIf="!isFlatSelected">
+               <div class="row ml-1 mr-0 mt-3">
+                    <label><i>Selecciona el piso donde se creará el evento</i></label>
+                    <mat-form-field name="flat" class="w-100">
+                         <mat-select placeholder="Selecciona piso" disableOptionCentering panelClass="myPanelClass"
+                              formControlName="selectedFlat" (selectionChange)="selectFlat()">
+                              <mat-option *ngFor="let flat of flatList" [value]="flat">
+                                   {{flat.name}}
+                              </mat-option>
+                         </mat-select>
+                    </mat-form-field>
+               </div>
+          </div>
+          <!-- EVENT FORM (IF FLAT IS SELECTED)-->
+          <div *ngIf="isFlatSelected" class="mb-5">
+               <!-- NAME -->
+               <label class="ml-1">Crear evento en: <b>{{eventForm.controls.selectedFlat.value.name | uppercase}}</b></label>
+               <div class="row ml-1 mr-0 mt-3">
+                    <mat-form-field name="name" class="w-100">
+                         <mat-label>Título del evento</mat-label>
+                         <input type="text" matInput formControlName="eventName" placeholder="Nombre del evento *"
+                              required>
+                         <mat-error *ngIf="eventForm.controls.eventName.invalid">Requerido. Máximo 50 caracteres</mat-error>
+                    </mat-form-field>
+               </div>
+               <!-- DESCRIPTION -->
+               <div class="row ml-1 mr-0 mt-2 mb-3">
+                    <mat-form-field name="description" class="w-100">
+                         <mat-label>Descripción del evento</mat-label>
+                         <input type="text" matInput formControlName="description" placeholder="Descripción *" required>
+                         <mat-error *ngIf="eventForm.controls.description.invalid">Requerido. Máximo 50 caracteres</mat-error>
+                    </mat-form-field>
+               </div>
+               <!-- ROOM -->
+               <div class="row ml-1 mr-0 mt-2 mb-3">
+                    <mat-label><i>Habitación a la que pertenece el evento</i></mat-label>
+                    <mat-form-field name="flat" class="w-100">
+                         <mat-select placeholder="Selecciona habitación" disableOptionCentering panelClass="myPanelClass"
+                              formControlName="belongingRoom">
+                              <mat-option *ngFor="let room of roomList" [value]="room">
+                                   {{room.name}}
+                              </mat-option>
+                         </mat-select>
+                         <mat-error *ngIf="eventForm.controls.belongingRoom.invalid">Selecciona una opción</mat-error>
+                    </mat-form-field>
+               </div>
+               <!-- EVENT TYPE -->
+               <div class="row ml-1 mr-0 mt-2 mb-3">
+                    <mat-label><i>Selecciona el tipo o area del evento</i></mat-label>
+                    <mat-form-field name="flat" class="w-100">
+                         <mat-select placeholder="Tipo de evento" disableOptionCentering panelClass="myPanelClass"
+                              formControlName="eventType">
+                              <mat-select-trigger>
+                                   <mat-icon>{{eventForm.controls.eventType.value.iconName}}</mat-icon>&nbsp;{{eventForm.controls.eventType.value.name}}
+                              </mat-select-trigger>
+                              <mat-option *ngFor="let type of eventTypes" [value]="type">
+                                   <mat-icon class="pl-2 pr-2">{{type.iconName}}</mat-icon>
+                                   {{type.name}}
+                              </mat-option>
+                         </mat-select>
+                         <mat-error *ngIf="eventForm.controls.eventType.invalid">Selecciona una opción</mat-error>
+                    </mat-form-field>
+               </div>
+               <!-- ROOMMATES -->
+               <div class="row ml-1 mr-0 mt-2 mb-3">
+                    <mat-label><i>Personas que forman parte del evento</i></mat-label>
+                    <mat-form-field name="flat" class="w-100">
+                         <mat-select placeholder="Selecciona compañeros" disableOptionCentering panelClass="myPanelClass"
+                              formControlName="roommates" multiple>
+                              <mat-option *ngFor="let roommate of roommatesList" [value]="roommate">
+                                   @{{roommate.nickname}}
+                              </mat-option>
+                         </mat-select>
+                         <mat-error *ngIf="eventForm.controls.roommates.invalid">Selecciona al menos una opción</mat-error>
+                    </mat-form-field>
+               </div>
+               <!-- AMOUNT -->
+               <div class="row ml-1 mr-0 mt-2 mb-3">
+                    <mat-label><i>Selecciona la cantidad en € si corresponde</i></mat-label>
+                    <mat-form-field class="example-margin" class="w-100">
+                         <mat-label>Cantidad</mat-label>
+                         <input matInput formControlName="amount">
+                         <span matSuffix>&nbsp;€</span>
+                         <mat-error *ngIf="eventForm.controls.amount.invalid">Campo obligatorio</mat-error>
+                    </mat-form-field>
+                    <!-- <span>{{eventForm.controls.amount.value}}€</span> -->
+               </div>
+               <!--START DATE-->
+               <div class="row ml-1 mr-0 mt-2">
+                    <mat-label class="mb-1"><i>Selecciona la fecha de inicio del evento y la fecha de fin haciendo click en los campos</i></mat-label>
+                    <mat-form-field (click)="picker.open()" class="w-100">
+                         <mat-label>Fecha Inicio</mat-label>
+                         <input matInput type="datetime" timezone="es" [matDatepicker]="picker" formControlName="startDate" [min]='today'>
+                         <mat-datepicker-toggle class="date" matSuffix [for]="picker"></mat-datepicker-toggle>
+                         <mat-datepicker #picker [disabled]="false"></mat-datepicker>
+                         <mat-error *ngIf="eventForm.controls.startDate.invalid">Formato de fecha incorrecto</mat-error>
+                    </mat-form-field>
+               </div>
+               <!--END DATE-->
+               <div class="row ml-1 mr-0 mt-2">
+                    <mat-form-field (click)="picker2.open()" class="w-100">
+                         <mat-label>Fecha Fin</mat-label>
+                         <input matInput type="datetime" timezone="es" [matDatepicker]="picker2" formControlName="endDate" [min]='eventForm.controls.startDate.value'>
+                         <mat-datepicker-toggle class="date" matSuffix [for]="picker2"></mat-datepicker-toggle>
+                         <mat-datepicker #picker2 [disabled]="false"></mat-datepicker>
+                         <mat-error *ngIf="eventForm.controls.endDate.invalid">Formato de fecha incorrecto</mat-error>
+                    </mat-form-field>
+               </div>
+
+          </div>
+     </form>
+     <div *ngIf="isFlatSelected" class="row mt-2 mb-5 ml-1 mr-0 form justify-content-center 
+            text-center">
+          <button mat-button mat-flat-button class="primary-button 
+          button-rounded mb-5" [disabled]="eventForm.invalid"
+               (click)="createEvent()">Crear Evento</button>
+     </div>
+</div>

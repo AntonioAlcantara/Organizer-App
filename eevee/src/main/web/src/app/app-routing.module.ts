@@ -6,6 +6,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FlatListComponent } from './components/home/flat-list/flat-list.component';
 import { ModalInfoDialogComponent } from './components/modal-info-dialog/modal-info-dialog.component';
 import { AuthGuard } from './components/login/guards/auth.guard';
+import { CreateEventComponent } from './components/create-event/create-event.component';
 
 
 
@@ -15,6 +16,7 @@ const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
   children: [
     { path: 'flats', component: FlatListComponent, canActivate: [AuthGuard]},
+    { path: 'createEvent', component: CreateEventComponent, canActivate: [AuthGuard]}
   ]},
   { path: 'about', component: ModalInfoDialogComponent},
   { path: 'login', component: LoginComponent },
@@ -34,5 +36,6 @@ export const routingComponents = [
   RegisterComponent,
   HomeComponent,
   FlatListComponent,
-  ModalInfoDialogComponent
+  ModalInfoDialogComponent,
+  CreateEventComponent
 ];

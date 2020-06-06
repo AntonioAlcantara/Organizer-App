@@ -15,11 +15,11 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TitleCasePipe } from '@angular/common';
 import { DatePipe } from '@angular/common';
-// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
 // BOOTSTRAP COMPONENTS
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 // MATERIAL COMPONENTS
+import { MatSliderModule} from '@angular/material/slider';
 import { MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule} from '@angular/material/input';
@@ -29,6 +29,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { MatCardModule} from '@angular/material/card';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule} from '@angular/material/core';
 import { MatSnackBarModule} from '@angular/material/snack-bar';
 import { MatTableModule} from '@angular/material/table';
 import { MatListModule} from '@angular/material/list';
@@ -70,11 +71,13 @@ import { MatSelectModule} from '@angular/material/select';
     MatTooltipModule,
     MatMenuModule,
     MatDatepickerModule,
+    MatNativeDateModule,
     MatSnackBarModule,
     HttpClientModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSliderModule
 
   ],
   entryComponents: [
