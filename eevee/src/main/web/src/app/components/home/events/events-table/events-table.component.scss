@@ -53,6 +53,9 @@ th {
      height: 20px;
      overflow: hidden;
 }
+tr.mat-header-row {
+     height: 40px;
+}
 tr.example-element-row {
      height: 60px !important;
 }
@@ -77,4 +80,7 @@ tr.example-detail-row {
      font-weight: bold;
      font-size: 40px;
      line-height: normal;
+}
+.detail {
+     color: #52a2d5;
 }
