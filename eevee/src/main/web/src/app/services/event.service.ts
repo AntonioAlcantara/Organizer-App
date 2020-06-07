@@ -50,7 +50,7 @@ export class EventService {
       id: 3,
       name: 'Limpieza',
       iconName: 'local_laundry_service',
-      color: '#f3D250'
+      color: '#f7c70a'
     },
     {
       id: 4,
@@ -68,13 +68,13 @@ export class EventService {
       id: 6,
       name: 'Mascotas',
       iconName: 'pets',
-      color: '#f3D250'
+      color: '#f7c70a'
     },
     {
       id: 7,
       name: 'Otros',
       iconName: 'supervised_user_circle',
-      color: '#f3D250'
+      color: '#f7c70a'
     }
     ];
     return eventTypes;
