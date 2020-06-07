@@ -65,12 +65,12 @@ export class UserService {
      * We can use complete as request param to obtain the completed events.
      * Require USERID by header, pending to add HttpInterceptor.
      */
-    getUserEvents(complete?: boolean): Observable<HttpResponse<EventModel>> {
+    getUserEvents(complete?: boolean): Observable<HttpResponse<EventModel[]>> {
         let url = `${this.host}v1/user/find/event`;
         if (!!complete) {
             url = url.concat(`?completed=${complete}`);
         }
-        return this.http.get<EventModel>(url, { observe: 'response' });
+        return this.http.get<EventModel[]>(url, { observe: 'response' });
     }
 
     findUsersByNickname(nickname: string): Observable<HttpResponse<UserLowInfoModel>> {

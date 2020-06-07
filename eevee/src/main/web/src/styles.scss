@@ -31,14 +31,18 @@ button {
 .button-rounded { border-radius: 50px !important;}
 
 .primary-button { background-color: #ff5757; }
-.primary-button:focus { outline: 5px auto #f78888 !important; }
+.primary-button:focus { outline: 5px auto #ffcece !important; }
+.primary-button-stroked { border-color: #ff5757 !important;
+    span{ color: #ff5757;}
+}
 .accent-button { background-color: #52a2d5;}
 .accent-button:focus { outline: 5px auto #a8d0e6 !important; }
+.accent-button-stroked { border-color: #52a2d5 !important;
+    span{ color: #52a2d5;}
+}
 .yellow-button {
     background-color: #f8f4e4 !important;
-    span {
-        color: #f3D250;
-    }
+    span {color: #f3D250;}
 }
 .yellow-button:focus { outline: #f3e7b8; }
 
@@ -62,10 +66,11 @@ button {
     caret-color: red !important ;
     color: red !important;
 }
-
+/**
 .mat-form-field:hover {
     color: #ff5757 !important;
 }
+*/
 .mat-form-field-label {
     color: #424242 !important;
 }
@@ -100,7 +105,7 @@ button {
    }
     .background-wrap {
         background-image: linear-gradient(rgba(255,255,255,.78), 
-        rgba(255,255,255,.78)), url("/assets/images/roommate.jpg") !important;
+        rgba(255,255,255,.78)), url("/assets/images/vector4.png") !important;
         background-repeat: no-repeat !important;
         background-size: 100% !important;
     }

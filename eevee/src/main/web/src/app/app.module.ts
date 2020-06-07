@@ -38,6 +38,10 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatMenuModule} from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule} from '@angular/material/select';
+import { EventsTableComponent } from './components/home/events/events-table/events-table.component';
+import { EventsListComponent } from './components/home/events/events-list/events-list.component';
+import { EventsComponent } from './components/home/events/events.component';
+import { FAQComponent } from './components/faq/faq.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +53,11 @@ import { MatSelectModule} from '@angular/material/select';
     AddUsersComponent,
     LoadingComponent,
     ModalInfoDialogComponent,
-    FooterComponent
+    FooterComponent,
+    EventsTableComponent,
+    EventsListComponent,
+    EventsComponent,
+    FAQComponent
   ],
   imports: [
     NgbModule,

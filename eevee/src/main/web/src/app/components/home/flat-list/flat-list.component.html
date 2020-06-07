@@ -1,17 +1,23 @@
-<div class="row d-flex justify-content-between header ml-3 mr-0 mt-4">
+<div class="row d-flex justify-content-between header ml-2 mr-0 mt-4">
      <h3 class="m-0 d-flex align-items-end">
           <b class="d-flex">LISTADO DE PISOS
                <mat-icon aria-hidden="false" aria-label="apartment">apartment</mat-icon>
           </b>
      </h3>
-     <button mat-button mat-flat-button class="yellow-button 
-            button-rounded ml-3 w-50 register-button d-none d-md-inline d-lg-inline"
+     <button *ngIf="dataSource.data != undefined" mat-button mat-stroked-button class="ml-3 w-auto
+                         d-none d-md-inline d-lg-inline button-rounded primary-button-stroked"
           (click)="reload()">RECARGAR
-          <mat-icon class="yellow-icon ml-2" #tooltip="matTooltip" matTooltip="Reload list" matTooltipPosition="above"
+          <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Recargar lista" matTooltipPosition="above"
                matTooltipHideDelay="500">replay</mat-icon>
      </button>
+     <button mat-button mat-flat-button (click)="openCreateFlat()" class="float-right primary-button 
+                         button-rounded ml-1 w-auto d-none d-md-inline d-lg-inline">AÑADIR
+          PISO
+          <mat-icon class="ml-2" #tooltip="matTooltip" matTooltip="Añadir piso" matTooltipPosition="above"
+               matTooltipHideDelay="500">add</mat-icon>
+     </button>
      <mat-icon role="button" #tooltip="matTooltip" matTooltip="Recargar lista" matTooltipPosition="above"
-          matTooltipHideDelay="500" class="yellow-icon d-md-none d-lg-none mr-3" (click)="reload()" aria-hidden="false"
+          matTooltipHideDelay="500" class="primary-icon d-md-none d-lg-none mr-3" (click)="reload()" aria-hidden="false"
           aria-label="add">replay
      </mat-icon>
 </div>
@@ -22,23 +28,22 @@
      <mat-list-item *ngFor="let flat of dataSource.data">
           <div class="card">
                <div class="row pt-3 pr-2 m-0">
-                    <div class="col-9 pr-1 d-flex flex-column">
-                         <span><b>{{flat.name}}</b></span>
-                         <span>{{flat.address}}</span>
+                    <div class="col-9 pt-1 pr-1 d-flex flex-column">
+                         <span><b>{{flat.name | uppercase}}</b></span>
+                         <span><i>{{flat.address}}</i></span>
                     </div>
                     <div class="col-3 pl-0 text-right">
-                         <mat-icon role="button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
-                              matTooltipPosition="above" matTooltipHideDelay="300" class="yellow-icon" (click)="openSearchModal(flat.id, flat.users)"
-                              aria-hidden="false" aria-label="add">person_add
-                         </mat-icon>
+                         <button mat-icon-button class="primary-button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
+                              matTooltipPosition="above" matTooltipHideDelay="100" (click)="openSearchModal(flat.id, flat.users)">
+                              <mat-icon aria-hidden="false" aria-label="add">group_add</mat-icon>
+                         </button>
                     </div>
                </div>
                <div class="row pl-2 pr-2 m-0 mt-3 m-2 mb-3">
-                    <mat-chip-list>Usuarios: 
-                         <mat-chip class="ml-2" *ngFor="let user of flat.users"
-                         [selectable]="selectable" [removable]="removable">
+                    <mat-chip-list>Usuarios:
+                         <mat-chip class="ml-2" *ngFor="let user of flat.users" [selectable]="selectable" [removable]="removable">
                               @{{user.nickname}}
-                              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                              <mat-icon matChipRemove *ngIf="removable" (click)="deleteUser(user, flat.users, flat.id)">cancel</mat-icon>
                          </mat-chip>
                     </mat-chip-list>
                </div>
@@ -56,4 +61,5 @@
           <span>Puedes añadir pisos en el menú lateral</span>
      </div>
 </div>
+
 <app-loading [loading]='loading'></app-loading>

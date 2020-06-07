@@ -37,37 +37,44 @@ export class EventService {
     const eventTypes: EventTypeModel[] = [{
       id: 1,
       name: 'Compras',
-      iconName: 'shopping_cart'
+      iconName: 'shopping_cart',
+      color: 'coral'
     },
     {
       id: 2,
       name: 'Facturas',
-      iconName: 'receipt'
+      iconName: 'receipt',
+      color: '#52a2d5'
     },
     {
       id: 3,
       name: 'Limpieza',
-      iconName: 'local_laundry_service'
+      iconName: 'local_laundry_service',
+      color: '#f3D250'
     },
     {
       id: 4,
       name: 'Mantenimiento',
-      iconName: 'description'
+      iconName: 'description',
+      color: '#ff5757'
     },
     {
       id: 5,
       name: 'Administrativo',
-      iconName: 'build'
+      iconName: 'build',
+      color: '#52a2d5'
     },
     {
       id: 6,
       name: 'Mascotas',
-      iconName: 'pets'
+      iconName: 'pets',
+      color: '#f3D250'
     },
     {
       id: 7,
       name: 'Otros',
-      iconName: 'supervised_user_circle'
+      iconName: 'supervised_user_circle',
+      color: '#f3D250'
     }
     ];
     return eventTypes;

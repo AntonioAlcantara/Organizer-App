@@ -30,7 +30,6 @@ export class CreateEventComponent implements OnInit {
   newEvent: CreateEventModel;
 
   constructor(
-    private userService: UserService,
     private eventService: EventService,
     private roomService: RoomService,
     private adapter: DateAdapter<any>,
@@ -41,7 +40,7 @@ export class CreateEventComponent implements OnInit {
       selectedFlat: new FormControl(''),
       eventName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
       description: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      amount: new FormControl('', [Validators.required]),
+      amount: new FormControl(''),
       eventType: new FormControl('', [Validators.required]),
       belongingRoom: new FormControl('', [Validators.required]),
       startDate: new FormControl({disabled: true}, [Validators.required]),
@@ -57,6 +56,7 @@ export class CreateEventComponent implements OnInit {
     }, error => this.notificationsService.getErrorNotification(error.status));
     this.adapter.setLocale('es');
   }
+
   /**
    * Triggers loading component and loads event form
    */
@@ -68,6 +68,7 @@ export class CreateEventComponent implements OnInit {
       this.roommatesList = this.eventForm.controls.selectedFlat.value.users;
     }, 1000);
   }
+
   clearForm() {
     this.loading = true;
     setTimeout(() => {
@@ -76,13 +77,9 @@ export class CreateEventComponent implements OnInit {
       this.eventForm.reset();
     }, 1000);
   }
+
   createEvent() {
     this.loading = true;
-    const roommatesIDS: number[] = [];
-    this.eventForm.controls.roommates.value.forEach(user => {
-      roommatesIDS.push(user.id);
-    });
-    console.log(this.eventForm.value);
     this.newEvent = new CreateEventModel();
     this.newEvent.title = this.eventForm.controls.eventName.value;
     this.newEvent.description = this.eventForm.controls.description.value;
@@ -90,12 +87,19 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.amount = this.eventForm.controls.amount.value;
     this.newEvent.eventType = this.eventForm.controls.eventType.value.name;
     this.newEvent.roomIds = [this.eventForm.controls.belongingRoom.value.id];
-    this.newEvent.userIds = roommatesIDS;
-    this.newEvent.startDate = this.eventForm.controls.startDate.value;
-    this.newEvent.endDate = this.eventForm.controls.endDate.value;
-    console.log(this.newEvent);
-    this.eventService.createEvent(this.newEvent).subscribe(response => console.log(response));
-    this.loading = false;
+    this.newEvent.userIds = this.eventForm.controls.roommates.value;
+    this.newEvent.startDate = this.datePipe.transform(this.eventForm.controls.startDate.value, 'yyyy-MM-dd');
+    this.newEvent.endDate = this.datePipe.transform(this.eventForm.controls.endDate.value, 'yyyy-MM-dd');
+    this.eventService.createEvent(this.newEvent).subscribe(response => {
+      if (response.status === 201) {
+        this.notificationsService.getSuccessMessage('El evento se ha añadido correctamente');
+        this.loading = false;
+        this.clearForm();
+      }
+    }, error => {
+      this.notificationsService.getErrorNotification(error.status);
+      this.loading = false;
+    });
   }
 
 

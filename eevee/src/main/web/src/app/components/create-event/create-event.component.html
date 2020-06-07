@@ -8,7 +8,7 @@
                     </mat-icon>
                </b>
           </h3>
-          <a href="javascript:void(0)" (click)="clearForm()">Limpiar campos</a>
+          <a href="javascript:void(0)" (click)="clearForm()" class="mr-3">Limpiar campos</a>
      </div>
 
      <form [formGroup]="eventForm" class="mt-4">
@@ -35,7 +35,7 @@
                          <mat-label>Título del evento</mat-label>
                          <input type="text" matInput formControlName="eventName" placeholder="Nombre del evento *"
                               required>
-                         <mat-error *ngIf="eventForm.controls.eventName.invalid">Requerido. Máximo 50 caracteres</mat-error>
+                         <mat-error *ngIf="eventForm.controls.eventName.invalid">Campo requerido. Máximo 50 caracteres</mat-error>
                     </mat-form-field>
                </div>
                <!-- DESCRIPTION -->
@@ -43,7 +43,7 @@
                     <mat-form-field name="description" class="w-100">
                          <mat-label>Descripción del evento</mat-label>
                          <input type="text" matInput formControlName="description" placeholder="Descripción *" required>
-                         <mat-error *ngIf="eventForm.controls.description.invalid">Requerido. Máximo 50 caracteres</mat-error>
+                         <mat-error *ngIf="eventForm.controls.description.invalid">Campo requerido. Máximo 50 caracteres</mat-error>
                     </mat-form-field>
                </div>
                <!-- ROOM -->
@@ -78,11 +78,11 @@
                </div>
                <!-- ROOMMATES -->
                <div class="row ml-1 mr-0 mt-2 mb-3">
-                    <mat-label><i>Personas que forman parte del evento</i></mat-label>
+                    <mat-label><i>Personas que forman parte del evento (incluye tu usuario si vas a participar)</i></mat-label>
                     <mat-form-field name="flat" class="w-100">
                          <mat-select placeholder="Selecciona compañeros" disableOptionCentering panelClass="myPanelClass"
                               formControlName="roommates" multiple>
-                              <mat-option *ngFor="let roommate of roommatesList" [value]="roommate">
+                              <mat-option *ngFor="let roommate of roommatesList" [value]="roommate.id">
                                    @{{roommate.nickname}}
                               </mat-option>
                          </mat-select>
@@ -91,14 +91,13 @@
                </div>
                <!-- AMOUNT -->
                <div class="row ml-1 mr-0 mt-2 mb-3">
-                    <mat-label><i>Selecciona la cantidad en € si corresponde</i></mat-label>
+                    <mat-label><i>Selecciona la cantidad en €, si corresponde</i></mat-label>
                     <mat-form-field class="example-margin" class="w-100">
                          <mat-label>Cantidad</mat-label>
-                         <input matInput formControlName="amount">
+                         <input matInput type="number" formControlName="amount">
                          <span matSuffix>&nbsp;€</span>
-                         <mat-error *ngIf="eventForm.controls.amount.invalid">Campo obligatorio</mat-error>
+                         <mat-error *ngIf="eventForm.controls.amount.invalid && eventForm.controls.amount.value !=''">Formato incorrecto</mat-error>
                     </mat-form-field>
-                    <!-- <span>{{eventForm.controls.amount.value}}€</span> -->
                </div>
                <!--START DATE-->
                <div class="row ml-1 mr-0 mt-2">
