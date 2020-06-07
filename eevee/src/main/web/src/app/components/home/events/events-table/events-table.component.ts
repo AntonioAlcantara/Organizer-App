@@ -1,9 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EventModel } from 'src/app/models/event.model';
-import { DatePipe } from '@angular/common';
-import { DateAdapter } from '@angular/material/core';
-import { SelectionModel, DataSource } from '@angular/cdk/collections';
-import { stringify } from 'querystring';
+import { SelectionModel } from '@angular/cdk/collections';
 import { EventService } from 'src/app/services/event.service';
 import { EventTypeModel } from 'src/app/models/event-type.model';
 import { trigger, state, style, transition, animate } from '@angular/animations';
@@ -35,9 +32,7 @@ export class EventsTableComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private notificationService: NotificationsService,
-    private userService: UserService,
-    private adapter: DateAdapter<any>,
-    private datePipe: DatePipe,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {

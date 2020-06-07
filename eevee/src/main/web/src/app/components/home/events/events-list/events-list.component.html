@@ -30,12 +30,15 @@
                          </a>
                     </div>
                     <!--  EVENT DETAILS -->
-                    <div class="row example-element-detail ml-2 mt-3" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="row example-element-detail ml-3 mt-3" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                          <hr>
                          <h4 class="detail"><b>DETALLES DEL EVENTO</b></h4>
                          <span class="detail">{{element.startDate | date:'dd/MM/yyyy'}} -
                               {{element.endDate | date: 'dd/MM/yyyy'}}</span>
                          <br>
+                         <br>
+                         <span class="detail" *ngIf="element.amount != null || element.amount > 0">Cantidad: </span>
+                         <span *ngIf="element.amount != null || element.amount > 0">{{element.amount}} €</span>
                          <br>
                          <span class="detail">Descripción: </span>{{element.description}}
                          <br>
@@ -61,7 +64,6 @@
      </div>
      <div class="row text-center justify-content-center">
           <span>Puedes añadir eventos en el menú lateral</span>
-
-
      </div>
 </div>
+<app-loading [loading]="loading"></app-loading>

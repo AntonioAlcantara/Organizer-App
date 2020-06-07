@@ -5,7 +5,7 @@
      padding-bottom: 0px !important; 
      display: flex;
 }
-
+::ng-deep.mat-menu-content { min-width: 180px !important;}
 .mat-icon-button {
      height: 60px !important;
      background-color: none !important;
@@ -16,6 +16,7 @@
 .mat-icon { font-size: 50px !important;}
 .mat-icon-button.mat-accent { color: transparent !important;} // Hide background on focus
 .nav-item { align-self: flex-end;}
+.mat-badge-content { background-color: #ff5757;}
 
 a:hover {
      transform: scale(1);

@@ -15,14 +15,17 @@ import { UserModel } from 'src/app/models/user';
 })
 export class HomeComponent implements OnInit {
 
-  private user: UserModel;
+  user: UserModel;
   constructor(
     private router: Router,
     private userService: UserService,
     private notificationsService: NotificationsService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
+    this.userService.getUserInfo().subscribe((response: HttpResponse<UserModel>) => {
+      this.user = response.body;
+    });
     this.userService.getUserFlats().subscribe((response: HttpResponse<FlatModel[]>) => {
       if (response.status !== 204) {
         sessionStorage.setItem('flatsList', JSON.stringify(response.body));
@@ -38,6 +41,10 @@ export class HomeComponent implements OnInit {
       }}, error => this.notificationsService.getErrorNotification(error.status)
     );
 
+  }
+  checkEvents(): number {
+    const eventsList: EventModel[] = JSON.parse(sessionStorage.getItem('eventsList'));
+    return eventsList.length;
   }
   logOut() {
     localStorage.clear();

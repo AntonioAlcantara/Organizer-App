@@ -14,17 +14,18 @@ import { FAQComponent } from './components/faq/faq.component';
 
 const ROUTES: Routes = [
   // routes
-  { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
   children: [
+    { path: '', component: EventsComponent, canActivate: [AuthGuard]},
     { path: 'flats', component: FlatListComponent, canActivate: [AuthGuard]},
     { path: 'createEvent', component: CreateEventComponent, canActivate: [AuthGuard]},
     { path: 'events', component: EventsComponent, canActivate: [AuthGuard]}
   ]},
   { path: 'about', component: ModalInfoDialogComponent},
   { path: 'faq', component: FAQComponent},
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
+  { path: '', component: LoginComponent},
   { path: '**', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]}
 ];
 export const APP_ROUTING = RouterModule.forRoot(ROUTES, {useHash: true});

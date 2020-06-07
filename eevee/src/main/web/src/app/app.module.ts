@@ -10,6 +10,7 @@ import { AddUsersComponent } from './components/home/flat-list/add-users/add-use
 import { LoadingComponent } from './components/loading/loading.component';
 import { ModalInfoDialogComponent } from './components/modal-info-dialog/modal-info-dialog.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { FAQComponent } from './components/faq/faq.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -41,7 +42,7 @@ import { MatSelectModule} from '@angular/material/select';
 import { EventsTableComponent } from './components/home/events/events-table/events-table.component';
 import { EventsListComponent } from './components/home/events/events-list/events-list.component';
 import { EventsComponent } from './components/home/events/events.component';
-import { FAQComponent } from './components/faq/faq.component';
+import { MatBadgeModule} from '@angular/material/badge';
 @NgModule({
   declarations: [
     AppComponent,
@@ -82,6 +83,7 @@ import { FAQComponent } from './components/faq/faq.component';
     MatNativeDateModule,
     MatSnackBarModule,
     HttpClientModule,
+    MatBadgeModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatChipsModule,

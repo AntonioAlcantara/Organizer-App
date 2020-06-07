@@ -22,6 +22,6 @@
           </div>
      </div>
      <app-events-table class="d-none d-lg-inline" [completeEvents]="selectedOption" [dataSource]="dataSource"></app-events-table>
-     <app-events-list class="d-lg-none" [dataSource]="dataSource"></app-events-list>
+     <app-events-list class="d-lg-none" [dataSource]="dataSource" [completeEvents]="selectedOption"></app-events-list>
 </div>
 <app-loading [loading]="loading"></app-loading>
