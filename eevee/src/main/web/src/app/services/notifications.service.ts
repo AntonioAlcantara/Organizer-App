@@ -56,12 +56,12 @@ export class NotificationsService {
             horizontalPosition: 'end'
         });
     }
-    getSuccessMessage(message: string) {
+    getSuccessMessage(message: string, duration?: number) {
         this.communication.type = CommunicationType.action;
         this.communication.message = message;
         this.snackbar.openFromComponent(SnackBarComponent, {
             data: this.communication,
-            duration: 3000,
+            duration: (duration) ? duration : 3000,
             verticalPosition: 'top',
             horizontalPosition: 'end'
         });
