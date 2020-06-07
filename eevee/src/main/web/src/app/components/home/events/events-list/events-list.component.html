@@ -1,23 +1,52 @@
 <!-- =========================================-->
 <!-- EVENTS LIST -->
 <!-- =========================================-->
+
 <mat-action-list *ngIf="dataSource.data != undefined" class="p-2 mb-5">
      <mat-list-item *ngFor="let element of dataSource.data">
           <div class="card">
-               <div class="row pt-3 pr-2 m-0">
-                    <div class="col-9 pt-1 pr-1 d-flex flex-column">
+               <div class="row pt-3 pb-2 m-0">
+                    <div class="col-2 pt-1 pr-1 d-flex flex-column">
                          <mat-icon aria-hidden="false" [ngStyle]="{'color':getElementColor(element.eventType)}"
-                              aria-label="type">
-                              {{getElementIcon(element.eventType)}}</mat-icon>
-                         <span><b>{{element.title}}</b></span>
-                         <mat-icon *ngIf="isElementActive(element) == true" class="completed md-18">event_available</mat-icon>
-                    <mat-icon *ngIf="isElementActive(element) == false" class="not-completed md-18">event_busy</mat-icon>
+                              aria-label="type">{{getElementIcon(element.eventType)}}</mat-icon>
                     </div>
-                    <div class="col-3 pl-0 text-right">
-                         <button mat-icon-button class="primary-button" #tooltip="matTooltip" matTooltip="Añade compañeros al piso."
-                              matTooltipPosition="above" matTooltipHideDelay="100" >
-                              <mat-icon aria-hidden="false" aria-label="add">group_add</mat-icon>
+                    <div class="col-4 pr-1">
+                         <span><b>{{element.title}}</b></span>
+                    </div>
+                    <div class="col-2 pl-0 text-right">
+                         <button mat-icon-button class="accent-button" (click)="delete(element.id)">
+                              <mat-icon aria-hidden="false" aria-label="delete">delete</mat-icon>
                          </button>
+                    </div>
+                    <div class="col-2 pl-0 text-right">
+                         <button mat-icon-button class="accent-button" (click)="complete(element.id)">
+                              <mat-icon aria-hidden="false" aria-label="complete">done_outline</mat-icon>
+                         </button>
+                    </div>
+                    <div class="col-2 pl-0 text-right" (click)="selection.toggle(element)">
+                         <a href="javascript:void(0)" (click)="expandedElement = expandedElement === element ? null : element">
+                              <i *ngIf="element != expandedElement" class="material-icons md-18 md-dark">keyboard_arrow_down</i>
+                              <i *ngIf="element == expandedElement" class="material-icons md-18 md-dark">keyboard_arrow_up</i>
+                         </a>
+                    </div>
+                    <!--  EVENT DETAILS -->
+                    <div class="row example-element-detail ml-2 mt-3" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                         <hr>
+                         <h4 class="detail"><b>DETALLES DEL EVENTO</b></h4>
+                         <span class="detail">{{element.startDate | date:'dd/MM/yyyy'}} -
+                              {{element.endDate | date: 'dd/MM/yyyy'}}</span>
+                         <br>
+                         <br>
+                         <span class="detail">Descripción: </span>{{element.description}}
+                         <br>
+                         <span class="detail">Creador: </span>@{{element.creator}}
+                         <br>
+                         <span class="detail">Habitación: </span>{{element.rooms[0].name}}
+                         <br>
+                         <br>
+                         <span class="detail">Participantes: </span>
+                         <span *ngFor="let user of element.users">@{{user.nickname}} </span>
+                         <hr>
                     </div>
                </div>
           </div>
@@ -32,5 +61,7 @@
      </div>
      <div class="row text-center justify-content-center">
           <span>Puedes añadir eventos en el menú lateral</span>
+
+
      </div>
 </div>

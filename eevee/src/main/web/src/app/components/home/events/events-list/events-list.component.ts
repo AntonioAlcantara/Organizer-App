@@ -6,11 +6,19 @@ import { DateAdapter } from '@angular/material/core';
 import { EventService } from 'src/app/services/event.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { EventTypeModel } from 'src/app/models/event-type.model';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-events-list',
   templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  styleUrls: ['./events-list.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({display: 'none'})),
+      state('expanded', style({display: 'block'})),
+      transition('expanded <=> collapsed', animate('200ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class EventsListComponent implements OnInit {
 

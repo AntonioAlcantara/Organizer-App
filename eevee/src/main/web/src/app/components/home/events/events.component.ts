@@ -17,7 +17,8 @@ export class EventsComponent implements OnInit {
   options = [{name: 'Activos', value: false}, { name: 'Inactivos', value: true}];
   dataSource;
   loading = false;
-
+  selectedOption;
+  expandedElement: EventModel | null;
   constructor(
     private userService: UserService,
     private notificationsService: NotificationsService

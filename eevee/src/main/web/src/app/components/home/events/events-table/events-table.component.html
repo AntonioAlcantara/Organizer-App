@@ -1,5 +1,5 @@
 <div class="example-container row mt-2 mr-2 ml-2 mb-5">
-     <table #table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 mb-4">
+     <table #table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
           <!-- EVENT TYPE COLUMN -->
           <ng-container matColumnDef="type">
                <th mat-header-cell *matHeaderCellDef>Tipo</th>
@@ -105,16 +105,18 @@
           </tr>
           <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
      </table>
-</div>
-<!-- =========================================-->
-<!-- EMPTY LIST -->
-<!-- =========================================-->
-<div class="table-empty pt-4 mb-5" *ngIf="dataSource.data == null">
-     <div class="row text-center justify-content-center">
-          <span class="font-weight-bold">TABLA VACÍA</span>
+     <!-- =========================================-->
+     <!-- EMPTY LIST -->
+     <!-- =========================================-->
+     <div class="table-empty pt-5 mb-5 w-100" *ngIf="dataSource.data == undefined || dataSource.data == null || dataSource.data.length == 0">
+          <div class="row text-center justify-content-center align-items-center w-100 pt-2">
+               <span class="font-weight-bold">TABLA VACÍA</span>
+               <mat-icon class="md-18 pl-3">sentiment_very_satisfied</mat-icon>
+          </div>
+          <div class="row text-center justify-content-center w-100">
+               <span>No tienes ningún evento pendiente. </span>
+          </div>
      </div>
-     <div class="row text-center justify-content-center">
-          <span>No tienes ningún evento</span>
-     </div>
 </div>
+
 <app-loading [loading]='loading'></app-loading>
