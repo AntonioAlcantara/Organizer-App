@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, OnChanges } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { FlatModel } from 'src/app/models/flat.model';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,16 +13,26 @@ import { UserModel } from 'src/app/models/user';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
 
   user: UserModel;
+  route;
   constructor(
     private router: Router,
     private userService: UserService,
     private notificationsService: NotificationsService
-  ) {}
+  ) {
+    
+    
+  }
+  ngOnChanges() {
+    this.route = this.router.url;
+    console.log(this.route, this.router);
+  }
 
   ngOnInit(): void {
+    this.route = this.router.url;
+    console.log(this.route, this.router);
     this.userService.getUserInfo().subscribe((response: HttpResponse<UserModel>) => {
       this.user = response.body;
     });
@@ -43,8 +53,10 @@ export class HomeComponent implements OnInit {
 
   }
   checkEvents(): number {
+    let events;
     const eventsList: EventModel[] = JSON.parse(sessionStorage.getItem('eventsList'));
-    return eventsList.length;
+    eventsList !== null ? events = eventsList.length : events = 0;
+    return events;
   }
   logOut() {
     localStorage.clear();

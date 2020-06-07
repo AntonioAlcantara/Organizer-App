@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule, routingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,6 +44,7 @@ import { EventsTableComponent } from './components/home/events/events-table/even
 import { EventsListComponent } from './components/home/events/events-list/events-list.component';
 import { EventsComponent } from './components/home/events/events.component';
 import { MatBadgeModule} from '@angular/material/badge';
+import { LandingComponent } from './components/home/landing/landing.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +60,11 @@ import { MatBadgeModule} from '@angular/material/badge';
     EventsTableComponent,
     EventsListComponent,
     EventsComponent,
-    FAQComponent
+    FAQComponent,
+    LandingComponent
   ],
   imports: [
+    CommonModule,
     NgbModule,
     BrowserModule,
     HttpClientModule,

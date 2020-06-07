@@ -43,6 +43,7 @@ a:hover {
 }
 /* RESPONSIVE */
 @media screen and (max-width: 767px) {
+     .home-image { height: 200px;}
      .navbar-row { padding-bottom: 1rem !important}
      .mat-icon-button {
           height: 55px !important;

@@ -9,6 +9,7 @@ import { AuthGuard } from './components/login/guards/auth.guard';
 import { CreateEventComponent } from './components/create-event/create-event.component';
 import { EventsComponent } from './components/home/events/events.component';
 import { FAQComponent } from './components/faq/faq.component';
+import { LandingComponent } from './components/home/landing/landing.component';
 
 
 
@@ -16,7 +17,8 @@ const ROUTES: Routes = [
   // routes
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard],
   children: [
-    { path: '', component: EventsComponent, canActivate: [AuthGuard]},
+    { path: '', component: LandingComponent, canActivate: [AuthGuard]},
+    { path: 'landing', component: LandingComponent, canActivate: [AuthGuard]},
     { path: 'flats', component: FlatListComponent, canActivate: [AuthGuard]},
     { path: 'createEvent', component: CreateEventComponent, canActivate: [AuthGuard]},
     { path: 'events', component: EventsComponent, canActivate: [AuthGuard]}
@@ -25,8 +27,8 @@ const ROUTES: Routes = [
   { path: 'faq', component: FAQComponent},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: '', component: LoginComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'home', canActivate: [AuthGuard]}
+  { path: '', component: LoginComponent, canActivate: [AuthGuard]},
+  { path: '**', pathMatch: 'full', redirectTo: 'home/landing', canActivate: [AuthGuard]}
 ];
 export const APP_ROUTING = RouterModule.forRoot(ROUTES, {useHash: true});
 
@@ -41,6 +43,7 @@ export const routingComponents = [
   RegisterComponent,
   HomeComponent,
   FlatListComponent,
+  LandingComponent,
   ModalInfoDialogComponent,
   CreateEventComponent,
   EventsComponent
