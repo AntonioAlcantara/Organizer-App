@@ -1,4 +1,13 @@
 h3 { color: #ff5757}
 .events-img {
      height: 100px;
+     float: right; 
+}
+
+// RESPONSIVE
+@media screen and (max-width: 768px) {
+     .events-img {
+          float: none;
+     }
+     .select-event { width: 100%;}
 }

@@ -65,7 +65,7 @@
                     <mat-form-field name="flat" class="w-100">
                          <mat-select placeholder="Tipo de evento" disableOptionCentering panelClass="myPanelClass"
                               formControlName="eventType">
-                              <mat-select-trigger >
+                              <mat-select-trigger *ngIf="eventForm.controls.eventType.value !== null" >
                                    <mat-icon>{{eventForm.controls.eventType.value.iconName}}</mat-icon>&nbsp;{{eventForm.controls.eventType.value.name}}
                               </mat-select-trigger>
                               <mat-option *ngFor="let type of eventTypes" [value]="type">

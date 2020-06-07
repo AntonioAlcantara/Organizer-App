@@ -1,14 +1,14 @@
 <div class="container">
      <div class="row d-flex justify-content-between ml-2 mr-0 mt-1">
           <div class="col-lg-3 col-sm-12 d-flex align-items-end">
-               <h3 class="m-0">
+               <h3 class="m-0 ml-2">
                     <b class="d-flex">LISTADO DE EVENTOS
                          <mat-icon aria-hidden="false" aria-label="apartment" class="primary-icon pl-2">calendar_today</mat-icon>
                     </b>
                </h3>
           </div>
           <div class="col-lg-6 col-sm-12 d-flex justify-content-end align-items-end">
-               <mat-form-field>
+               <mat-form-field class="select-event ml-2 mr-3">
                     <mat-label>Elegir eventos:</mat-label>
                     <mat-select (selectionChange)="onSelect($event)">
                          <mat-option *ngFor="let option of options" [(value)]="option.value">
@@ -17,8 +17,8 @@
                     </mat-select>
                </mat-form-field>
           </div>
-          <div class="col-lg-3 d-sm-none d-lg-inline">
-               <img class="float-right events-img" src="/assets/images/vector2.png">
+          <div class="col-lg-3 col-md-12 d-none d-lg-inline text-center">
+               <img class="events-img" src="/assets/images/vector2.png">
           </div>
      </div>
      <app-events-table class="d-none d-lg-inline" [completeEvents]="selectedOption" [dataSource]="dataSource"></app-events-table>

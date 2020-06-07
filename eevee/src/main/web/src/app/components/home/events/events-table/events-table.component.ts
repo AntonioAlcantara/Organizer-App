@@ -58,8 +58,9 @@ export class EventsTableComponent implements OnInit {
       }, error => {
         this.notificationService.getErrorNotification(error.status);
       });
-    }, (error: HttpErrorResponse) => {
+    }, error => {
       this.notificationService.getErrorNotification(error.status);
+      this.loading = false;
     }, () => {
       this.loading = false;
     });
@@ -80,8 +81,9 @@ export class EventsTableComponent implements OnInit {
       }, error => {
         this.notificationService.getErrorNotification(error.status);
       });
-    }, (error: HttpErrorResponse) => {
+    }, error => {
       this.notificationService.getErrorNotification(error.status);
+      this.loading = false;
     }, () => {
       this.loading = false;
     });

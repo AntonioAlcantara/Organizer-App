@@ -50,8 +50,10 @@ export class AddFlatComponent implements OnInit {
         this.notificationsService.getSuccessMessage(flat.name + ' se ha añadido correctamente.');
         this.saveFlats();
         this.loading = false;
-      }, error => this.notificationsService.getErrorNotification(error.status)
-      );
+      }, error => {
+        this.notificationsService.getErrorNotification(error.status);
+        this.loading = false;
+      });
     }
   }
   composeAddress(): string {
