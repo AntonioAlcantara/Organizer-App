@@ -11,6 +11,8 @@ import { UserLowInfoModel } from 'src/app/models/user-low-info.model';
 import { DateAdapter } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { CreateEventModel } from 'src/app/models/create-event.model';
+import { HttpResponse } from '@angular/common/http';
+import { EventModel } from 'src/app/models/event.model';
 
 @Component({
   selector: 'app-create-event',
@@ -30,6 +32,7 @@ export class CreateEventComponent implements OnInit {
   newEvent: CreateEventModel;
 
   constructor(
+    private userService: UserService,
     private eventService: EventService,
     private roomService: RoomService,
     private adapter: DateAdapter<any>,
@@ -92,14 +95,25 @@ export class CreateEventComponent implements OnInit {
     this.newEvent.endDate = this.datePipe.transform(this.eventForm.controls.endDate.value, 'yyyy-MM-dd');
     this.eventService.createEvent(this.newEvent).subscribe(response => {
       if (response.status === 201) {
-        this.notificationsService.getSuccessMessage('El evento se ha añadido correctamente');
-        this.loading = false;
-        this.clearForm();
+        this.reloadEvents();
       }
     }, error => {
       this.notificationsService.getErrorNotification(error.status);
       this.loading = false;
+    }, () => {
+      this.loading = false;
+      this.clearForm();
+      this.notificationsService.getSuccessMessage('El evento se ha añadido correctamente');
     });
+  }
+  reloadEvents() {
+    this.userService.getUserEvents(false).subscribe((response: HttpResponse<EventModel[]>) => {
+      if (response.status !== 204) {
+        sessionStorage.setItem('eventsList', JSON.stringify(response.body));
+      } else {
+        this.notificationsService.getNoContentNotification();
+      }}, error => this.notificationsService.getErrorNotification(error.status)
+    );
   }
 
 
