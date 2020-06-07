@@ -1,2 +1,2 @@
 # Organizer-App
-Pending to update.
+Aplicación web para organizar pisos compartidos.
