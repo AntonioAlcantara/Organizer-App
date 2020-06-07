@@ -1,0 +1,18 @@
+.mat-list-item {
+     margin: 10px 0px;
+     height: auto !important;
+}
+.detail {color: #52a2d5;}
+.mat-list-item-content { 
+     padding: 0px !important; // Outside ripple effect
+} 
+@media screen and (max-width: 768px) {
+     .card { 
+          height: auto;
+          width: 350px !important;
+          border: 0px !important;
+     }
+     .header { width: 350px !important; }
+     .mat-subheader { display: inline !important;}
+
+}

@@ -30,7 +30,7 @@ export class AddFlatComponent implements OnInit {
     this.addFlatForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.maxLength(25)]),
       street: new FormControl('', [Validators.required, Validators.maxLength(50)]),
-      number: new FormControl('', [Validators.required, Validators.maxLength(3)]),
+      number: new FormControl('', [Validators.required, Validators.pattern('[0-9]{1,3}'), Validators.maxLength(3)]),
       postalCode: new FormControl('', [Validators.required,
         Validators.minLength(5), Validators.maxLength(5)])
     });
@@ -50,8 +50,10 @@ export class AddFlatComponent implements OnInit {
         this.notificationsService.getSuccessMessage(flat.name + ' se ha añadido correctamente.');
         this.saveFlats();
         this.loading = false;
-      }, error => this.notificationsService.getErrorNotification(error.status)
-      );
+      }, error => {
+        this.notificationsService.getErrorNotification(error.status);
+        this.loading = false;
+      });
     }
   }
   composeAddress(): string {

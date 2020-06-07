@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { FlatModel } from 'src/app/models/flat.model';
 import { FlatService } from 'src/app/services/flat.service';
@@ -22,7 +22,7 @@ export class FlatListComponent implements OnInit {
   loading: boolean;
   selectable = true;
   removable = true;
-  private dialogRef;
+  dialogRef;
   constructor(
     private userService: UserService,
     private flatService: FlatService,

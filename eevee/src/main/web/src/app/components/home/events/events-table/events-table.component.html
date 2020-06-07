@@ -1,4 +1,4 @@
-<div class="example-container row mt-2 mr-2 ml-2 mb-5">
+<div class="table-container row mt-2 mr-2 ml-2">
      <table #table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
           <!-- EVENT TYPE COLUMN -->
           <ng-container matColumnDef="type">
@@ -34,7 +34,7 @@
           <ng-container matColumnDef="delete">
                <th mat-header-cell *matHeaderCellDef>Borrar</th>
                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button class="accent-button" (click)="delete(element)">
+                    <button mat-icon-button class="accent-button" (click)="delete(element.id)">
                          <mat-icon aria-hidden="false" aria-label="delete">delete</mat-icon>
                     </button>
                </td>
@@ -43,8 +43,8 @@
           <ng-container matColumnDef="markAsComplete">
                <th mat-header-cell *matHeaderCellDef>Completar</th>
                <td mat-cell *matCellDef="let element">
-                    <button mat-icon-button class="accent-button" (click)="delete(element)">
-                         <mat-icon aria-hidden="false" aria-label="delete">done_outline</mat-icon>
+                    <button mat-icon-button class="accent-button" (click)="complete(element.id)">
+                         <mat-icon aria-hidden="false" aria-label="complete">done_outline</mat-icon>
                     </button>
                </td>
           </ng-container>
@@ -62,34 +62,39 @@
           <ng-container matColumnDef="expandedDetail">
                <td mat-cell *matCellDef="let element" [attr.colspan]="columns.length">
                     <div class="row example-element-detail ml-0" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                         <h4>DETALLES DEL EVENTO</h4>
-                         <div class="row">
+                         <h4 class="detail"><b>DETALLES DEL EVENTO</b></h4>
+                         <br>
+                         <div class="row w-100">
                               <div class="col-4">
-                                   <label>Descripción: </label>
+                                   <label class="detail">Descripción: </label>
                                    {{element.description}}
                               </div>
                               <div class="col-4">
-                                   <label>Creador: </label>
-                                   {{element.creator}}
+                                   <label class="detail">Creador: </label>
+                                   @{{element.creator}}
                               </div>
                               <div class="col-4">
-                                   <label>Habitación: </label>
-                                  <!--<span [ngFor]="let room of element.rooms">{{room.name}}</span>--> 
+                                   <label class="detail">Habitación: </label>
+                                   {{element.rooms[0].name}}
                               </div>
                          </div>
-                         <div class="row">
+                         <div class="row w-100">
                               <div class="col-4">
-                                   <label>Fecha inicio: </label>
+                                   <label class="detail">Fecha inicio: </label>
                                    {{element.startDate | date:'dd/MM/yyyy'}}
                               </div>
-                              <div class="col-4">
-                                   <label>Fecha fin: </label>
+                              <div class="col-8">
+                                   <label class="detail">Fecha fin: </label>
                                    {{element.endDate | date: 'dd/MM/yyyy'}}
                               </div>
-                              <div class="col-4">
-                                   <label>Habitación: </label>
-                                   {{element.rooms}}}
+
+                         </div>
+                         <div class="row w-100">
+                              <div class="col-12">
+                                   <label class="detail">Participantes: </label>
+                                   <span *ngFor="let user of element.users">@{{user.nickname}} </span>
                               </div>
+
                          </div>
                     </div>
                </td>
@@ -100,15 +105,18 @@
           </tr>
           <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
      </table>
-</div>
-<!-- =========================================-->
-<!-- EMPTY LIST -->
-<!-- =========================================-->
-<div class="table-empty pt-4 mb-5" *ngIf="dataSource.data == null">
-     <div class="row text-center justify-content-center">
-          <span class="font-weight-bold">TABLA VACÍA</span>
+     <!-- =========================================-->
+     <!-- EMPTY LIST -->
+     <!-- =========================================-->
+     <div class="table-empty pt-5 mb-5 w-100" *ngIf="dataSource.data == undefined || dataSource.data == null || dataSource.data.length == 0">
+          <div class="row text-center justify-content-center align-items-center w-100 pt-2">
+               <span class="font-weight-bold">TABLA VACÍA</span>
+               <mat-icon class="md-18 pl-3">sentiment_very_satisfied</mat-icon>
+          </div>
+          <div class="row text-center justify-content-center w-100">
+               <span>No tienes ningún evento pendiente. </span>
+          </div>
      </div>
-     <div class="row text-center justify-content-center">
-          <span>No tienes ningún evento</span>
-     </div>
 </div>
+
+<app-loading [loading]='loading'></app-loading>

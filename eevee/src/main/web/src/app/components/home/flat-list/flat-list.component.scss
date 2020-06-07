@@ -4,7 +4,10 @@ h3 {color: #ff5757;}
      margin: 10px 0px;
      height: auto !important;
 }
-
+.mat-stroked-button {
+     border: 2px solid #ff5757 !important;
+     span{ color: #ff5757 !important;}
+ }
 .mat-list-item-content { 
      padding: 0px !important; // Outside ripple effect
 } 

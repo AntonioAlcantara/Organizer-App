@@ -4,7 +4,7 @@
      <div class="home-menu-desktop d-none d-lg-inline">
           <div class="row pt-2 pb-2">
                <div class="col-3 p-0 text-left">
-                    <img class="icon" role="button" routerLinkActive="active" [routerLink]="['home']" src="/assets/images/flapp-icon.png">
+                    <img class="icon" role="button" routerLinkActive="active" [routerLink]="['home/landing']" src="/assets/images/flapp-icon.png">
                </div>
                <div class="col-6 p-0 pb-4 text-center d-flex align-items-end">
                     <a class="header-button" routerLinkActive="active" [routerLink]="['flats']">GESTIONAR PISOS</a>
@@ -16,14 +16,17 @@
                     <button mat-icon-button color="accent" aria-label="User info icon" [matMenuTriggerFor]="menu">
                          <mat-icon class="primary-icon material-icons-outlined pr-2" matSuffix>account_circle</mat-icon>
                     </button>
+                    <!-- USER ICON MENU -->
                     <mat-menu class="w-100 p-4" #menu xPosition="before" class="matMenu">
-                         <span class="p-2">@Fiji</span>
-                         <br>
-                         <span class="p-2">Eventos 2</span>
-                         <hr>
-                         <button mat-menu-item class="menu-item" (click)="logOut()">
-                              <span class="p-2"><b>LOG OUT</b></span>
-                         </button>
+                         <div class="p-3">
+                              <span class="m-4" *ngIf="user != undefined"><b>@{{user.nickname}}</b></span>
+                              <br>
+                              <span class="m-4" [matBadge]="checkEvents()" matBadgeOverlap="false">Eventos activos</span>
+                              <hr>
+                              <button mat-menu-item class="menu-item" (click)="logOut()">
+                                   <span class="p-2"><b>LOG OUT</b></span>
+                              </button>
+                         </div>
                     </mat-menu>
                </div>
           </div>
@@ -34,11 +37,11 @@
                <app-menu></app-menu>
           </div>
           <div class="col-6 p-0 text-center">
-               <img class="icon w-20 d-md-none d-lg-none" role="button" routerLinkActive="active" [routerLink]="['home']"
+               <img class="icon w-20 d-lg-none" role="button" routerLinkActive="active" [routerLink]="['home/landing']"
                     src="assets/images/flapp-flat-icon.png">
           </div>
           <div class="col-3 p-0 text-right nav-item">
-               <button mat-icon-button color="accent" aria-label="User info icon">
+               <button mat-icon-button color="accent" aria-label="User info icon" [matMenuTriggerFor]="menu">
                     <mat-icon class="primary-icon pr-2" matSuffix>account_circle</mat-icon>
                </button>
           </div>
