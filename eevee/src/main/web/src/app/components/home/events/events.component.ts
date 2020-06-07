@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { viewClassName } from '@angular/compiler';
 import { MatTableDataSource } from '@angular/material/table';
 import { EventModel } from 'src/app/models/event.model';
 import { UserService } from 'src/app/services/user.service';

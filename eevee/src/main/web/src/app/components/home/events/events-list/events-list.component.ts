@@ -25,10 +25,10 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class EventsListComponent implements OnInit {
 
+  loading = false;
   selection = new SelectionModel<EventModel>(true, []);
   expandedElement: EventModel | null;
   @Input() completeEvents: boolean;
-  loading = false;
   @Input() dataSource;
   constructor(
     private notificationService: NotificationsService,
@@ -39,7 +39,6 @@ export class EventsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
   }
 
   delete(eventId: number) {

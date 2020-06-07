@@ -18,16 +18,16 @@ export class NotificationsService {
         this.communication.type = CommunicationType.error;
         switch (errorCode) {
             case (500 || 503 || 502):
-                this.communication.message = 'Server is unavailable at this time!';
+                this.communication.message = 'Servidor no disponible en estos momentos!';
                 break;
             case (401):
-                this.communication.message = 'Invalid username or password.';
+                this.communication.message = 'Nombre de usuario o contraseña incorrectos.';
                 break;
             case (404):
-                this.communication.message = 'Page not found';
+                this.communication.message = 'Página no encontrada';
                 break;
             default:
-            this.communication.message = 'Something went wrong!';
+            this.communication.message = 'Parece que algo a salido mal!';
         }
         this.snackbar.openFromComponent(SnackBarComponent, {
             data: this.communication,
@@ -38,7 +38,7 @@ export class NotificationsService {
     }
     getNoContentNotification() {
         this.communication.type = CommunicationType.error;
-        this.communication.message = 'Sorry! No results were found.';
+        this.communication.message = 'No se han encontrado resultados.';
         this.snackbar.openFromComponent(SnackBarComponent, {
             data: this.communication,
             duration: 3000,
@@ -48,7 +48,7 @@ export class NotificationsService {
     }
     getUserAlreadyExists() {
         this.communication.type = CommunicationType.error;
-        this.communication.message = 'E-mail or Nickname already exists!';
+        this.communication.message = 'E-mail or Nickname ya existe!';
         this.snackbar.openFromComponent(SnackBarComponent, {
             data: this.communication,
             duration: 3000,
