@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SelectionModel } from '@angular/cdk/collections';
 import { EventModel } from 'src/app/models/event.model';
 import { DatePipe } from '@angular/common';
@@ -16,7 +16,7 @@ export class EventsListComponent implements OnInit {
 
   selection = new SelectionModel<EventModel>(true, []);
   expandedElement: EventModel | null;
-  dataSource;
+  @Input() dataSource;
   constructor(
     private eventService: EventService,
     private adapter: DateAdapter<any>,
@@ -24,7 +24,7 @@ export class EventsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
+    // this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
   }
 
   delete(event) {}

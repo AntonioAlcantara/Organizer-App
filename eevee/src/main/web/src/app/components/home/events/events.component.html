@@ -10,12 +10,9 @@
           <div class="col-lg-6 col-sm-12 d-flex justify-content-end align-items-end">
                <mat-form-field>
                     <mat-label>Elegir eventos:</mat-label>
-                    <mat-select>
-                         <mat-option [(value)]="selectedOption">
-                              ACTIVOS
-                         </mat-option>
-                         <mat-option [value]="true">
-                              INACTIVOS
+                    <mat-select (selectionChange)="onSelect($event)">
+                         <mat-option *ngFor="let option of options" [(value)]="option.value">
+                              {{option.name}}
                          </mat-option>
                     </mat-select>
                </mat-form-field>
@@ -24,6 +21,7 @@
                <img class="float-right events-img" src="/assets/images/vector2.png">
           </div>
      </div>
-     <app-events-table class="d-none d-lg-inline"></app-events-table>
-     <app-events-list class="d-lg-none"></app-events-list>
+     <app-events-table class="d-none d-lg-inline" [dataSource]="dataSource"></app-events-table>
+     <app-events-list class="d-lg-none" [dataSource]="dataSource"></app-events-list>
 </div>
+<app-loading [loading]="loading"></app-loading>

@@ -1,5 +1,5 @@
 <div class="example-container row mt-2 mr-2 ml-2 mb-5">
-     <table #table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+     <table #table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8 mb-4">
           <!-- EVENT TYPE COLUMN -->
           <ng-container matColumnDef="type">
                <th mat-header-cell *matHeaderCellDef>Tipo</th>
@@ -92,7 +92,7 @@
                          <div class="row w-100">
                               <div class="col-12">
                                    <label class="detail">Participantes: </label>
-                                   <span *ngFor="let user of element.users">@{{user.nickname}}</span>
+                                   <span *ngFor="let user of element.users">@{{user.nickname}} </span>
                               </div>
 
                          </div>

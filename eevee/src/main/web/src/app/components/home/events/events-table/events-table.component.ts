@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { EventModel } from 'src/app/models/event.model';
 import { DatePipe } from '@angular/common';
 import { DateAdapter } from '@angular/material/core';
-import { SelectionModel } from '@angular/cdk/collections';
+import { SelectionModel, DataSource } from '@angular/cdk/collections';
 import { stringify } from 'querystring';
 import { EventService } from 'src/app/services/event.service';
 import { EventTypeModel } from 'src/app/models/event-type.model';
@@ -26,7 +26,7 @@ export class EventsTableComponent implements OnInit {
   columns = ['type', 'name', 'amount', 'active', 'delete', 'markAsComplete', 'details'];
   selection = new SelectionModel<EventModel>(true, []);
   expandedElement: EventModel | null;
-  dataSource;
+  @Input() dataSource;
   constructor(
     private eventService: EventService,
     private adapter: DateAdapter<any>,
@@ -34,7 +34,6 @@ export class EventsTableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<EventModel>(JSON.parse(sessionStorage.getItem('eventsList')));
   }
 
   delete(event) {}
