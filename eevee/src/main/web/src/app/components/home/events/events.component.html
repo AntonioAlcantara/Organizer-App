@@ -21,7 +21,7 @@
                <img class="float-right events-img" src="/assets/images/vector2.png">
           </div>
      </div>
-     <app-events-table class="d-none d-lg-inline" [dataSource]="dataSource"></app-events-table>
+     <app-events-table class="d-none d-lg-inline" [completeEvents]="selectedOption" [dataSource]="dataSource"></app-events-table>
      <app-events-list class="d-lg-none" [dataSource]="dataSource"></app-events-list>
 </div>
 <app-loading [loading]="loading"></app-loading>
