@@ -27,8 +27,7 @@
                                         <mat-label>Número</mat-label>
                                         <input matInput formControlName="number" placeholder="Número de calle *">
                                         <mat-icon matSuffix class="accent-icon">place</mat-icon>
-                                        <mat-error *ngIf="addFlatForm.controls.number.invalid">Street address is
-                                             required. 3 chars max</mat-error>
+                                        <mat-error *ngIf="addFlatForm.controls.number.invalid">Formato no válido.</mat-error>
                                    </mat-form-field>
                               </div>
                               <div class="col-lg-6 col-sm-12 p-0">
@@ -42,7 +41,7 @@
                          </div>
                          <div class="row ml-0 mr-0 mt-3 justify-content-center">
                               <div class="col-lg-6 mb-2">
-                                   <button mat-button mat-stroked-button (click)="cancel()">CANCELAR</button>
+                                   <button mat-button mat-stroked-button (click)="cancel()" class="cancel-btn">CANCELAR</button>
                               </div>
                               <div class="col-lg-6 mb-2">
                                    <button mat-button mat-flat-button class="accent-button" (click)="addFlat()">AÑADIR
